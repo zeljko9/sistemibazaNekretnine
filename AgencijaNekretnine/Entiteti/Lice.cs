@@ -25,22 +25,23 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class PravniVlasnik
+    public class PravniVlasnik:Lice
     {
+
         public virtual Vlasnik jeVlasnik { get; set; }
         public PravniVlasnik()
         {
         }
     }
 
-    public class PravniKupac
+    public class PravniKupac:Lice
     {
         public virtual Kupac jeKupac { get; set; }
         public PravniKupac()
         {
         }
     }
-    public class FizickiKupac
+    public class FizickiKupac : Lice
     {  //public virtual int JMBG_PIB { get; set; }
         public virtual Kupac jeKupac { get; set; }
         public FizickiKupac()
@@ -48,7 +49,7 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class FizickiVlasnik
+    public class FizickiVlasnik:Lice
     {
         public virtual Vlasnik jeVlasnik { get; set; }
         public FizickiVlasnik()

@@ -27,4 +27,50 @@ namespace AgencijaNekretnine.Mapiranja
             References(x => x.PripadaKvartu).Column("IDKVART").LazyLoad();
         }
     }
+
+    internal class StambKupovinaMapiranja : SubclassMap<StambKupovina> {
+        public StambKupovinaMapiranja() {
+            Table("STAMB_KUPOVINA");
+
+            KeyColumn("IDNEKRETNINA");
+
+            References(x => x.Kpn).Column("IDKPN").LazyLoad();
+        }
+    }
+
+    internal class StambIznajmMapiranja : SubclassMap<StambIznajm>
+    {
+        public StambIznajmMapiranja()
+        {
+            Table("STAMB_IZNAJM");
+
+            KeyColumn("IDNEKRETNINA");
+
+            References(x => x.Izn).Column("IDIZN").LazyLoad();
+        }
+    }
+
+    internal class PoslvKupovinaMapiranja : SubclassMap<PoslvKupovina>
+    {
+        public PoslvKupovinaMapiranja()
+        {
+            Table("POSLV_KUPOVINA");
+
+            KeyColumn("IDNEKRETNINA");
+
+            References(x => x.Kpn).Column("IDKPN").LazyLoad();
+        }
+    }
+
+    internal class PoslvIznajmMapiranja : SubclassMap<PoslvIznajm>
+    {
+        public PoslvIznajmMapiranja()
+        {
+            Table("POSLV_IZNAJM");
+
+            KeyColumn("IDNEKRETNINA");
+
+            References(x => x.Izn).Column("IDIZN").LazyLoad();
+        }
+    }
 }

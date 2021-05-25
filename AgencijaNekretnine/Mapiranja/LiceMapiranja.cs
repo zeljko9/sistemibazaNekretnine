@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("LICE");
 
-            DiscriminateSubClassesOnColumn("TIPLICA");
+            //DiscriminateSubClassesOnColumn("TIPLICA");
 
             Id(x => x.JMBG_PIB,"JMBGPIB").GeneratedBy.Assigned();
 
@@ -46,5 +46,52 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }*/
 
+    internal class FizickiKupacMapiranja : SubclassMap<FizickiKupac>
+    {
+        public FizickiKupacMapiranja()
+        {
+            Table("FIZICKI_KUPAC_NEKRETNINE");
 
+            KeyColumn("JMBGPIB");
+
+            References(x => x.jeKupac).Column("IDKUPAC1").LazyLoad();
+        }
+    }
+
+    internal class FizickiVlasnikMapiranja : SubclassMap<FizickiVlasnik>
+    {
+        public FizickiVlasnikMapiranja()
+        {
+            Table("FIZ_VLASNIK_NEKRETNINE");
+
+            KeyColumn("JMBGPIB");
+
+            References(x => x.jeVlasnik).Column("IDVLASNIK1").LazyLoad();
+
+        }
+    }
+
+    internal class PravniKupacMapiranja : SubclassMap<PravniKupac>
+    {
+        public PravniKupacMapiranja()
+        {
+            Table("PRAV_KUPAC_NEKRETNINE");
+
+            KeyColumn("JMBGPIB");
+
+            References(x => x.jeKupac).Column("IDKUPAC2").LazyLoad();
+        }
+    }
+
+    internal class PravniVlasnikMapiranja : SubclassMap<PravniVlasnik>
+    {
+        public PravniVlasnikMapiranja()
+        {
+            Table("PRAV_VLASNIK_NEKRETNINE");
+
+            KeyColumn("JMBGPIB");
+
+            References(x => x.jeVlasnik).Column("IDVLASNIK2").LazyLoad();
+        }
+    }
 }

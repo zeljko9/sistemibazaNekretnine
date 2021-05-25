@@ -8,7 +8,7 @@ namespace AgencijaNekretnine.Entiteti
 {
     public class KupoprodajniUgovor
     {
-        public virtual int IDugiz { get; set; }
+        public virtual int IDugkp { get; set; }
         public virtual KupoprodNekretnina kupoprodNekretnine { get; set; }
         public virtual Vlasnik vlasnik { get; set; }
         public virtual Kupac kupac { get; set; }

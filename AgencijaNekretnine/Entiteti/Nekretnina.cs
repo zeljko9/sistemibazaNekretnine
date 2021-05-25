@@ -26,25 +26,25 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class StambKupovina 
+    public class StambKupovina: Nekretnina
     {
         public virtual KupoprodNekretnina Kpn { get; set; }
 
         public StambKupovina() { }
     }
-    public class StambIznajm 
+    public class StambIznajm : Nekretnina
     {
         public virtual IznajmNekretnina Izn { get; set; }
 
         public StambIznajm() { }
     }
-    public class PoslvKupovina
+    public class PoslvKupovina : Nekretnina
     {
         public virtual KupoprodNekretnina Kpn { get; set; }
 
         public PoslvKupovina() { }
     }
-    public class PoslvIznajm 
+    public class PoslvIznajm : Nekretnina
     {
         public virtual IznajmNekretnina Izn { get; set; }
 
