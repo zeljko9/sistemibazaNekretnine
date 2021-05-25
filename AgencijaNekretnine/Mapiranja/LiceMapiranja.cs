@@ -21,7 +21,7 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.Ime, "IME");
             Map(x => x.Prezime, "PREZIME");
             Map(x => x.Adresa, "ADRESA");
-           // Map(x => x.TipLica, "TIPLICA");
+            Map(x => x.TipLica, "TIPLICA");
 
             //1:N VEZA SA TELEFON, IMA NIZ TELEFONA
             HasMany(x => x.TelefoniLica).KeyColumn("JMBGPIB").LazyLoad().Cascade.All().Inverse();
@@ -30,7 +30,7 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    internal class FizickoLiceMapiranja : SubclassMap<FizickoLice>
+    /*internal class FizickoLiceMapiranja : SubclassMap<Lice>
     {
         public FizickoLiceMapiranja()
         {
@@ -38,13 +38,13 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    internal class PravnoLiceMapiranja : SubclassMap<PravnoLice>
+    internal class PravnoLiceMapiranja : SubclassMap<Lice>
     {
         public PravnoLiceMapiranja()
         {
             DiscriminatorValue("Pravno");
         }
-    }
+    }*/
 
 
 }

@@ -22,7 +22,6 @@ namespace AgencijaNekretnine.Mapiranja
             References(x => x.SefPoslovnice).Column("IDSEF").LazyLoad();
             HasMany(x => x.NagledaKvartove).KeyColumn("IDPOSLOVNICA1").LazyLoad().Cascade.All().Inverse();
             HasMany(x => x.ZaposljavaZaposlene).KeyColumn("IDPOSLOVNICA2").LazyLoad().Cascade.All().Inverse();
-            //ide 1:1 sef mapiranje
 
         }
     }
