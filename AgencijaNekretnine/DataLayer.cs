@@ -40,7 +40,7 @@ namespace AgencijaNekretnine
 
                 return Fluently.Configure()
                     .Database(cfg)
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AgentMapiranja>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NekretninaMapiranja>())
                     .BuildSessionFactory();
             }
             catch(Exception e)

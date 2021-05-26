@@ -17,12 +17,28 @@ namespace AgencijaNekretnine.Entiteti
         public virtual DateTime DatumIzgradnje { get; set; }
         public virtual String TipNekretnine { get; set; }
         public virtual int BrKupatila { get; set; }
+        public virtual IList<Oprema> oprema { get; set; }
 
         public virtual Kvart PripadaKvartu { get; set; }
 
         public Nekretnina()
         {
 
+        }
+
+        public Nekretnina(int iDNekretnina, string ulica, int broj, int sprat, int cena, int starost, DateTime datumIzgradnje, string tipNekretnine, int brKupatila, IList<Oprema> oprema, Kvart pripadaKvartu)
+        {
+            IDNekretnina = iDNekretnina;
+            Ulica = ulica;
+            Broj = broj;
+            Sprat = sprat;
+            Cena = cena;
+            Starost = starost;
+            DatumIzgradnje = datumIzgradnje;
+            TipNekretnine = tipNekretnine;
+            BrKupatila = brKupatila;
+            this.oprema = oprema;
+            PripadaKvartu = pripadaKvartu;
         }
     }
 

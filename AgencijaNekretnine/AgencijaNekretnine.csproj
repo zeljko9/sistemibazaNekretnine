@@ -10,8 +10,4 @@
     <PackageReference Include="FluentNHibernate" Version="3.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Forme\" />
-  </ItemGroup>
-
 </Project>

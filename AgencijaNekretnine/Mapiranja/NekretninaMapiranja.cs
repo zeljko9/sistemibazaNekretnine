@@ -24,6 +24,7 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.Starost, "STAROST");
             Map(x => x.TipNekretnine, "TIPNEKRETNINE");
             Map(x => x.BrKupatila, "BR_KUPATILA");
+            HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
             References(x => x.PripadaKvartu).Column("IDKVART").LazyLoad();
         }
     }

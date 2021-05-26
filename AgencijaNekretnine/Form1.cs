@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgencijaNekretnine.Forme;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,5 +18,10 @@ namespace AgencijaNekretnine
             InitializeComponent();
         }
 
+        private void btnNekretnine_Click(object sender, EventArgs e)
+        {
+            NekretnineForm forma = new NekretnineForm();
+            forma.ShowDialog();
+        }
     }
 }
