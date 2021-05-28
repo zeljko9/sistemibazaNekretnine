@@ -28,7 +28,7 @@ namespace AgencijaNekretnine
             try {
                 ISession s = DataLayer.GetSession();
 
-                IEnumerable<Nekretnina> sveNekretnine = from o in s.Query<Nekretnina>() select o;
+                IEnumerable<Nekretnina> sveNekretnine = s.Query<Nekretnina>().ToList();
 
                 foreach (Nekretnina n in sveNekretnine) {
                     nekretnine.Add(new Nekretnina(n.IDNekretnina, n.Ulica, n.Broj, n.Sprat, n.Cena, n.Starost, n.DatumIzgradnje, n.TipNekretnine, n.BrKupatila, n.oprema, n.PripadaKvartu));
