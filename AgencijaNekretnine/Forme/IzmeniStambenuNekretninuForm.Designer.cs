@@ -67,6 +67,11 @@ namespace AgencijaNekretnine.Forme
             // numCena
             // 
             this.numCena.Location = new System.Drawing.Point(292, 155);
+            this.numCena.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
             this.numCena.Name = "numCena";
             this.numCena.Size = new System.Drawing.Size(179, 27);
             this.numCena.TabIndex = 48;

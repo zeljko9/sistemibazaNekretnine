@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AgencijaNekretnine.Entiteti
 {
-    public class Kupac:Lice
+    public class Kupac
     {
         public virtual int KupacID { get; set; }
 

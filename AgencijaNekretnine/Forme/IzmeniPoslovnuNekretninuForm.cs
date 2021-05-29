@@ -13,8 +13,8 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class IzmeniPoslovnuNekretninuForm : Form
     {
-        Nekretnina n;
-        public IzmeniPoslovnuNekretninuForm(Nekretnina nkr)
+        NekretninaBasic n;
+        public IzmeniPoslovnuNekretninuForm(NekretninaBasic nkr)
         {
             InitializeComponent();
             n = nkr;

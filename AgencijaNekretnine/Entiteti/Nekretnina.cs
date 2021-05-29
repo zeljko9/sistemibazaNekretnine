@@ -17,16 +17,16 @@ namespace AgencijaNekretnine.Entiteti
         public virtual DateTime DatumIzgradnje { get; set; }
         public virtual String TipNekretnine { get; set; }
         public virtual int BrKupatila { get; set; }
-        public virtual IList<Oprema> oprema { get; set; }
 
+        public virtual IList<Oprema> oprema { get; set; }
         public virtual Kvart PripadaKvartu { get; set; }
 
         public Nekretnina()
         {
-
+            this.oprema = new List<Oprema>();
         }
 
-        public Nekretnina(int iDNekretnina, string ulica, int broj, int sprat, int cena, int starost, DateTime datumIzgradnje, string tipNekretnine, int brKupatila, IList<Oprema> oprema, Kvart pripadaKvartu)
+        public Nekretnina(int iDNekretnina, string ulica, int broj, int sprat, int cena, int starost, DateTime datumIzgradnje, string tipNekretnine, int brKupatila, /*IList<Oprema> oprema*/Kvart pripadaKvartu)
         {
             IDNekretnina = iDNekretnina;
             Ulica = ulica;
@@ -37,7 +37,7 @@ namespace AgencijaNekretnine.Entiteti
             DatumIzgradnje = datumIzgradnje;
             TipNekretnine = tipNekretnine;
             BrKupatila = brKupatila;
-            this.oprema = oprema;
+           // this.oprema = oprema;
             PripadaKvartu = pripadaKvartu;
         }
     }
@@ -50,20 +50,28 @@ namespace AgencijaNekretnine.Entiteti
     }
     public class StambIznajm : Nekretnina
     {
-        public virtual IznajmNekretnina Izn { get; set; }
+        public virtual Nekretnina Izn { get; set; }
 
         public StambIznajm() { }
     }
     public class PoslvKupovina : Nekretnina
     {
         public virtual KupoprodNekretnina Kpn { get; set; }
+       // public virtual IList<Oprema> oprema { get; set; }
 
-        public PoslvKupovina() { }
+        public PoslvKupovina() 
+        {
+            //this.oprema = new List<Oprema>();
+        }
     }
     public class PoslvIznajm : Nekretnina
     {
+       // public virtual IList<Oprema> oprema { get; set; }
         public virtual IznajmNekretnina Izn { get; set; }
 
-        public PoslvIznajm() { }
+        public PoslvIznajm()
+        {
+           // this.oprema = new List<Oprema>();
+        }
     }
 }

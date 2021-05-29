@@ -31,7 +31,7 @@ namespace AgencijaNekretnine.Forme
         {
             this.numSprat = new System.Windows.Forms.NumericUpDown();
             this.numBroj = new System.Windows.Forms.NumericUpDown();
-            this.ena = new System.Windows.Forms.NumericUpDown();
+            this.nmbCena = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDodaj = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@ namespace AgencijaNekretnine.Forme
             this.textUlica = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).BeginInit();
             this.SuspendLayout();
             // 
             // numSprat
@@ -59,12 +59,12 @@ namespace AgencijaNekretnine.Forme
             this.numBroj.Size = new System.Drawing.Size(179, 27);
             this.numBroj.TabIndex = 27;
             // 
-            // ena
+            // nmbCena
             // 
-            this.ena.Location = new System.Drawing.Point(293, 167);
-            this.ena.Name = "ena";
-            this.ena.Size = new System.Drawing.Size(179, 27);
-            this.ena.TabIndex = 26;
+            this.nmbCena.Location = new System.Drawing.Point(293, 167);
+            this.nmbCena.Name = "nmbCena";
+            this.nmbCena.Size = new System.Drawing.Size(179, 27);
+            this.nmbCena.TabIndex = 26;
             // 
             // label6
             // 
@@ -142,7 +142,7 @@ namespace AgencijaNekretnine.Forme
             this.ClientSize = new System.Drawing.Size(523, 336);
             this.Controls.Add(this.numSprat);
             this.Controls.Add(this.numBroj);
-            this.Controls.Add(this.ena);
+            this.Controls.Add(this.nmbCena);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnDodaj);
@@ -155,7 +155,7 @@ namespace AgencijaNekretnine.Forme
             this.Text = "DodajPoslovnuNekretninuForm1cs";
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,7 +164,7 @@ namespace AgencijaNekretnine.Forme
         #endregion
         private System.Windows.Forms.NumericUpDown numSprat;
         private System.Windows.Forms.NumericUpDown numBroj;
-        private System.Windows.Forms.NumericUpDown ena;
+        private System.Windows.Forms.NumericUpDown nmbCena;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnDodaj;

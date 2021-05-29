@@ -30,6 +30,13 @@ namespace AgencijaNekretnine.Forme
         private void InitializeComponent()
         {
             this.listNekretnine = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.btnDodajStambenu = new System.Windows.Forms.Button();
             this.btnDodajPoslovnu = new System.Windows.Forms.Button();
             this.btnIzmeni = new System.Windows.Forms.Button();
@@ -39,12 +46,54 @@ namespace AgencijaNekretnine.Forme
             // 
             // listNekretnine
             // 
+            this.listNekretnine.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.listNekretnine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listNekretnine.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.listNekretnine.FullRowSelect = true;
+            this.listNekretnine.GridLines = true;
             this.listNekretnine.HideSelection = false;
-            this.listNekretnine.Location = new System.Drawing.Point(12, 12);
+            this.listNekretnine.Location = new System.Drawing.Point(0, 0);
+            this.listNekretnine.Margin = new System.Windows.Forms.Padding(4);
             this.listNekretnine.Name = "listNekretnine";
-            this.listNekretnine.Size = new System.Drawing.Size(778, 526);
-            this.listNekretnine.TabIndex = 0;
+            this.listNekretnine.Size = new System.Drawing.Size(1098, 550);
+            this.listNekretnine.TabIndex = 4;
             this.listNekretnine.UseCompatibleStateImageBehavior = false;
+            this.listNekretnine.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "IDNekretnine";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ulica";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Broj";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Sprat";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Starost";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Cena";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Tip";
             // 
             // btnDodajStambenu
             // 
@@ -64,6 +113,7 @@ namespace AgencijaNekretnine.Forme
             this.btnDodajPoslovnu.TabIndex = 2;
             this.btnDodajPoslovnu.Text = "Dodaj poslovnu nekretninu";
             this.btnDodajPoslovnu.UseVisualStyleBackColor = true;
+            this.btnDodajPoslovnu.Click += new System.EventHandler(this.btnDodajPoslovnu_Click);
             // 
             // btnIzmeni
             // 
@@ -121,5 +171,12 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnOprema;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
     }
 }

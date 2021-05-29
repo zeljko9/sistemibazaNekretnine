@@ -23,5 +23,11 @@ namespace AgencijaNekretnine
             NekretnineForm forma = new NekretnineForm();
             forma.ShowDialog();
         }
+
+        private void btnZaposleni_Click(object sender, EventArgs e)
+        {
+            ZaposleniForm form = new ZaposleniForm();
+            form.ShowDialog();
+        }
     }
 }

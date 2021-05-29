@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("NEKRETNINA");
 
-            Id(x => x.IDNekretnina, "IDNEKRETNINA").GeneratedBy.SequenceIdentity("nekretnineBaza.SEQ_NEKRETNINA");
+            Id(x => x.IDNekretnina, "IDNEKRETNINA").GeneratedBy.SequenceIdentity("S17254.SEQ_NEKRETNINA");
 
             Map(x => x.Ulica, "ULICA");
             Map(x => x.Sprat, "SPRAT");
@@ -24,7 +24,7 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.Starost, "STAROST");
             Map(x => x.TipNekretnine, "TIPNEKRETNINE");
             Map(x => x.BrKupatila, "BR_KUPATILA");
-            HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
+            //HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
             References(x => x.PripadaKvartu).Column("IDKVART").LazyLoad();
         }
     }
@@ -60,6 +60,7 @@ namespace AgencijaNekretnine.Mapiranja
             KeyColumn("IDNEKRETNINA");
 
             References(x => x.Kpn).Column("IDKPN").LazyLoad();
+            HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
         }
     }
 
@@ -72,6 +73,7 @@ namespace AgencijaNekretnine.Mapiranja
             KeyColumn("IDNEKRETNINA");
 
             References(x => x.Izn).Column("IDIZN").LazyLoad();
+            HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
         }
     }
 }

@@ -38,11 +38,11 @@ namespace AgencijaNekretnine.Forme
             this.btnDodaj = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.ena = new System.Windows.Forms.NumericUpDown();
+            this.nmbCena = new System.Windows.Forms.NumericUpDown();
             this.numBroj = new System.Windows.Forms.NumericUpDown();
             this.numSprat = new System.Windows.Forms.NumericUpDown();
             this.numBrojKupatila = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.ena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBrojKupatila)).BeginInit();
@@ -126,12 +126,17 @@ namespace AgencijaNekretnine.Forme
             this.label6.TabIndex = 12;
             this.label6.Text = "Cena";
             // 
-            // ena
+            // nmbCena
             // 
-            this.ena.Location = new System.Drawing.Point(287, 192);
-            this.ena.Name = "ena";
-            this.ena.Size = new System.Drawing.Size(158, 27);
-            this.ena.TabIndex = 13;
+            this.nmbCena.Location = new System.Drawing.Point(287, 192);
+            this.nmbCena.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.nmbCena.Name = "nmbCena";
+            this.nmbCena.Size = new System.Drawing.Size(158, 27);
+            this.nmbCena.TabIndex = 13;
             // 
             // numBroj
             // 
@@ -162,7 +167,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.numBrojKupatila);
             this.Controls.Add(this.numSprat);
             this.Controls.Add(this.numBroj);
-            this.Controls.Add(this.ena);
+            this.Controls.Add(this.nmbCena);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnDodaj);
@@ -174,7 +179,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.textUlica);
             this.Name = "DodajStambenuNekretninuForm";
             this.Text = "DodajStambenuNekretninuForm";
-            ((System.ComponentModel.ISupportInitialize)(this.ena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBrojKupatila)).EndInit();
@@ -194,7 +199,7 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown ena;
+        private System.Windows.Forms.NumericUpDown nmbCena;
         private System.Windows.Forms.NumericUpDown numBroj;
         private System.Windows.Forms.NumericUpDown numSprat;
         private System.Windows.Forms.NumericUpDown numBrojKupatila;
