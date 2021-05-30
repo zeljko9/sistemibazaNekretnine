@@ -16,10 +16,13 @@ namespace AgencijaNekretnine.Forme
         public DodajZaposlenogForm()
         {
             InitializeComponent();
+            this.dtpDatZaposlenja.Enabled = false;
         }
 
         public DodajZaposlenogForm(PoslovnicaBasic p)
         {
+            InitializeComponent();
+            this.dtpDatZaposlenja.Enabled = false;
             this.poslovnica = p;
         }
 
@@ -31,14 +34,38 @@ namespace AgencijaNekretnine.Forme
             DateTime dat = this.dtpDatZaposlenja.Value;
             string Strucna = this.tbxStrucnaSprema.Text;
 
-            ProdavacBasic z = new ProdavacBasic(jmbg, ime, prez, dat);
-            StrucnaSpremaBasic s = new StrucnaSpremaBasic();
-            s.Naziv = Strucna;
+            if(this.cbxSef.Enabled)
+            {
+                SefBasic sef = new SefBasic(jmbg, ime, prez, dat);
+                sef.datPostavljanja = this.dtpPostavljanje.Value;
+                sef.sefujeNad = this.poslovnica;
+                DTOmanager.dodajZaposlenog(sef, this.poslovnica);
+            }
+            else
+            {
+                ProdavacBasic z = new ProdavacBasic(jmbg, ime, prez, dat);
+                StrucnaSpremaBasic s = new StrucnaSpremaBasic();
+                s.Naziv = Strucna;
 
-            DTOmanager.dodajZaposlenog(z, this.poslovnica);
-            DTOmanager.dodajStrucnuSpremu(s, z);
+                DTOmanager.dodajZaposlenog(z, this.poslovnica);
+                DTOmanager.dodajStrucnuSpremu(s, z);
+            }
 
             MessageBox.Show("Uspesno ste dodali novog zaposlenog");
+        }
+
+        private void cbxSef_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.cbxSef.Checked)
+            {
+                this.dtpDatZaposlenja.Enabled = true;
+                this.tbxStrucnaSprema.Enabled = false;
+            }
+            else
+            {
+                this.dtpDatZaposlenja.Enabled = false;
+                this.tbxStrucnaSprema.Enabled = true;
+            }
         }
     }
 }

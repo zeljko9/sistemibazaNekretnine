@@ -14,6 +14,8 @@ namespace AgencijaNekretnine.Entiteti
         public virtual int Procenat { get; set; }
         public virtual string Telefon { get; set; }
 
+        public virtual DateTime DatRada { get; set; }
+
         public Agent() { }
     }
 }

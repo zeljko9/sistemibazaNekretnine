@@ -39,7 +39,7 @@ namespace AgencijaNekretnine.Forme
             this.btnDodajZaposlenog = new System.Windows.Forms.Button();
             this.btnIzmeniZaposlenog = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnPrikazSefova = new System.Windows.Forms.Button();
+            this.btnAgentiProdavca = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // zaposleni
@@ -117,22 +117,22 @@ namespace AgencijaNekretnine.Forme
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btnPrikazSefova
+            // btnAgentiProdavca
             // 
-            this.btnPrikazSefova.Location = new System.Drawing.Point(551, 229);
-            this.btnPrikazSefova.Name = "btnPrikazSefova";
-            this.btnPrikazSefova.Size = new System.Drawing.Size(202, 29);
-            this.btnPrikazSefova.TabIndex = 4;
-            this.btnPrikazSefova.Text = "PrikaziSefove";
-            this.btnPrikazSefova.UseVisualStyleBackColor = true;
-            this.btnPrikazSefova.Click += new System.EventHandler(this.btnPrikazSefova_Click);
+            this.btnAgentiProdavca.Location = new System.Drawing.Point(551, 257);
+            this.btnAgentiProdavca.Name = "btnAgentiProdavca";
+            this.btnAgentiProdavca.Size = new System.Drawing.Size(202, 29);
+            this.btnAgentiProdavca.TabIndex = 4;
+            this.btnAgentiProdavca.Text = "Agenti Prodavca";
+            this.btnAgentiProdavca.UseVisualStyleBackColor = true;
+            this.btnAgentiProdavca.Click += new System.EventHandler(this.btnAgentiProdavca_Click);
             // 
             // ZaposleniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnPrikazSefova);
+            this.Controls.Add(this.btnAgentiProdavca);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnIzmeniZaposlenog);
             this.Controls.Add(this.btnDodajZaposlenog);
@@ -149,12 +149,12 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnDodajZaposlenog;
         private System.Windows.Forms.Button btnIzmeniZaposlenog;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnPrikazSefova;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader Ime;
         private System.Windows.Forms.ColumnHeader Prezime;
         private System.Windows.Forms.ColumnHeader DatZaposlenja;
         private System.Windows.Forms.ColumnHeader IDProdavnice;
         private System.Windows.Forms.ColumnHeader Sef;
+        private System.Windows.Forms.Button btnAgentiProdavca;
     }
 }

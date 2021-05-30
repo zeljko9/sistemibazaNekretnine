@@ -33,6 +33,7 @@ namespace AgencijaNekretnine
             this.btnUgovori = new System.Windows.Forms.Button();
             this.btnZaposleni = new System.Windows.Forms.Button();
             this.btnPoslovnice = new System.Windows.Forms.Button();
+            this.btnKvartovi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnNekretnine
@@ -69,18 +70,30 @@ namespace AgencijaNekretnine
             // 
             // btnPoslovnice
             // 
-            this.btnPoslovnice.Location = new System.Drawing.Point(120, 142);
+            this.btnPoslovnice.Location = new System.Drawing.Point(120, 151);
             this.btnPoslovnice.Name = "btnPoslovnice";
             this.btnPoslovnice.Size = new System.Drawing.Size(199, 65);
             this.btnPoslovnice.TabIndex = 3;
             this.btnPoslovnice.Text = "Poslovnice";
             this.btnPoslovnice.UseVisualStyleBackColor = true;
+            this.btnPoslovnice.Click += new System.EventHandler(this.btnPoslovnice_Click);
+            // 
+            // btnKvartovi
+            // 
+            this.btnKvartovi.Location = new System.Drawing.Point(120, 87);
+            this.btnKvartovi.Name = "btnKvartovi";
+            this.btnKvartovi.Size = new System.Drawing.Size(199, 58);
+            this.btnKvartovi.TabIndex = 4;
+            this.btnKvartovi.Text = "Kvartovi";
+            this.btnKvartovi.UseVisualStyleBackColor = true;
+            this.btnKvartovi.Click += new System.EventHandler(this.btnKvartovi_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 566);
+            this.Controls.Add(this.btnKvartovi);
             this.Controls.Add(this.btnPoslovnice);
             this.Controls.Add(this.btnZaposleni);
             this.Controls.Add(this.btnUgovori);
@@ -97,6 +110,7 @@ namespace AgencijaNekretnine
         private System.Windows.Forms.Button btnUgovori;
         private System.Windows.Forms.Button btnZaposleni;
         private System.Windows.Forms.Button btnPoslovnice;
+        private System.Windows.Forms.Button btnKvartovi;
     }
 }
 

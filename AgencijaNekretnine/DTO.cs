@@ -229,6 +229,8 @@ namespace AgencijaNekretnine
         public string Prezime { get; set; }
         public int Procenat { get; set; }
         public string brTel { get; set; }
+
+        public DateTime DatRada { get; set; }
         public ProdavacBasic angazovanOd { get; set; }
 
         public AgentBasic() { }

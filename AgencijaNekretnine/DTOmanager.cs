@@ -256,12 +256,13 @@ namespace AgencijaNekretnine
 
 
 
-        public static void dodajZaposlenog(ZaposleniBasic z, PoslovnicaBasic p)
+        public static void dodajZaposlenog(ProdavacBasic z, PoslovnicaBasic p)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
-                Zaposleni zap = new Zaposleni();
+                Prodavac zap = new Prodavac();
+
                 zap.JMBG = z.JMBG;
                 zap.Ime = z.Ime;
                 zap.Prezime = zap.Prezime;
@@ -275,7 +276,7 @@ namespace AgencijaNekretnine
                 s.Flush();
                 s.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -295,11 +296,11 @@ namespace AgencijaNekretnine
                 ISession s = DataLayer.GetSession();
 
                 IEnumerable<Poslovnica> sveProdavnice = from o in s.Query<Poslovnica>()
-                                                                            select o;
+                                                        select o;
 
                 foreach (Poslovnica p in sveProdavnice)
                 {
-                    poslovnice.Add(new PoslovnicaBasic(p.IDPoslovnice,p.Adresa,p.RadnoVreme));
+                    poslovnice.Add(new PoslovnicaBasic(p.IDPoslovnice, p.Adresa, p.RadnoVreme));
                 }
 
                 s.Close();
@@ -325,7 +326,7 @@ namespace AgencijaNekretnine
                 pos.RadnoVreme = p.RadnoVreme;
                 pos.IDPoslovnice = p.IDPoslovnice;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -345,7 +346,7 @@ namespace AgencijaNekretnine
                 IEnumerable<Prodavac> prodavci = from p in s.Query<Prodavac>()
                                                  where p.RadiUPoslovnici.IDPoslovnice == idPoslovnice
                                                  select p;
-                foreach(Prodavac p in prodavci)
+                foreach (Prodavac p in prodavci)
                 {
 
                     ProdavacBasic prod = new ProdavacBasic(p.JMBG, p.Ime, p.Prezime, p.DatZaposlenja);
@@ -358,32 +359,32 @@ namespace AgencijaNekretnine
 
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
 
             return listaProdavaca;
 
-           /* List<ZaposleniBasic> listaZaposleni = new List<ZaposleniBasic>();
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                IEnumerable<Zaposleni> zaposleni = from z in s.Query<Zaposleni>()
-                                                   where z.RadiUPoslovnici.IDPoslovnice == idPoslovnice
-                                                   select z;
+            /* List<ZaposleniBasic> listaZaposleni = new List<ZaposleniBasic>();
+             try
+             {
+                 ISession s = DataLayer.GetSession();
+                 IEnumerable<Zaposleni> zaposleni = from z in s.Query<Zaposleni>()
+                                                    where z.RadiUPoslovnici.IDPoslovnice == idPoslovnice
+                                                    select z;
 
-                foreach(Zaposleni z in zaposleni)
-                {
-                    listaZaposleni.Add(new ZaposleniBasic(z.JMBG, z.Ime, z.Prezime, z.DatZaposlenja));
-                }
-            }
-            catch(Exception e) 
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
+                 foreach(Zaposleni z in zaposleni)
+                 {
+                     listaZaposleni.Add(new ZaposleniBasic(z.JMBG, z.Ime, z.Prezime, z.DatZaposlenja));
+                 }
+             }
+             catch(Exception e) 
+             {
+                 System.Windows.Forms.MessageBox.Show(e.Message);
+             }
 
-            return listaZaposleni;*/
+             return listaZaposleni;*/
         }
 
 
@@ -394,14 +395,14 @@ namespace AgencijaNekretnine
             IEnumerable<StrucnaSprema> sprem = from st in s.Query<StrucnaSprema>()
                                                where st.pripadaProdavcu.JMBG == idProdavca
                                                select st;
-            foreach(StrucnaSprema sprema in sprem)
+            foreach (StrucnaSprema sprema in sprem)
             {
                 StrucnaSpremaBasic struka = new StrucnaSpremaBasic(sprema.IDSpreme, sprema.NazivSpreme);
                 str.Add(struka);
             }
 
             return str;
-                                 
+
 
         }
         public static void dodajPoslovnicu(PoslovnicaBasic p)
@@ -442,7 +443,8 @@ namespace AgencijaNekretnine
 
 
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -459,7 +461,7 @@ namespace AgencijaNekretnine
                 s.Flush();
                 s.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -467,7 +469,7 @@ namespace AgencijaNekretnine
 
         public static void dodajStrucnuSpremu(StrucnaSpremaBasic struka, ProdavacBasic prod)
         {
-            
+
             try
             {
                 ISession s = DataLayer.GetSession();
@@ -480,9 +482,9 @@ namespace AgencijaNekretnine
                 s.Flush();
                 s.Close();
 
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -503,7 +505,7 @@ namespace AgencijaNekretnine
                 s.Flush();
                 s.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -517,10 +519,10 @@ namespace AgencijaNekretnine
                 // StrucnaSprema struc = s.Load<StrucnaSprema>(struka.IDSpreme);
                 Prodavac p = s.Load<Prodavac>(JMBG);
                 IEnumerable<StrucnaSprema> struc = from strucna_sprema in s.Query<StrucnaSprema>()
-                                      where strucna_sprema.pripadaProdavcu.JMBG == JMBG
-                                      select strucna_sprema;
+                                                   where strucna_sprema.pripadaProdavcu.JMBG == JMBG
+                                                   select strucna_sprema;
 
-                foreach(StrucnaSprema stru in struc)
+                foreach (StrucnaSprema stru in struc)
                 {
                     stru.NazivSpreme = struka.Naziv;
                     stru.pripadaProdavcu = p;
@@ -531,7 +533,7 @@ namespace AgencijaNekretnine
                 s.Close();
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
@@ -550,13 +552,332 @@ namespace AgencijaNekretnine
                 prod.DatZaposlenja = p.DatZaposlenja;
                 prod.JMBG = p.JMBG;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
 
             return prod;
         }
+
+
+        public static void obrisiProdavca(int jmbg)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Prodavac p = s.Load<Prodavac>(jmbg);
+                s.Delete(p);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+        public static void dodajZaposlenog(SefBasic sef, PoslovnicaBasic p)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Sef Sef = new Sef();
+
+                Sef.JMBG = sef.JMBG;
+                Sef.Ime = sef.Ime;
+                Sef.Prezime = sef.Prezime;
+                Sef.DatZaposlenja = sef.DatZaposlenja;
+
+                Poslovnica pos = s.Load<Poslovnica>(p.IDPoslovnice);
+                Sef.sefujeNadPoslovnicom = pos;
+
+                s.SaveOrUpdate(Sef);
+
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+        public static List<SefBasic> vratiSveSefove()
+        {
+            List<SefBasic> sefovi = new List<SefBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                IEnumerable<Sef> listaSefova = from sef in s.Query<Sef>()
+                                               select sef;
+                foreach(Sef sef in listaSefova)
+                {
+                    SefBasic seef = new SefBasic(sef.JMBG, sef.Ime, sef.Prezime, sef.DatZaposlenja);
+                    seef.datPostavljanja = sef.DatumPostavljanja;
+                    sefovi.Add(seef);
+                }
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return sefovi;
+        }
+
+
+        public static List<AgentBasic> vratiAgenteProdavca(int idProdavca)
+        {
+            List<AgentBasic> listaAgenata = new List<AgentBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                IEnumerable<Agent> agenti = from a in s.Query<Agent>()
+                                            where a.AngazovanOd.JMBG == idProdavca
+                                            select a;
+
+                foreach(Agent a in agenti)
+                {
+                    AgentBasic agent = new AgentBasic(a.Ime, a.Prezime, a.Procenat, a.Telefon);
+                    agent.DatRada = a.DatRada;
+                    agent.angazovanOd = DTOmanager.vratiProdavca(idProdavca);
+                    listaAgenata.Add(agent);
+                }
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return listaAgenata;
+        }
+
+
+
+
+        public static void dodajAgenta(AgentBasic a)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Agent agent = new Agent();
+                agent.Ime = a.Ime;
+                agent.Prezime = a.Prezime;
+                agent.Procenat = a.Procenat;
+                agent.DatRada = a.DatRada;
+                agent.Telefon = a.brTel;
+                agent.AngazovanOd = s.Load<Prodavac>(a.angazovanOd.JMBG);
+
+                s.SaveOrUpdate(agent);
+                s.Flush();
+                s.Close();
+
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+
+        public static void izmeniAgenta(AgentBasic agent)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Agent a = s.Load<Agent>(agent.angazovanOd.JMBG);
+                a.Ime = agent.Ime;
+                a.Prezime = agent.Prezime;
+                a.Telefon = agent.brTel;
+                a.Procenat = agent.Procenat;
+                a.DatRada = agent.DatRada;
+
+                s.SaveOrUpdate(a);
+                s.Flush();
+                s.Close();
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+
+        public static AgentBasic vratiAgenta(int JMBG)
+        {
+            AgentBasic agent = new AgentBasic();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Agent a = s.Load<Agent>(JMBG);
+                agent.Ime = a.Ime;
+                agent.Prezime = a.Prezime;
+                agent.brTel = a.Telefon;
+                agent.DatRada = a.DatRada;
+                agent.Procenat = a.Procenat;
+                agent.angazovanOd = DTOmanager.vratiProdavca(JMBG);
+                
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return agent;
+        }
+
+
+        public static void obrisiAgenta(int idAgenta)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Agent a = s.Load<Agent>(idAgenta);
+
+                s.Delete(a);
+                s.Flush();
+                s.Close();
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+        public static List<KvartBasic> vratiKvartove()
+        {
+            List<KvartBasic> listaKvartova = new List<KvartBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                IEnumerable<Kvart> kvartovi = from k in s.Query<Kvart>()
+                                              select k;
+
+                foreach(Kvart k in kvartovi)
+                {
+                    KvartBasic kvart = new KvartBasic(k.IDKvart, k.Zona);
+                    kvart.pripadaPoslovnici = DTOmanager.vratiPoslovnicu(k.PripadaPoslovnici.IDPoslovnice);
+                    listaKvartova.Add(kvart);
+                }
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return listaKvartova;
+        }
+
+
+
+        public static void dodajKvart(KvartBasic kvart)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Kvart k = new Kvart();
+                k.Zona = kvart.Zona;
+                k.PripadaPoslovnici = s.Load<Poslovnica>(kvart.pripadaPoslovnici.IDPoslovnice);
+
+                s.SaveOrUpdate(k);
+                s.Flush();
+                s.Close();
+                
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+        public static KvartBasic vratiKvart(int id)
+        {
+            KvartBasic k = new KvartBasic();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Kvart kvart = s.Load<Kvart>(id);
+                k.IDKvart = kvart.IDKvart;
+                k.Zona = kvart.Zona;
+                k.pripadaPoslovnici = DTOmanager.vratiPoslovnicu(kvart.PripadaPoslovnici.IDPoslovnice);
+
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return k;
+        }
+
+
+        public static void izmeniKvart(KvartBasic k)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Kvart kvart = s.Load<Kvart>(k.IDKvart);
+                kvart.Zona = k.Zona;
+                kvart.PripadaPoslovnici = s.Load<Poslovnica>(k.pripadaPoslovnici.IDPoslovnice);
+
+                s.SaveOrUpdate(kvart);
+                s.Flush();
+                s.Close();
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+
+        public static void obrisiKvart(int id)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Kvart k = s.Load<Kvart>(id);
+
+                s.Delete(k);
+                s.Flush();
+                s.Close();
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
+
+        public static List<NekretninaBasic> vratiSveNekretnineKvarta(int IDKvarta)
+        {
+            List<NekretninaBasic> listaNekretnina = new List<NekretninaBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                IEnumerable < Nekretnina > nekretnine = from n in s.Query<Nekretnina>()
+                                             where n.PripadaKvartu.IDKvart == IDKvarta
+                                             select n;
+                foreach(Nekretnina n in nekretnine)
+                {
+                    NekretninaBasic nek = new NekretninaBasic(n.IDNekretnina, n.Ulica, n.Broj, n.Sprat, n.Cena, n.Starost, n.DatumIzgradnje, n.TipNekretnine, n.BrKupatila);
+                    listaNekretnina.Add(nek);
+                }
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return listaNekretnina;
+        }
+
     }
 }
 #endregion

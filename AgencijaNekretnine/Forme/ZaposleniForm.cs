@@ -76,12 +76,39 @@ namespace AgencijaNekretnine.Forme
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (zaposleni.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite zaposlenog koga zelite da obrisete!");
+                return;
+            }
 
+            int idZaposleni = Int32.Parse(zaposleni.SelectedItems[0].SubItems[0].Text);
+            // RadnikBasic r = DTOManager.vratiRadnika(idZaposleni);
+            //IzmeniZaposlenogForma forma = new IzmeniZaposlenogForma(r);
+            //forma.ShowDialog();
+            
+           
+                //ProdavacBasic p = DTOmanager.vratiProdavca(idZaposleni);
+            DTOmanager.obrisiProdavca(idZaposleni);
+            MessageBox.Show("Prodavac uspesno obrisan");
+
+           
         }
 
-        private void btnPrikazSefova_Click(object sender, EventArgs e)
+        private void btnAgentiProdavca_Click(object sender, EventArgs e)
         {
 
+            if (zaposleni.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite prodavca cije agente zelite da vidite");
+                return;
+            }
+
+            int idZaposleni = Int32.Parse(zaposleni.SelectedItems[0].SubItems[0].Text);
+
+            ProdavacBasic p = DTOmanager.vratiProdavca(idZaposleni);
+
+            AgentiForm form = new AgentiForm(p);
         }
     }
 }

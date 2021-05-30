@@ -21,6 +21,7 @@ namespace AgencijaNekretnine.Forme
         public IzmeniPoslovnicuForm(PoslovnicaBasic p)
         {
             poslovnica = p;
+            InitializeComponent();
         }
 
         private void IzmeniPoslovnicuForm_Load(object sedner, EventArgs arg)

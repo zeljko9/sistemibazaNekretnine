@@ -58,7 +58,7 @@ namespace AgencijaNekretnine.Forme
             int id = Int32.Parse(listNekretnine.SelectedItems[0].SubItems[0].Text);
             NekretninaBasic n = DTOmanager.vratiNekretninu(id);
 
-            if (n.TipNekretnine.Equals("stambena"))
+            if (n.TipNekretnine.Equals("Stambena"))
             {
                 IzmeniStambenuNekretninuForm forma = new IzmeniStambenuNekretninuForm(n);
                 forma.ShowDialog();

@@ -56,7 +56,16 @@ namespace AgencijaNekretnine.Forme
 
         private void btnIzmeniPoslovnicu_Click(object sender, EventArgs e)
         {
-            IzmeniPoslovnicuForm form = new IzmeniPoslovnicuForm();
+            if (poslovnice.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite prodavnicu koju zelite da obrisete!");
+                return;
+            }
+
+            int idPoslovnice = Int32.Parse(poslovnice.SelectedItems[0].SubItems[0].Text);
+
+            PoslovnicaBasic p = DTOmanager.vratiPoslovnicu(idPoslovnice);
+            IzmeniPoslovnicuForm form = new IzmeniPoslovnicuForm(p);
             form.ShowDialog();
         }
 
@@ -98,6 +107,13 @@ namespace AgencijaNekretnine.Forme
             PoslovnicaBasic p = DTOmanager.vratiPoslovnicu(idPoslovnice);
             ZaposleniForm form = new ZaposleniForm(p);
             form.ShowDialog();
+        }
+
+        private void btnSefoviPrikaz_Click(object sender, EventArgs e)
+        {
+            PrikazSefovaForm form = new PrikazSefovaForm();
+            form.ShowDialog();
+            form.Close();
         }
     }
 }
