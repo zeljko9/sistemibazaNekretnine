@@ -88,7 +88,16 @@ namespace AgencijaNekretnine.Forme
 
         private void btnZaposleniPoslovnice_Click(object sender, EventArgs e)
         {
+            if (poslovnice.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite prodavnicu cije zaposlene zelite da vidite!");
+                return;
+            }
 
+            int idPoslovnice = Int32.Parse(poslovnice.SelectedItems[0].SubItems[0].Text);
+            PoslovnicaBasic p = DTOmanager.vratiPoslovnicu(idPoslovnice);
+            ZaposleniForm form = new ZaposleniForm(p);
+            form.ShowDialog();
         }
     }
 }

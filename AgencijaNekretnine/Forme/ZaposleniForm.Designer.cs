@@ -30,22 +30,22 @@ namespace AgencijaNekretnine.Forme
         private void InitializeComponent()
         {
             this.zaposleni = new System.Windows.Forms.ListView();
-            this.btnDodajZaposlenog = new System.Windows.Forms.Button();
-            this.btnIzmeniZaposlenog = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnPrikazSefova = new System.Windows.Forms.Button();
-            this.JMBG = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.Ime = new System.Windows.Forms.ColumnHeader();
             this.Prezime = new System.Windows.Forms.ColumnHeader();
             this.DatZaposlenja = new System.Windows.Forms.ColumnHeader();
             this.IDProdavnice = new System.Windows.Forms.ColumnHeader();
             this.Sef = new System.Windows.Forms.ColumnHeader();
+            this.btnDodajZaposlenog = new System.Windows.Forms.Button();
+            this.btnIzmeniZaposlenog = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrikazSefova = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // zaposleni
             // 
             this.zaposleni.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.JMBG,
+            this.columnHeader1,
             this.Ime,
             this.Prezime,
             this.DatZaposlenja,
@@ -62,6 +62,30 @@ namespace AgencijaNekretnine.Forme
             this.zaposleni.TabIndex = 0;
             this.zaposleni.UseCompatibleStateImageBehavior = false;
             this.zaposleni.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "JMBG";
+            // 
+            // Ime
+            // 
+            this.Ime.Text = "Ime";
+            // 
+            // Prezime
+            // 
+            this.Prezime.Text = "Prezime";
+            // 
+            // DatZaposlenja
+            // 
+            this.DatZaposlenja.Text = "DatZaposlenja";
+            // 
+            // IDProdavnice
+            // 
+            this.IDProdavnice.Text = "IDProdavnice";
+            // 
+            // Sef
+            // 
+            this.Sef.Text = "StrucnaSprema";
             // 
             // btnDodajZaposlenog
             // 
@@ -89,7 +113,7 @@ namespace AgencijaNekretnine.Forme
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(202, 29);
             this.button3.TabIndex = 3;
-            this.button3.Text = "btnObrisiZaposlenog";
+            this.button3.Text = "ObrisiZaposlenog";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -102,30 +126,6 @@ namespace AgencijaNekretnine.Forme
             this.btnPrikazSefova.Text = "PrikaziSefove";
             this.btnPrikazSefova.UseVisualStyleBackColor = true;
             this.btnPrikazSefova.Click += new System.EventHandler(this.btnPrikazSefova_Click);
-            // 
-            // JMBG
-            // 
-            this.JMBG.Text = "JMBG";
-            // 
-            // Ime
-            // 
-            this.Ime.Text = "Ime";
-            // 
-            // Prezime
-            // 
-            this.Prezime.Text = "Prezime";
-            // 
-            // DatZaposlenja
-            // 
-            this.DatZaposlenja.Text = "DatZaposlenja";
-            // 
-            // IDProdavnice
-            // 
-            this.IDProdavnice.Text = "IDProdavnice";
-            // 
-            // Sef
-            // 
-            this.Sef.Text = "Sef?";
             // 
             // ZaposleniForm
             // 
@@ -150,7 +150,7 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnIzmeniZaposlenog;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnPrikazSefova;
-        private System.Windows.Forms.ColumnHeader JMBG;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader Ime;
         private System.Windows.Forms.ColumnHeader Prezime;
         private System.Windows.Forms.ColumnHeader DatZaposlenja;
