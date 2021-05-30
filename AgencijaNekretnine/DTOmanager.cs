@@ -19,6 +19,7 @@ namespace AgencijaNekretnine
                 ISession s = DataLayer.GetSession();
 
                 Nekretnina nek = new Nekretnina();
+                nek.IDvlasnik = n.IDvlasnik;
                 nek.Ulica = n.Ulica;
                 nek.TipNekretnine = n.TipNekretnine;
                 nek.Starost = n.Starost;
@@ -50,9 +51,7 @@ namespace AgencijaNekretnine
                 int i = 0;
                 foreach (Nekretnina n in sveNekretnine)
                 {
-                    if (i < 6)
-                    {
-                        i++;
+                    if (n.IDNekretnina==0) {
                         continue;
                     }
                     NekretninaBasic nek = DTOmanager.vratiNekretninu(n.IDNekretnina);
@@ -250,12 +249,9 @@ namespace AgencijaNekretnine
             }
             return opr;
         }
+        #endregion
 
-
-
-
-
-
+        #region Poslovice i zaposleni
         public static void dodajZaposlenog(ProdavacBasic z, PoslovnicaBasic p)
         {
             try
@@ -748,8 +744,9 @@ namespace AgencijaNekretnine
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
         }
+        #endregion
 
-
+        #region Kvart
         public static List<KvartBasic> vratiKvartove()
         {
             List<KvartBasic> listaKvartova = new List<KvartBasic>();
@@ -877,10 +874,161 @@ namespace AgencijaNekretnine
 
             return listaNekretnina;
         }
+        #endregion
 
-    }
+        #region Lice
+
+        public static List<LiceBasic> vratiSvaLica() {
+            List<LiceBasic> lica = new List<LiceBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                IEnumerable<Lice> svaLica = from l in s.Query<Lice>() select l;
+
+                int i = 0;
+                foreach (Lice l in svaLica)
+                {
+                    /*if (n.IDNekretnina == 0)
+                    {
+                        continue;
+                    }*/
+                    //LiceBasic nek = DTOmanager
+                    LiceBasic lb = DTOmanager.vratiLice(l);
+                    lica.Add(lb);
+
+                    //nekretnine.Add(new Nekretnina(n.IDNekretnina, n.Ulica, n.Broj, n.Sprat, n.Cena, n.Starost, n.DatumIzgradnje, n.TipNekretnine, n.BrKupatila, n.oprema, n.PripadaKvartu));
+
+                }
+                s.Close();
+
+            }
+            catch (Exception e)
+            {
+                //greska 
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+            return lica;
+        }
+
+        public static LiceBasic vratiLice(Lice l)
+        {
+            LiceBasic lb = new LiceBasic();
+            try {
+                ISession s = DataLayer.GetSession();
+
+                Lice lice = s.Load<Lice>(l.JMBG_PIB);
+
+                lb.Ime = lice.Ime;
+                lb.Prezime = lice.Prezime;
+                lb.JMBG_PIB = lice.JMBG_PIB;
+                lb.Adresa = lice.Adresa;
+
+                s.Close();
+
+            } catch (Exception e) {
+                Console.WriteLine("Greska u  komunikacije sa bazom!");
+            }
+
+            return lb;
+        }
+
+        public static bool dodajLice(LiceBasic lb)
+        {
+            try {
+
+                ISession s = DataLayer.GetSession();
+
+                Telefon t = new Telefon();
+                Lice l = new Lice();
+
+                t.brTel = lb.listaTelefona[0].brTel;
+                t.PripadaLicu = l;
+
+                l.JMBG_PIB = lb.JMBG_PIB;
+                l.Ime = lb.Ime;
+                l.Prezime = lb.Prezime;
+                l.TelefoniLica.Add(t);
+                l.Adresa = lb.Adresa;
+
+                s.SaveOrUpdate(l);
+                s.Flush();
+                s.Close();
+            } catch (Exception e) {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static void dodajTelefonLicu(LiceBasic lb, TelefonBasic tb)
+        {
+            try {
+                ISession s = DataLayer.GetSession();
+
+                Lice l = s.Load<Lice>(lb.JMBG_PIB);
+                Telefon t = new Telefon();
+
+                t.brTel = tb.brTel;
+                l.TelefoniLica.Add(t);
+
+                s.SaveOrUpdate(l);
+                s.Flush();
+                s.Close();
+
+            } catch (Exception e) { 
+                //greska
+            }
+        }
+
+        public static void izmeniLice(LiceBasic lb) {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Lice l = s.Load<Lice>(lb.JMBG_PIB);
+
+                l.Ime = lb.Ime;
+                l.Prezime = lb.Prezime;
+                l.Adresa = lb.Adresa;
+
+                s.SaveOrUpdate(l);
+                s.Flush();
+                s.Close();
+
+            }
+            catch (Exception e)
+            {
+                //greska
+            }
+        }
+
+        public static void obrisiLice(int jp) {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Lice l = s.Load<Lice>(jp);
+
+                s.Delete(l);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        #endregion
+            /*try {
+                
+            } catch (Exception e) { 
+                
+            }*/
+
 }
-#endregion
+}
+
 
     
 

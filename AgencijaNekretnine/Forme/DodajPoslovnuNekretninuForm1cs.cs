@@ -29,6 +29,7 @@ namespace AgencijaNekretnine.Forme
 
             if (result == DialogResult.OK)
             {
+                n.IDvlasnik = Convert.ToInt32(comboVlasnik.SelectedItem.ToString());
                 n.Ulica = textUlica.Text;
                 n.Broj = (int)numBroj.Value;
                 n.Sprat = (int)numSprat.Value;
@@ -40,6 +41,16 @@ namespace AgencijaNekretnine.Forme
                 DTOmanager.dodajNekretninu(this.n);
                 MessageBox.Show("Uspesno ste dodali novu psoslovnu nekretninu!");
                 this.Close();
+            }
+        }
+
+        private void DodajPoslovnuNekretninuForm1cs_Load(object sender, EventArgs e)
+        {
+            List<LiceBasic> lb = DTOmanager.vratiSvaLica();
+
+            foreach (LiceBasic l in lb)
+            {
+                comboVlasnik.Items.Add(l.JMBG_PIB);
             }
         }
     }

@@ -62,7 +62,7 @@ namespace AgencijaNekretnine.Forme
             this.listNekretnine.Location = new System.Drawing.Point(0, 0);
             this.listNekretnine.Margin = new System.Windows.Forms.Padding(4);
             this.listNekretnine.Name = "listNekretnine";
-            this.listNekretnine.Size = new System.Drawing.Size(1098, 550);
+            this.listNekretnine.Size = new System.Drawing.Size(1088, 463);
             this.listNekretnine.TabIndex = 4;
             this.listNekretnine.UseCompatibleStateImageBehavior = false;
             this.listNekretnine.View = System.Windows.Forms.View.Details;
@@ -149,7 +149,7 @@ namespace AgencijaNekretnine.Forme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 550);
+            this.ClientSize = new System.Drawing.Size(1088, 463);
             this.Controls.Add(this.btnOprema);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnIzmeni);

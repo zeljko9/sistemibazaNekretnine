@@ -32,7 +32,8 @@ namespace AgencijaNekretnine
 
         private void btnKvartovi_Click(object sender, EventArgs e)
         {
-
+            KvartoviFormcs form = new KvartoviFormcs();
+            form.ShowDialog();
         }
 
         private void btnPoslovnice_Click(object sender, EventArgs e)
@@ -40,6 +41,12 @@ namespace AgencijaNekretnine
             PoslovniceForm forma = new PoslovniceForm();
             forma.ShowDialog();
 
+        }
+
+        private void btnLica_Click(object sender, EventArgs e)
+        {
+            LicaForm forma = new LicaForm();
+            forma.ShowDialog();
         }
     }
 }

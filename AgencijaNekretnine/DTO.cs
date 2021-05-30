@@ -13,6 +13,7 @@ namespace AgencijaNekretnine
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Adresa { get; set; }
+        public string TipLica { get; set; }
         public IList<TelefonBasic> listaTelefona { get; set; }
 
         public LiceBasic(int jmbg, string ime, string prez, string adresa)
@@ -21,6 +22,13 @@ namespace AgencijaNekretnine
             this.Ime = ime;
             this.Prezime = prez;
             this.Adresa = adresa;
+            if (Convert.ToString(JMBG_PIB).Length >= 12)
+            {
+                TipLica = "fizicko";
+            }
+            else {
+                TipLica = "pravno";
+            }
         }
 
         public LiceBasic() { this.listaTelefona = new List<TelefonBasic>(); }
@@ -82,7 +90,7 @@ namespace AgencijaNekretnine
         public int Cena { get; set; }
         public int Starost { get; set; }
         public DateTime DatumIzgradnje { get; set; }
-
+        public int IDvlasnik { get; set; }
         public string TipNekretnine { get; set; }
         public int BrKupatila { get; set; }
 

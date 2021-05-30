@@ -20,6 +20,7 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.Sprat, "SPRAT");
             Map(x => x.Broj, "BROJ");
             Map(x => x.Cena, "CENA");
+            Map(x => x.IDvlasnik, "IDVLASNIK");
             Map(x => x.DatumIzgradnje, "DATUMIZGRADNJE");
             Map(x => x.Starost, "STAROST");
             Map(x => x.TipNekretnine, "TIPNEKRETNINE");

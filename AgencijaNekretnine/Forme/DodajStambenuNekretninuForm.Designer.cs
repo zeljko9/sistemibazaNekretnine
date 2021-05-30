@@ -42,6 +42,8 @@ namespace AgencijaNekretnine.Forme
             this.numBroj = new System.Windows.Forms.NumericUpDown();
             this.numSprat = new System.Windows.Forms.NumericUpDown();
             this.numBrojKupatila = new System.Windows.Forms.NumericUpDown();
+            this.comboVlasnik = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).BeginInit();
@@ -102,7 +104,7 @@ namespace AgencijaNekretnine.Forme
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(300, 256);
+            this.btnDodaj.Location = new System.Drawing.Point(301, 351);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(145, 38);
             this.btnDodaj.TabIndex = 10;
@@ -159,11 +161,30 @@ namespace AgencijaNekretnine.Forme
             this.numBrojKupatila.Size = new System.Drawing.Size(158, 27);
             this.numBrojKupatila.TabIndex = 16;
             // 
+            // comboVlasnik
+            // 
+            this.comboVlasnik.FormattingEnabled = true;
+            this.comboVlasnik.Location = new System.Drawing.Point(288, 225);
+            this.comboVlasnik.Name = "comboVlasnik";
+            this.comboVlasnik.Size = new System.Drawing.Size(158, 28);
+            this.comboVlasnik.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 233);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 20);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Vlasnik";
+            // 
             // DodajStambenuNekretninuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 330);
+            this.ClientSize = new System.Drawing.Size(536, 467);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboVlasnik);
             this.Controls.Add(this.numBrojKupatila);
             this.Controls.Add(this.numSprat);
             this.Controls.Add(this.numBroj);
@@ -179,6 +200,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.textUlica);
             this.Name = "DodajStambenuNekretninuForm";
             this.Text = "DodajStambenuNekretninuForm";
+            this.Load += new System.EventHandler(this.DodajStambenuNekretninuForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).EndInit();
@@ -203,5 +225,7 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.NumericUpDown numBroj;
         private System.Windows.Forms.NumericUpDown numSprat;
         private System.Windows.Forms.NumericUpDown numBrojKupatila;
+        private System.Windows.Forms.ComboBox comboVlasnik;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -17,6 +17,7 @@ namespace AgencijaNekretnine.Entiteti
         public virtual DateTime DatumIzgradnje { get; set; }
         public virtual String TipNekretnine { get; set; }
         public virtual int BrKupatila { get; set; }
+        public virtual int IDvlasnik { get; set; }
 
         public virtual IList<Oprema> oprema { get; set; }
         public virtual Kvart PripadaKvartu { get; set; }

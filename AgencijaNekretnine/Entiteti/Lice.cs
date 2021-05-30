@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace AgencijaNekretnine.Entiteti
 {
-    public abstract class Lice
+    public class Lice
     {
         public virtual int JMBG_PIB { get; set; }
         public virtual String Ime { get; set; }
         public virtual String Prezime { get; set; }
         public virtual String Adresa { get; set; }
-
         public virtual String TipLica { get; set; }
 
         //1:N veza sa TELEFON, LICE ima VISE TELEFONA
