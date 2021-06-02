@@ -35,16 +35,28 @@ namespace AgencijaNekretnine.Forme
             this.btnIzmeni = new System.Windows.Forms.Button();
             this.textTelefon = new System.Windows.Forms.TextBox();
             this.btnDodajFon = new System.Windows.Forms.Button();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listaLica
             // 
+            this.listaLica.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listaLica.FullRowSelect = true;
+            this.listaLica.GridLines = true;
             this.listaLica.HideSelection = false;
             this.listaLica.Location = new System.Drawing.Point(12, 12);
             this.listaLica.Name = "listaLica";
             this.listaLica.Size = new System.Drawing.Size(561, 439);
             this.listaLica.TabIndex = 0;
             this.listaLica.UseCompatibleStateImageBehavior = false;
+            this.listaLica.View = System.Windows.Forms.View.Details;
             // 
             // btnDodaj
             // 
@@ -93,6 +105,22 @@ namespace AgencijaNekretnine.Forme
             this.btnDodajFon.UseVisualStyleBackColor = true;
             this.btnDodajFon.Click += new System.EventHandler(this.btnDodajFon_Click);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "JMBG/PIB";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ime";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Prezime";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Adresa";
+            // 
             // LicaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -120,5 +148,9 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.TextBox textTelefon;
         private System.Windows.Forms.Button btnDodajFon;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

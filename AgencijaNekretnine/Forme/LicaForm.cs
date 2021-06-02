@@ -31,7 +31,7 @@ namespace AgencijaNekretnine.Forme
 
             foreach (LiceBasic l in podaci)
             {
-                ListViewItem item = new ListViewItem(new string[] { l.JMBG_PIB.ToString(), l.Ime, l.Prezime, l.Adresa});
+                ListViewItem item = new ListViewItem(new string[] { l.JMBG_PIB, l.Ime, l.Prezime, l.Adresa});
                 listaLica.Items.Add(item);
 
             }

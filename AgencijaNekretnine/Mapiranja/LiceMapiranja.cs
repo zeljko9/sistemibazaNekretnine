@@ -50,7 +50,7 @@ namespace AgencijaNekretnine.Mapiranja
     {
         public FizickiKupacMapiranja()
         {
-            Table("FIZICKI_KUPAC_NEKRETNINE");
+            Table("FIZ_KUPAC_NEKRETNINE");
 
             KeyColumn("JMBGPIB");
 
