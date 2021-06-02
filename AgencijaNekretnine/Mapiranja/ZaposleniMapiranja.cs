@@ -14,11 +14,11 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("ZAPOSLENI");
 
-            Id(x => x.JMBG, "JMBG").GeneratedBy.Assigned();
+            Id(x => x.JMBG).Column("JMBG").GeneratedBy.Assigned();
 
-            Map(x => x.Ime, "IME");
-            Map(x => x.Prezime, "PREZIME");
-            Map(x => x.DatZaposlenja, "DAT_ZAPOSLENJA");
+            Map(x => x.Ime).Column("IME");
+            Map(x => x.Prezime).Column("PREZIME");
+            Map(x => x.DatZaposlenja).Column("DAT_ZAPOSLENJA");
 
             References(x => x.RadiUPoslovnici).Column("IDPOSLOVNICA2").LazyLoad();
         }

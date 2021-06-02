@@ -3,9 +3,10 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NHibernate.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AgencijaNekretnine.Entiteti;
+//using AgencijaNekretnine.Entiteti;
 
 namespace AgencijaNekretnine
 {
@@ -291,12 +292,15 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
 
-                IEnumerable<Poslovnica> sveProdavnice = from o in s.Query<Poslovnica>()
-                                                        select o;
+                IList<Poslovnica> sveProdavnice = (from o in s.Query<Poslovnica>()
+                                                        select o).ToList<Poslovnica>();
 
                 foreach (Poslovnica p in sveProdavnice)
                 {
-                    poslovnice.Add(new PoslovnicaBasic(p.IDPoslovnice, p.Adresa, p.RadnoVreme));
+                    PoslovnicaBasic pb = new PoslovnicaBasic(p.IDPoslovnice, p.Adresa, p.RadnoVreme);
+                    if(pb.Sef != null)
+                        pb.Sef = DTOmanager.vratiSefa(p.SefPoslovnice.JMBG);
+                    poslovnice.Add(pb);
                 }
 
                 s.Close();
@@ -384,7 +388,7 @@ namespace AgencijaNekretnine
         }
 
 
-        public static List<StrucnaSpremaBasic> vratiStrucneSpremeProdavca(int idProdavca)
+        public static List<StrucnaSpremaBasic> vratiStrucneSpremeProdavca(long idProdavca)
         {
             List<StrucnaSpremaBasic> str = new List<StrucnaSpremaBasic>();
             ISession s = DataLayer.GetSession();
@@ -507,7 +511,7 @@ namespace AgencijaNekretnine
             }
         }
 
-        public static void izmeniStrucnuSpremu(StrucnaSpremaBasic struka, int JMBG)
+        public static void izmeniStrucnuSpremu(StrucnaSpremaBasic struka, long JMBG)
         {
             try
             {
@@ -536,7 +540,7 @@ namespace AgencijaNekretnine
         }
 
 
-        public static ProdavacBasic vratiProdavca(int JMBG)
+        public static ProdavacBasic vratiProdavca(long JMBG)
         {
             ProdavacBasic prod = new ProdavacBasic();
             try
@@ -624,8 +628,31 @@ namespace AgencijaNekretnine
             return sefovi;
         }
 
+        public static SefBasic vratiSefa(long JMBG)
+        {
+            SefBasic sef = new SefBasic();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Sef sefBaza = s.Load<Sef>(JMBG);
+                sef.Ime = sefBaza.Ime;
+                sef.Prezime = sefBaza.Prezime;
+                sef.DatZaposlenja = sefBaza.DatZaposlenja;
+                sef.datPostavljanja = sefBaza.DatumPostavljanja;
+                sef.radiUPoslovnici = DTOmanager.vratiPoslovnicu(sefBaza.RadiUPoslovnici.IDPoslovnice);
+                sef.sefujeNad = sef.radiUPoslovnici;
 
-        public static List<AgentBasic> vratiAgenteProdavca(int idProdavca)
+            }
+            catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+
+            return sef;
+        }
+
+
+        public static List<AgentBasic> vratiAgenteProdavca(long idProdavca)
         {
             List<AgentBasic> listaAgenata = new List<AgentBasic>();
             try
@@ -884,18 +911,21 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
 
-                IEnumerable<Lice> svaLica = from l in s.Query<Lice>() select l;
+                IList<Lice> svaLica = s.Query<Lice>().ToList();
 
                 int i = 0;
                 foreach (Lice l in svaLica)
                 {
+
+                    LiceBasic lice = new LiceBasic(l.JMBG_PIB, l.Ime, l.Prezime, l.Adresa);
+                    lica.Add(lice);
                     /*if (n.IDNekretnina == 0)
                     {
                         continue;
                     }*/
                     //LiceBasic nek = DTOmanager
-                    LiceBasic lb = DTOmanager.vratiLice(l);
-                    lica.Add(lb);
+                    //LiceBasic lb = DTOmanager.vratiLice(l);
+                    //lica.Add(lb);
 
                     //nekretnine.Add(new Nekretnina(n.IDNekretnina, n.Ulica, n.Broj, n.Sprat, n.Cena, n.Starost, n.DatumIzgradnje, n.TipNekretnine, n.BrKupatila, n.oprema, n.PripadaKvartu));
 

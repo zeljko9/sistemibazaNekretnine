@@ -8,7 +8,7 @@ using AgencijaNekretnine.Entiteti;
 
 namespace AgencijaNekretnine.Mapiranja
 {
-    internal class LiceMapiranja : ClassMap<Lice>
+    public class LiceMapiranja : ClassMap<Lice>
     {
         public LiceMapiranja()
         {
@@ -16,12 +16,12 @@ namespace AgencijaNekretnine.Mapiranja
 
             //DiscriminateSubClassesOnColumn("TIPLICA");
 
-            Id(x => x.JMBG_PIB,"JMBGPIB").GeneratedBy.Assigned();
+            Id(x => x.JMBG_PIB).Column("JMBGPIB").GeneratedBy.Assigned();
 
-            Map(x => x.Ime, "IME");
-            Map(x => x.Prezime, "PREZIME");
-            Map(x => x.Adresa, "ADRESA");
-            Map(x => x.TipLica, "TIPLICA");
+            Map(x => x.Ime).Column("IME");
+            Map(x => x.Prezime).Column("PREZIME");
+            Map(x => x.Adresa).Column("ADRESA");
+            Map(x => x.TipLica).Column("TIPLICA");
 
             //1:N VEZA SA TELEFON, IMA NIZ TELEFONA
             HasMany(x => x.TelefoniLica).KeyColumn("JMBGPIB").LazyLoad().Cascade.All().Inverse();

@@ -14,9 +14,9 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("STRUCNA_SPREMA");
 
-            Id(x => x.IDSpreme, "IDSTRUCNASPREMA").GeneratedBy.SequenceIdentity("nekretnineBaza.SEQ_STRUCNA_SPREMA");
+            Id(x => x.IDSpreme).Column("IDSTRUCNASPREMA").GeneratedBy.SequenceIdentity("S17254.SEQ_STRUCNA_SPREMA");
 
-            Map(x => x.NazivSpreme, "STRUCNA_SPREMA");
+            Map(x => x.NazivSpreme).Column("STRUCNA_SPREMA");
 
             References(x => x.pripadaProdavcu).Column("JMBG").LazyLoad();
         }

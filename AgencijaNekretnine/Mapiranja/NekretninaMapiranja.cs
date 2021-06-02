@@ -14,17 +14,17 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("NEKRETNINA");
 
-            Id(x => x.IDNekretnina, "IDNEKRETNINA").GeneratedBy.SequenceIdentity("S17254.SEQ_NEKRETNINA");
+            Id(x => x.IDNekretnina).Column("IDNEKRETNINA").GeneratedBy.SequenceIdentity("S17254.SEQ_NEKRETNINA");
 
-            Map(x => x.Ulica, "ULICA");
-            Map(x => x.Sprat, "SPRAT");
-            Map(x => x.Broj, "BROJ");
-            Map(x => x.Cena, "CENA");
-            Map(x => x.IDvlasnik, "IDVLASNIK");
-            Map(x => x.DatumIzgradnje, "DATUMIZGRADNJE");
-            Map(x => x.Starost, "STAROST");
-            Map(x => x.TipNekretnine, "TIPNEKRETNINE");
-            Map(x => x.BrKupatila, "BR_KUPATILA");
+            Map(x => x.Ulica).Column("ULICA");
+            Map(x => x.Sprat).Column("SPRAT");
+            Map(x => x.Broj).Column("BROJ");
+            Map(x => x.Cena).Column("CENA");
+            Map(x => x.IDvlasnik).Column("IDVLASNIK");
+            Map(x => x.DatumIzgradnje).Column("DATUMIZGRADNJE");
+            Map(x => x.Starost).Column("STAROST");
+            Map(x => x.TipNekretnine).Column("TIPNEKRETNINE");
+            Map(x => x.BrKupatila).Column("BR_KUPATILA");
             //HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
             References(x => x.PripadaKvartu).Column("IDKVART").LazyLoad();
         }

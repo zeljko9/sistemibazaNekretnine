@@ -169,6 +169,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.groupBox1);
             this.Name = "PoslovniceForm";
             this.Text = "Upravljanje poslovnicom";
+            this.Load += new System.EventHandler(this.PoslovniceForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

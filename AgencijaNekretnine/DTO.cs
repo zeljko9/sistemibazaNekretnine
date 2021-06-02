@@ -9,14 +9,14 @@ namespace AgencijaNekretnine
 {
     public class LiceBasic
     {
-        public int JMBG_PIB { get; set; }
+        public string JMBG_PIB { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Adresa { get; set; }
         public string TipLica { get; set; }
         public IList<TelefonBasic> listaTelefona { get; set; }
 
-        public LiceBasic(int jmbg, string ime, string prez, string adresa)
+        public LiceBasic(string jmbg, string ime, string prez, string adresa)
         {
             this.JMBG_PIB = jmbg;
             this.Ime = ime;
@@ -24,10 +24,10 @@ namespace AgencijaNekretnine
             this.Adresa = adresa;
             if (Convert.ToString(JMBG_PIB).Length >= 12)
             {
-                TipLica = "fizicko";
+                TipLica = "Fizicko";
             }
             else {
-                TipLica = "pravno";
+                TipLica = "Pravno";
             }
         }
 
@@ -40,7 +40,7 @@ namespace AgencijaNekretnine
         public KupacBasic jeKupac { get; set; }
         public FizickiKupacBasic() { }
 
-        public FizickiKupacBasic(int JMBG_PIB, string ime, string prezime, string adresa) : base(JMBG_PIB, ime, prezime, adresa) { }
+        public FizickiKupacBasic(string JMBG_PIB, string ime, string prezime, string adresa) : base(JMBG_PIB, ime, prezime, adresa) { }
     }
 
     public class PravniKupacBasic : LiceBasic
@@ -48,21 +48,21 @@ namespace AgencijaNekretnine
         public KupacBasic jeKupac { get; set; }
         public PravniKupacBasic() { }
 
-        public PravniKupacBasic(int jmbg,string ime,string prez, string adresa) : base(jmbg, ime, prez, adresa) { }
+        public PravniKupacBasic(string jmbg,string ime,string prez, string adresa) : base(jmbg, ime, prez, adresa) { }
     }
 
     public class FizickiVlasnikBasic : LiceBasic 
     {
         public VlasnikBasic jeVlasnik { get; set; }
         public FizickiVlasnikBasic() { }
-        public FizickiVlasnikBasic(int jmbg,string ime,string prez, string adr) : base(jmbg, ime, prez, adr) { }
+        public FizickiVlasnikBasic(string jmbg,string ime,string prez, string adr) : base(jmbg, ime, prez, adr) { }
     }
 
     public class PravniVlasnikBasic : LiceBasic
     {
         public VlasnikBasic jeVlasnik { get; set; }
         public PravniVlasnikBasic() { }
-        public PravniVlasnikBasic(int jmbg,string ime,string prez,string adr) : base(jmbg, ime, prez, adr) { }
+        public PravniVlasnikBasic(string jmbg,string ime,string prez,string adr) : base(jmbg, ime, prez, adr) { }
     }
 
 
@@ -157,7 +157,7 @@ namespace AgencijaNekretnine
 
     public class ZaposleniBasic
     {
-        public int JMBG { get; set; }
+        public long JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public DateTime DatZaposlenja { get; set; }
@@ -165,7 +165,7 @@ namespace AgencijaNekretnine
 
 
         public ZaposleniBasic() { }
-        public ZaposleniBasic(int jmbg,string ime, string prez,DateTime dat)
+        public ZaposleniBasic(long jmbg,string ime, string prez,DateTime dat)
         {
             this.JMBG = jmbg;
             this.Ime = ime;
@@ -186,7 +186,7 @@ namespace AgencijaNekretnine
             this.Agenti = new List<AgentBasic>();
         }
 
-        public ProdavacBasic(int jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
+        public ProdavacBasic(long jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
 
     }
 
@@ -196,7 +196,7 @@ namespace AgencijaNekretnine
         public PoslovnicaBasic sefujeNad { get; set; }
 
         public SefBasic() { }
-        public SefBasic(int jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
+        public SefBasic(long jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
     }
 
 

@@ -15,11 +15,11 @@ namespace AgencijaNekretnine.Mapiranja
 
             KeyColumn("IDPRODAVAC");
 
-            Map(x => x.Ime, "IME");
-            Map(x => x.Prezime, "PREZIME");
-            Map(x => x.Procenat, "PROCENAT");
-            Map(x => x.Telefon, "TELEFON");
-            Map(x => x.DatRada, "DATUM_RADA");
+            Map(x => x.Ime).Column("IME");
+            Map(x => x.Prezime).Column("PREZIME");
+            Map(x => x.Procenat).Column("PROCENAT");
+            Map(x => x.Telefon).Column("TELEFON");
+            Map(x => x.DatRada).Column("DATUM_RADA");
 
             References(x => x.AngazovanOd).Column("IDPRODAVAC").LazyLoad();
 

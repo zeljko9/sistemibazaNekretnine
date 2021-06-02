@@ -12,11 +12,11 @@ namespace AgencijaNekretnine.Mapiranja
     {
         public IZNugovorMapiranja()
         {
-            Id(x => x.IDugizn, "IDUGIZ").GeneratedBy.Assigned();
+            Id(x => x.IDugizn).Column("IDUGIZ").GeneratedBy.SequenceIdentity("S17254.SEQ_IZNAJMLJIVANJE_UGOVOR");
 
-            Map(x => x.Mesecna_zakupina, "MESECNA_ZAKUPINA");
-            Map(x => x.Datum_sklapanja, "DATUM_SKLAPANJA");
-            Map(x => x.Datum_isteka, "DATUM_ISTEKA");
+            Map(x => x.Mesecna_zakupina).Column("MESECNA_ZAKUPINA");
+            Map(x => x.Datum_sklapanja).Column("DATUM_SKLAPANJA");
+            Map(x => x.Datum_isteka).Column("DATUM_ISTEKA");
             References(x => x.kupoprodNekretnine).Column("IDIZN").LazyLoad();
             References(x => x.vlasnik).Column("IDVLASNIK").LazyLoad();
             References(x => x.kupac).Column("IDFZK").LazyLoad();

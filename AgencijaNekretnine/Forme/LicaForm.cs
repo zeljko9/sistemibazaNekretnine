@@ -61,7 +61,7 @@ namespace AgencijaNekretnine.Forme
             {
                 TelefonBasic t = new TelefonBasic();
                 Lice l = new Lice();
-                l.JMBG_PIB = Int32.Parse(listaLica.SelectedItems[0].SubItems[0].Text);
+                l.JMBG_PIB = (listaLica.SelectedItems[0].SubItems[0].Text);
                 t.brTel = textTelefon.Text;
 
                 DTOmanager.dodajTelefonLicu(DTOmanager.vratiLice(l), t);
@@ -75,7 +75,7 @@ namespace AgencijaNekretnine.Forme
         private void btnIzmeni_Click(object sender, EventArgs e)
         {
             Lice l = new Lice();
-            l.JMBG_PIB = Int32.Parse(listaLica.SelectedItems[0].SubItems[0].Text);
+            l.JMBG_PIB = (listaLica.SelectedItems[0].SubItems[0].Text);
 
             IzmeniLiceForm forma = new IzmeniLiceForm(DTOmanager.vratiLice(l));
             forma.ShowDialog();

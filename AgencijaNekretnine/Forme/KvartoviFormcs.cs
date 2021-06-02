@@ -17,10 +17,10 @@ namespace AgencijaNekretnine.Forme
             InitializeComponent();
         }
 
-        public void KvartoviFormacs_Load(object sender, EventArgs e)
+       /* public void KvartoviFormacs_Load(object sender, EventArgs e)
         { 
             popuniPodacima();
-        }
+        }*/
         void popuniPodacima()
         {
             this.listaKvartova.Clear();
@@ -119,6 +119,11 @@ namespace AgencijaNekretnine.Forme
         private Boolean proveriValidPoslovnica()
         {
             return this.nmudIDPoslovnice.Value != 0;
+        }
+
+        private void KvartoviFormcs_Load(object sender, EventArgs e)
+        {
+            popuniPodacima();
         }
     }
 }

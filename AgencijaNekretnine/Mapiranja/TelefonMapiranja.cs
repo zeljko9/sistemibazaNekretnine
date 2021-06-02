@@ -14,11 +14,11 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("TELEFON");
 
-            Id(x => x.IDTelefon).GeneratedBy.SequenceIdentity("nekretninaBaza.SEQ_TELEFON");
+            Id(x => x.IDTelefon).Column("IDTELEFON").GeneratedBy.SequenceIdentity("S17254.SEQ_TELEFON");
 
-            Map(x => x.brTel, "TELEFON");
+            Map(x => x.brTel).Column("TELEFON");
 
-            References(x => x.PripadaLicu).Column("JMBG_PIB").LazyLoad();
+            References(x => x.PripadaLicu).Column("JMBGPIB").LazyLoad(); //JMBG_PIB je bilo
         }
     }
 }

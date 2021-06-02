@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("VLASNIK");
 
-            Id(x => x.VlasnikID).GeneratedBy.SequenceIdentity("nekretnineBaza.SEQ_VLASNIK");
+            Id(x => x.VlasnikID).Column("IDVLASNIK").GeneratedBy.SequenceIdentity("S17254.SEQ_VLASNIK");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AgencijaNekretnine.Entiteti
 {
     public class Lice
     {
-        public virtual int JMBG_PIB { get; set; }
+        public virtual string JMBG_PIB { get; set; }
         public virtual String Ime { get; set; }
         public virtual String Prezime { get; set; }
         public virtual String Adresa { get; set; }

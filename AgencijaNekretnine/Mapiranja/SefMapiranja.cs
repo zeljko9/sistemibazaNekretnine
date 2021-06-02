@@ -16,7 +16,7 @@ namespace AgencijaNekretnine.Mapiranja
 
             KeyColumn("JMBG");
 
-            Map(x => x.DatumPostavljanja, "DATUM_POSTAVLJANJA");
+            Map(x => x.DatumPostavljanja).Column("DATUM_POSTAVLJANJA");
 
             HasOne(x => x.sefujeNadPoslovnicom).ForeignKey("IDSEF").LazyLoad();
         }

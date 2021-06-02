@@ -21,7 +21,7 @@ namespace AgencijaNekretnine.Forme
         {
             LiceBasic lb = new LiceBasic();
 
-            lb.JMBG_PIB = Convert.ToInt32(textJP.Text);
+            lb.JMBG_PIB = (textJP.Text);
             lb.Ime = textIme.Text;
             lb.Prezime = textPrezime.Text;
             lb.Adresa = textAdresa.Text;

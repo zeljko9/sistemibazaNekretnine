@@ -31,14 +31,14 @@ namespace AgencijaNekretnine.Forme
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listaKvartova = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.btnDodajKvart = new System.Windows.Forms.Button();
             this.btnIzmeniKvart = new System.Windows.Forms.Button();
             this.btnObrisiKvart = new System.Windows.Forms.Button();
             this.btnNekretnineKvarta = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.nmudZona = new System.Windows.Forms.NumericUpDown();
             this.nmudIDPoslovnice = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -68,12 +68,23 @@ namespace AgencijaNekretnine.Forme
             this.listaKvartova.GridLines = true;
             this.listaKvartova.HideSelection = false;
             this.listaKvartova.Location = new System.Drawing.Point(3, 23);
-            this.listaKvartova.Margin = new System.Windows.Forms.Padding(4);
             this.listaKvartova.Name = "listaKvartova";
             this.listaKvartova.Size = new System.Drawing.Size(460, 406);
             this.listaKvartova.TabIndex = 0;
             this.listaKvartova.UseCompatibleStateImageBehavior = false;
             this.listaKvartova.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "IDKvarta";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Zona";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "IDPoslovnice";
             // 
             // btnDodajKvart
             // 
@@ -124,18 +135,6 @@ namespace AgencijaNekretnine.Forme
             this.label1.TabIndex = 6;
             this.label1.Text = "Zona kvarta: ";
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "IDKvarta";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Zona";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "IDPoslovnice";
-            // 
             // nmudZona
             // 
             this.nmudZona.Location = new System.Drawing.Point(523, 317);
@@ -175,6 +174,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.groupBox1);
             this.Name = "KvartoviFormcs";
             this.Text = "KvartoviFormcs";
+            this.Load += new System.EventHandler(this.KvartoviFormcs_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmudZona)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmudIDPoslovnice)).EndInit();

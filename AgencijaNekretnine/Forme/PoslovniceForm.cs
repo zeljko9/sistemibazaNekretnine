@@ -17,12 +17,12 @@ namespace AgencijaNekretnine.Forme
             InitializeComponent();
         }
 
-        private void PoslovniceForm_Load(object sender, EventArgs arg)
+        /*private void PoslovniceForm_Load(object sender, EventArgs arg)
         {
-            this.popuniPodacima();
-        }
+            popuniPodacima();
+        }*/
 
-        void popuniPodacima()
+        public void popuniPodacima()
         {
             poslovnice.Items.Clear();
             List<PoslovnicaBasic> data = DTOmanager.vratiSvePoslovnice();
@@ -114,6 +114,11 @@ namespace AgencijaNekretnine.Forme
             PrikazSefovaForm form = new PrikazSefovaForm();
             form.ShowDialog();
             form.Close();
+        }
+
+        private void PoslovniceForm_Load_1(object sender, EventArgs e)
+        {
+            popuniPodacima();
         }
     }
 }

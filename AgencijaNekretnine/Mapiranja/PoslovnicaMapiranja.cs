@@ -14,10 +14,10 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("POSLOVNICA");
 
-            Id(x => x.IDPoslovnice, "IDPOSLOVNICA").GeneratedBy.SequenceIdentity("nekretnineBaza.SEQ_POSLOVNICA");
+            Id(x => x.IDPoslovnice).Column("IDPOSLOVNICA").GeneratedBy.SequenceIdentity("S17254.SEQ_POSLOVNICA");
 
-            Map(x => x.Adresa, "ADRESA");
-            Map(x => x.RadnoVreme, "RADNO_VREME");
+            Map(x => x.Adresa).Column("ADRESA");
+            Map(x => x.RadnoVreme).Column("RADNO_VREME");
 
             References(x => x.SefPoslovnice).Column("IDSEF").LazyLoad();
             HasMany(x => x.NagledaKvartove).KeyColumn("IDPOSLOVNICA1").LazyLoad().Cascade.All().Inverse();

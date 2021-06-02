@@ -14,9 +14,9 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("TELEFON");
 
-            Id(x => x.IDoprema).GeneratedBy.SequenceIdentity("nekretninaBaza.SEQ_OPREMA");
+            Id(x => x.IDoprema).Column("IDOPREMA").GeneratedBy.SequenceIdentity("S17254.SEQ_OPREMA");
 
-            Map(x => x.NazivOpreme, "OPREMA");
+            Map(x => x.NazivOpreme).Column("OPREMA");
 
             References(x => x.PripadaNekretnini).Column("IDNEKRETNINA").LazyLoad();
         }

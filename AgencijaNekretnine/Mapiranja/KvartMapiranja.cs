@@ -14,9 +14,9 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("Kvart");
 
-            Id(x => x.IDKvart, "IDKVART").GeneratedBy.SequenceIdentity("nekretnineBaza.SEQ_KVART");
+            Id(x => x.IDKvart).Column("IDKVART").GeneratedBy.SequenceIdentity("S17254.SEQ_KVART");
 
-            Map(x => x.Zona, "ZONA");
+            Map(x => x.Zona).Column("ZONA");
 
             //N:1 ka POSLOVNICI
             References(x => x.PripadaPoslovnici).Column("IDPOSLOVNICA1").LazyLoad();
