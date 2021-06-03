@@ -48,5 +48,10 @@ namespace AgencijaNekretnine
             LicaForm forma = new LicaForm();
             forma.ShowDialog();
         }
+
+        private void btnUgovori_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -57,6 +57,7 @@ namespace AgencijaNekretnine
             this.btnUgovori.TabIndex = 1;
             this.btnUgovori.Text = "Ugovori";
             this.btnUgovori.UseVisualStyleBackColor = true;
+            this.btnUgovori.Click += new System.EventHandler(this.btnUgovori_Click);
             // 
             // btnPoslovnice
             // 

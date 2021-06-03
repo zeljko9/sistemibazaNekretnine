@@ -41,6 +41,8 @@ namespace AgencijaNekretnine
             }
         }
 
+        
+
         public static List<NekretninaBasic> vratiSveNekretnine()
         {
             List<NekretninaBasic> nekretnine = new List<NekretninaBasic>();
@@ -1049,14 +1051,109 @@ namespace AgencijaNekretnine
 
             }
         }
-        #endregion
-            /*try {
-                
-            } catch (Exception e) { 
-                
-            }*/
 
-}
+        public static LiceBasic vratiVlasnikaKupca(int vlasnikID)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Lice l = s.Load<Lice>(vlasnikID);
+
+                s.Close();
+
+                
+
+                LiceBasic lb = new LiceBasic();
+                lb.Prezime = l.Prezime;
+                lb.TipLica = l.TipLica;
+                lb.Adresa = l.Adresa;
+                lb.Ime = l.Ime;
+                lb.JMBG_PIB = l.JMBG_PIB;
+
+                return lb;
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
+        }
+        #endregion
+
+        #region Ugovor
+
+        public static List<KupoprodajniUgovorBasic> vratiKPugovore()
+        {
+            List<KupoprodajniUgovorBasic> kpbl = new List<KupoprodajniUgovorBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                IEnumerable<KupoprodajniUgovor> kpu = from o in s.Query<KupoprodajniUgovor>()
+                                                      select o;
+
+                
+                KupoprodajniUgovorBasic kpb = new KupoprodajniUgovorBasic();
+                foreach (KupoprodajniUgovor kp in kpu) {
+                    kpb.DatTransakcije = kp.Datum_transakcije;
+                    kpb.IDUgovorKupoprodaja = kp.IDugkp;
+                    kpb.Kupac = new KupacBasic(kp.kupac.KupacID);
+                    kpb.KupoprodNekretnina = (KupoprodNekretninaBasic)vratiNekretninu(kp.kupoprodNekretnine.IDNekretnina);
+                    kpb.Vlasnik = new VlasnikBasic(kp.vlasnik.VlasnikID);
+                    kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG);
+
+                    kpbl.Add(kpb);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return kpbl;
+        }
+
+        public static List<IznajmUgovorBasic> vratiIZNugovore()
+        {
+            List<IznajmUgovorBasic> kpbl = new List<IznajmUgovorBasic>();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                IEnumerable<IznajmUgovor> kpu = from o in s.Query<IznajmUgovor>()
+                                                      select o;
+
+
+                IznajmUgovorBasic kpb = new IznajmUgovorBasic();
+                foreach (IznajmUgovor kp in kpu)
+                {
+                    kpb.DatIsteka = kp.Datum_isteka;
+                    kpb.DatSklapanja = kp.;
+                    kpb.Kupac = new KupacBasic(kp.kupac.KupacID);
+                    kpb.KupoprodNekretnina = (KupoprodNekretninaBasic)vratiNekretninu(kp.kupoprodNekretnine.IDNekretnina);
+                    kpb.Vlasnik = new VlasnikBasic(kp.vlasnik.VlasnikID);
+                    kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG);
+
+                    kpbl.Add(kpb);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return kpbl;
+        }
+
+        #endregion
+        /*try {
+
+        } catch (Exception e) { 
+
+        }*/
+
+    }
 }
 
 

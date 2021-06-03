@@ -65,7 +65,6 @@ namespace AgencijaNekretnine
         public PravniVlasnikBasic(string jmbg,string ime,string prez,string adr) : base(jmbg, ime, prez, adr) { }
     }
 
-
     public class KupacBasic 
     {
         public int KupacID { get; set; }
@@ -79,7 +78,6 @@ namespace AgencijaNekretnine
         public VlasnikBasic() { }
         public VlasnikBasic(int id) { VlasnikID = id; }
     }
-
 
     public class NekretninaBasic
     {
@@ -112,7 +110,6 @@ namespace AgencijaNekretnine
             this.BrKupatila = brkup;
         }
     }
-
 
    public class KupoprodNekretninaBasic:NekretninaBasic
     {
@@ -198,8 +195,6 @@ namespace AgencijaNekretnine
         public SefBasic() { }
         public SefBasic(long jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
     }
-
-
 
     public class OpremaBasic 
     {
@@ -348,6 +343,3 @@ namespace AgencijaNekretnine
 
     }
 }
-
-
-
