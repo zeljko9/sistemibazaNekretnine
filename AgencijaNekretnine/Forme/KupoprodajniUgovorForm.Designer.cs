@@ -62,7 +62,6 @@ namespace AgencijaNekretnine.Forme
             this.btnObrisi.TabIndex = 2;
             this.btnObrisi.Text = "Obrisi";
             this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnIzmeni
             // 
@@ -73,7 +72,7 @@ namespace AgencijaNekretnine.Forme
             this.btnIzmeni.Text = "Izmeni";
             this.btnIzmeni.UseVisualStyleBackColor = true;
             // 
-            // UgovorForm
+            // KupoprodajniUgovorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -82,8 +81,9 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnDodaj);
             this.Controls.Add(this.listUgovori);
-            this.Name = "UgovorForm";
+            this.Name = "KupoprodajniUgovorForm";
             this.Text = "UgovorForm";
+            this.Load += new System.EventHandler(this.KupoprodajniUgovorForm_Load);
             this.ResumeLayout(false);
 
         }

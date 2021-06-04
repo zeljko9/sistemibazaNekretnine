@@ -907,6 +907,66 @@ namespace AgencijaNekretnine
 
         #region Lice
 
+        public static string postojiLice(string jmbg) {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Lice lice = s.Load<Lice>(jmbg);
+                /*(Lice)(from l in s.Query<Lice>()
+                        where l.JMBG_PIB == jmbg
+                        select l);*/
+                s.Close();
+
+                if (lice != null)
+                    return lice.TipLica;
+                else
+                    return "";
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+        }
+
+        public static string postojiNekretnina(String ulicabroj) {
+            try
+            {
+                string[] niz = ulicabroj.Split(" ");
+                string broj = niz.Last();
+                string ulica = "";
+                for (int i = 0; i < niz.Length - 1; i++)
+                {
+                    ulica.Concat(" ");
+                    ulica.Concat(niz[i]);
+                }
+                ulica.Remove(0, 1);
+
+                ISession s = DataLayer.GetSession();
+
+                Nekretnina nek = (Nekretnina)(from n in s.Query<Nekretnina>()
+                                 where n.Ulica == ulica &&
+                                 n.Broj == Convert.ToInt32(broj)
+                                 select n);
+
+                s.Close();
+
+                if (nek != null)
+                {
+                    return "postoji";
+                }
+                else {
+                    return "ne postoji";
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            return "";
+        }
+
         public static List<LiceBasic> vratiSvaLica() {
             List<LiceBasic> lica = new List<LiceBasic>();
             try
@@ -1125,16 +1185,18 @@ namespace AgencijaNekretnine
                 IEnumerable<IznajmUgovor> kpu = from o in s.Query<IznajmUgovor>()
                                                       select o;
 
-
                 IznajmUgovorBasic kpb = new IznajmUgovorBasic();
                 foreach (IznajmUgovor kp in kpu)
                 {
                     kpb.DatIsteka = kp.Datum_isteka;
-                    kpb.DatSklapanja = kp.;
-                    kpb.Kupac = new KupacBasic(kp.kupac.KupacID);
-                    kpb.KupoprodNekretnina = (KupoprodNekretninaBasic)vratiNekretninu(kp.kupoprodNekretnine.IDNekretnina);
+                    kpb.DatSklapanja = kp.Datum_sklapanja;
+                    kpb.Kupac = (FizickiKupacBasic)vratiLice(kp.kupac);
+                    kpb.Kupac.jeKupac = new KupacBasic(kp.kupac.jeKupac.KupacID);
+                    kpb.IDUgovorIznajm = kp.IDugizn;
+                    kpb.IznajmNekretnina = (IznajmNekretninaBasic)vratiNekretninu(kp.iznajmNekretnine.IDNekretnina);
                     kpb.Vlasnik = new VlasnikBasic(kp.vlasnik.VlasnikID);
                     kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG);
+                    kpb.MesecnaZakupina = kp.Mesecna_zakupina;
 
                     kpbl.Add(kpb);
                 }
@@ -1144,6 +1206,113 @@ namespace AgencijaNekretnine
 
             }
             return kpbl;
+        }
+
+        public static void dodajKPugovor(string jmbgK, string ulicabroj, string jmbgP) {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                Lice lice = (Lice)(from l in s.Query<Lice>()
+                            where l.JMBG_PIB == jmbgK
+                            select l);
+                Prodavac prodavac = (Prodavac)(from p in s.Query<Prodavac>()
+                                               where p.JMBG == Convert.ToDouble(jmbgP)
+                                               select p);
+
+                string[] niz = ulicabroj.Split(" ");
+                string broj = niz.Last();
+                string ulica = "";
+                for (int i = 0; i < niz.Length - 1; i++) {
+                    ulica.Concat(" ");
+                    ulica.Concat(niz[i]);                    
+                }
+                ulica.Remove(0, 1);
+
+                Nekretnina nekretnina = (Nekretnina)(from n in s.Query<Nekretnina>()
+                                                     where n.Ulica == ulica &&
+                                                     n.Broj == Convert.ToInt32(broj)
+                                                     select n); 
+
+
+                KupoprodajniUgovor kp = new KupoprodajniUgovor();
+                kp.kupac = new Kupac();
+
+                if (lice.TipLica == "fizicko") {
+                    FizickiKupac fk = (FizickiKupac)lice;
+                    fk.jeKupac = kp.kupac;
+                    s.SaveOrUpdate(fk);
+                } else if (lice.TipLica == "pravno") {
+                    PravniKupac pk = (PravniKupac)lice;
+                    pk.jeKupac = kp.kupac;
+                    s.SaveOrUpdate(pk);
+                }
+
+                kp.Datum_transakcije = DateTime.Now;
+                kp.kupoprodNekretnine = (KupoprodNekretnina)nekretnina;
+                kp.prodavac = prodavac;
+                kp.vlasnik = (Vlasnik)(from v in s.Query<Lice>()
+                             where v.JMBG_PIB == Convert.ToString(nekretnina.IDvlasnik)
+                             select v);
+
+                s.SaveOrUpdate(kp);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public static void dodajIZNugovor(string jmbgK, string ulicabroj, string jmbgP, DateTime dt) {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                FizickiKupac lice = (FizickiKupac)(from l in s.Query<FizickiKupac>()
+                                   where l.JMBG_PIB == jmbgK
+                                   select l);
+                Prodavac prodavac = (Prodavac)(from p in s.Query<Prodavac>()
+                                               where p.JMBG == Convert.ToDouble(jmbgP)
+                                               select p);
+
+                string[] niz = ulicabroj.Split(" ");
+                string broj = niz.Last();
+                string ulica = "";
+                for (int i = 0; i < niz.Length - 1; i++)
+                {
+                    ulica.Concat(" ");
+                    ulica.Concat(niz[i]);
+                }
+                ulica.Remove(0, 1);
+
+                Nekretnina nekretnina = (Nekretnina)(from n in s.Query<Nekretnina>()
+                                                     where n.Ulica == ulica &&
+                                                     n.Broj == Convert.ToInt32(broj)
+                                                     select n);
+
+
+                IznajmUgovor kp = new IznajmUgovor();
+
+                kp.kupac = lice;               
+                kp.Datum_sklapanja = DateTime.Now;
+                kp.Datum_isteka = dt;
+                kp.iznajmNekretnine = (IznajmNekretnina)nekretnina;
+                kp.Mesecna_zakupina = nekretnina.Cena / 300;
+                kp.prodavac = prodavac;
+                kp.vlasnik= (Vlasnik)(from v in s.Query<Lice>()
+                                      where v.JMBG_PIB == Convert.ToString(nekretnina.IDvlasnik)
+                                      select v);
+
+                s.SaveOrUpdate(kp);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         #endregion

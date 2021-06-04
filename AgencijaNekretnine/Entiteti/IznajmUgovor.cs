@@ -9,7 +9,7 @@ namespace AgencijaNekretnine.Entiteti
     public class IznajmUgovor
     {
         public virtual int IDugizn { get; set; }
-        public virtual IznajmNekretnina kupoprodNekretnine { get; set; }
+        public virtual IznajmNekretnina iznajmNekretnine { get; set; }
         public virtual Vlasnik vlasnik { get; set; }
         public virtual FizickiKupac kupac { get; set; }
         public virtual Prodavac prodavac { get; set; }

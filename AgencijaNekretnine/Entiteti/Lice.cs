@@ -39,6 +39,11 @@ namespace AgencijaNekretnine.Entiteti
         public PravniKupac()
         {
         }
+
+        public static explicit operator PravniKupac(Kupac v)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class FizickiKupac : Lice
     {  //public virtual int JMBG_PIB { get; set; }

@@ -82,6 +82,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.listUgovori);
             this.Name = "IznajmUgovorForm";
             this.Text = "IznajmUgovorForm";
+            this.Load += new System.EventHandler(this.IznajmUgovorForm_Load);
             this.ResumeLayout(false);
 
         }
