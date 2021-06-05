@@ -73,6 +73,7 @@ namespace AgencijaNekretnine.Forme
             this.listaKvartova.TabIndex = 0;
             this.listaKvartova.UseCompatibleStateImageBehavior = false;
             this.listaKvartova.View = System.Windows.Forms.View.Details;
+            this.listaKvartova.SelectedIndexChanged += new System.EventHandler(this.listaKvartova_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -88,7 +89,7 @@ namespace AgencijaNekretnine.Forme
             // 
             // btnDodajKvart
             // 
-            this.btnDodajKvart.Location = new System.Drawing.Point(524, 36);
+            this.btnDodajKvart.Location = new System.Drawing.Point(524, 35);
             this.btnDodajKvart.Name = "btnDodajKvart";
             this.btnDodajKvart.Size = new System.Drawing.Size(221, 36);
             this.btnDodajKvart.TabIndex = 1;

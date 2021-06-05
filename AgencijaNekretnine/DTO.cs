@@ -111,73 +111,6 @@ namespace AgencijaNekretnine
         }
     }
 
-   public class KupoprodNekretninaBasic
-    {
-        //public int IDKpn { get; set; }
-        public KupoprodNekretninaBasic() { }
-
-        public int IDkp { get; set; }
-        public NekretninaBasic nekretnina { get; set; }
-
-        public KupoprodNekretninaBasic(int iDkp, NekretninaBasic nekretnina)
-        {
-            IDkp = iDkp;
-            this.nekretnina = nekretnina;
-        }
-
-
-        /*public KupoprodNekretninaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup)
-        {
-        }
-        //public KupoprodNekretninaBasic(int id) { IDKpn = id; }*/
-
-
-    }
-
-    public class IznajmNekretninaBasic
-    {
-        public int IDizn { get; set; }
-        public NekretninaBasic nekretnina { get; set; }
-
-        public IznajmNekretninaBasic() { }
-
-        public IznajmNekretninaBasic(int iDizn, NekretninaBasic nekretnina)
-        {
-            IDizn = iDizn;
-            this.nekretnina = nekretnina;
-        }
-
-
-        /*public IznajmNekretninaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup)
-        {
-        }*/
-    }
-
-    public class StambKupovinaBasic : NekretninaBasic
-    {
-        public StambKupovinaBasic() { }
-        public StambKupovinaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup):base(id, ulica,  br,  sprat,  cena,  star,  dat,  tip, brkup) { }
-
-    }
-
-    public class StambIznajmBasic : NekretninaBasic 
-    {
-        public StambIznajmBasic() { }
-        public StambIznajmBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup) { }
-    }
-
-    public class PoslvKupovinaBasic:NekretninaBasic
-    {
-        public PoslvKupovinaBasic() { }
-        public PoslvKupovinaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup) { }
-    }
-
-    public class PoslvIznajmBasic:NekretninaBasic
-    {
-        public PoslvIznajmBasic() { }
-        public PoslvIznajmBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup) { }
-    }
-
 
     public class ZaposleniBasic
     {
@@ -331,7 +264,7 @@ namespace AgencijaNekretnine
     public class IznajmUgovorBasic
     { 
         public int IDUgovorIznajm { get; set; }
-        public IznajmNekretninaBasic IznajmNekretnina { get; set; }
+        public NekretninaBasic IznajmNekretnina { get; set; }
         public VlasnikBasic Vlasnik { get; set; }
         public FizickiKupacBasic Kupac { get; set; }
         public ProdavacBasic Prodavac { get; set; }
@@ -354,7 +287,7 @@ namespace AgencijaNekretnine
     public class KupoprodajniUgovorBasic
     {
         public int IDUgovorKupoprodaja { get; set; }
-        public KupoprodNekretninaBasic KupoprodNekretnina { get; set; }
+        public NekretninaBasic KupoprodNekretnina { get; set; }
         public VlasnikBasic Vlasnik { get; set; }
         public KupacBasic Kupac { get; set; }
         public ProdavacBasic Prodavac { get; set; }

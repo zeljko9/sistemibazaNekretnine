@@ -30,22 +30,6 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    /*internal class FizickoLiceMapiranja : SubclassMap<Lice>
-    {
-        public FizickoLiceMapiranja()
-        {
-            DiscriminatorValue("Fizicko");
-        }
-    }
-
-    internal class PravnoLiceMapiranja : SubclassMap<Lice>
-    {
-        public PravnoLiceMapiranja()
-        {
-            DiscriminatorValue("Pravno");
-        }
-    }*/
-
     internal class FizickiKupacMapiranja : SubclassMap<FizickiKupac>
     {
         public FizickiKupacMapiranja()
@@ -58,24 +42,13 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    internal class FizickiVlasnikMapiranja : SubclassMap<FizickiVlasnik>
-    {
-        public FizickiVlasnikMapiranja()
-        {
-            Table("FIZ_VLASNIK_NEKRETNINE");
 
-            KeyColumn("JMBGPIB");
-
-            References(x => x.jeVlasnik).Column("IDVLASNIK1").LazyLoad();
-
-        }
-    }
 
     internal class PravniKupacMapiranja : SubclassMap<PravniKupac>
     {
         public PravniKupacMapiranja()
         {
-            Table("PRAV_KUPAC_NEKRETNINE");
+            Table("PRAVNI_KUPAC_NEKRETNINE");
 
             KeyColumn("JMBGPIB");
 
@@ -83,15 +56,5 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    internal class PravniVlasnikMapiranja : SubclassMap<PravniVlasnik>
-    {
-        public PravniVlasnikMapiranja()
-        {
-            Table("PRAV_VLASNIK_NEKRETNINE");
-
-            KeyColumn("JMBGPIB");
-
-            References(x => x.jeVlasnik).Column("IDVLASNIK2").LazyLoad();
-        }
-    }
+    
 }

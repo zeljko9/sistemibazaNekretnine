@@ -48,6 +48,8 @@ namespace AgencijaNekretnine.Forme
         {
             List<LiceBasic> lb = DTOmanager.vratiSvaLica();
 
+      
+
             foreach (LiceBasic l in lb) {
                 comboVlasnik.Items.Add(l.JMBG_PIB);
             }                      

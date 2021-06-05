@@ -42,37 +42,4 @@ namespace AgencijaNekretnine.Entiteti
             PripadaKvartu = pripadaKvartu;
         }
     }
-
-    public class StambKupovina: Nekretnina
-    {
-        public virtual KupoprodNekretnina Kpn { get; set; }
-
-        public StambKupovina() { }
-    }
-    public class StambIznajm : Nekretnina
-    {
-        public virtual Nekretnina Izn { get; set; }
-
-        public StambIznajm() { }
-    }
-    public class PoslvKupovina : Nekretnina
-    {
-        public virtual KupoprodNekretnina Kpn { get; set; }
-       // public virtual IList<Oprema> oprema { get; set; }
-
-        public PoslvKupovina() 
-        {
-            //this.oprema = new List<Oprema>();
-        }
-    }
-    public class PoslvIznajm : Nekretnina
-    {
-       // public virtual IList<Oprema> oprema { get; set; }
-        public virtual IznajmNekretnina Izn { get; set; }
-
-        public PoslvIznajm()
-        {
-           // this.oprema = new List<Oprema>();
-        }
-    }
 }

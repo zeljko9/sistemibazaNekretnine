@@ -24,14 +24,7 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class PravniVlasnik:Lice
-    {
-
-        public virtual Vlasnik jeVlasnik { get; set; }
-        public PravniVlasnik()
-        {
-        }
-    }
+   
 
     public class PravniKupac:Lice
     {
@@ -53,13 +46,7 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class FizickiVlasnik:Lice
-    {
-        public virtual Vlasnik jeVlasnik { get; set; }
-        public FizickiVlasnik()
-        {
-        }
-    }
+   
     // public class PravniKupac : Lice { }
     /*public class FizickoLice : Lice
     {

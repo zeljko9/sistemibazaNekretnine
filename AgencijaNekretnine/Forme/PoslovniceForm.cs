@@ -52,6 +52,8 @@ namespace AgencijaNekretnine.Forme
         {
             DodajPoslovnicuForm form = new DodajPoslovnicuForm();
             form.ShowDialog();
+            form.Close();
+            popuniPodacima();
         }
 
         private void btnIzmeniPoslovnicu_Click(object sender, EventArgs e)

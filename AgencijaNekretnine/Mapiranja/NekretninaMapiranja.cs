@@ -30,7 +30,7 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    internal class StambKupovinaMapiranja : SubclassMap<StambKupovina> {
+   /* internal class StambKupovinaMapiranja : SubclassMap<StambKupovina> {
         public StambKupovinaMapiranja() {
             Table("STAMB_KUPOVINA");
 
@@ -76,5 +76,5 @@ namespace AgencijaNekretnine.Mapiranja
             References(x => x.Izn).Column("IDIZN").LazyLoad();
             HasMany(x => x.oprema).KeyColumn("IDNEKRETNINA").LazyLoad().Cascade.All().Inverse();
         }
-    }
+    }*/
 }

@@ -12,17 +12,16 @@ namespace AgencijaNekretnine.Mapiranja
     {
         public IZNugovorMapiranja()
         {
-            Table("UGOVOR_IZNAJMLJIVANJE");
+            Table("IZNAJM_UGOVOR");
 
-            Id(x => x.IDugizn).Column("IDUGIZ").GeneratedBy.SequenceIdentity("S17254.SEQ_IZNAJMLJIVANJE_UGOVOR");
+            Id(x => x.IDugizn).Column("IDUGOVOR").GeneratedBy.SequenceIdentity("S17254.SEQ_IZNAJMLJIVANJE_UGOVOR");
 
             Map(x => x.Mesecna_zakupina).Column("MESECNA_ZAKUPINA");
             Map(x => x.Datum_sklapanja).Column("DATUM_SKAPLANJA");
             Map(x => x.Datum_isteka).Column("DATUM_ISTEKA");
-            References(x => x.iznajmNekretnine).Column("IDIZN").LazyLoad();
-            References(x => x.vlasnik).Column("IDVLASNIK").LazyLoad();
-            References(x => x.kupac).Column("IDFZK").LazyLoad();
-            References(x => x.prodavac).Column("JMBG2").LazyLoad();
+            References(x => x.iznajmNekretnine).Column("IDNEKRETNINA").LazyLoad();
+            References(x => x.kupac).Column("IDKUPAC").LazyLoad();
+            References(x => x.prodavac).Column("IDPRODAVAC").LazyLoad();
         }
     }
 }

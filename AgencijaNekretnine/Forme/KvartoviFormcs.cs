@@ -125,5 +125,10 @@ namespace AgencijaNekretnine.Forme
         {
             popuniPodacima();
         }
+
+        private void listaKvartova_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
