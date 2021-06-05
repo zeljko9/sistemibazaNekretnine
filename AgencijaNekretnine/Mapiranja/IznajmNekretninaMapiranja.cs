@@ -14,6 +14,8 @@ namespace AgencijaNekretnine.Mapiranja
             Table("IZNAJM_NEKRETNINA");
 
             Id(x => x.IDizn).Column("IDIZN").GeneratedBy.SequenceIdentity("S17254.SEQ_IZNAJMLJIVANJE_NEK");
+
+            References(x => x.nekretnina).Column("NEKRETNINAIZN").LazyLoad();
         }
     }
 }

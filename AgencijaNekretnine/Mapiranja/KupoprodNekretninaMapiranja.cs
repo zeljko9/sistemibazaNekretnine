@@ -15,6 +15,8 @@ namespace AgencijaNekretnine.Mapiranja
             Table("KUPOPROD_NEKRETNINA");
 
             Id(x => x.IDkpn).Column("IDKPN").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPRODAJNA_NEK");
+
+            References(x => x.nekretnina).Column("NEKRETNINAIZN").LazyLoad();
         }
     }
 }

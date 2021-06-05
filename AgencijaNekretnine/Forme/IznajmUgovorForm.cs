@@ -30,7 +30,7 @@ namespace AgencijaNekretnine.Forme
 
             foreach (IznajmUgovorBasic a in ugovori)
             {
-                ListViewItem li = new ListViewItem(new string[] { a.Kupac.JMBG_PIB.ToString(), a.IznajmNekretnina.Ulica, a.IznajmNekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(), a.DatSklapanja.ToString(), a.DatIsteka.ToString() });
+                ListViewItem li = new ListViewItem(new string[] { a.Kupac.JMBG_PIB.ToString(), a.IznajmNekretnina.nekretnina.Ulica, a.IznajmNekretnina.nekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(), a.DatSklapanja.ToString(), a.DatIsteka.ToString() });
                 this.listUgovori.Items.Add(li);
             }
 

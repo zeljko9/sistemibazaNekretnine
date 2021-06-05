@@ -51,7 +51,8 @@ namespace AgencijaNekretnine
 
         private void btnUgovori_Click(object sender, EventArgs e)
         {
-
+            UgovorForm forma = new UgovorForm();
+            forma.ShowDialog();
         }
     }
 }

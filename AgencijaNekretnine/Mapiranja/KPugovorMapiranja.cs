@@ -11,6 +11,9 @@ namespace AgencijaNekretnine.Mapiranja
     internal class KPugovorMapiranja:ClassMap<KupoprodajniUgovor>
     {
         public KPugovorMapiranja() {
+
+            Table("UGOVOR_PRODAJA");
+
             Id(x => x.IDugkp).Column("IDUGPR").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
 
             Map(x => x.Datum_transakcije).Column("DATUM_TRANSAKCIJE");

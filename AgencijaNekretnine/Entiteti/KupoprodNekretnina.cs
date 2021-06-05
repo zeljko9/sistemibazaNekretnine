@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AgencijaNekretnine.Entiteti
 {
-    public class KupoprodNekretnina : Nekretnina
+    public class KupoprodNekretnina
     {
         public virtual int IDkpn { get; set; }
+        public virtual Nekretnina nekretnina { get; set; }
 
         public KupoprodNekretnina() { }
     }

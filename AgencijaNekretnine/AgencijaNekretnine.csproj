@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.1.0" />
-    <PackageReference Include="NHibernate.Linq" Version="1.0.0" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.1" />
   </ItemGroup>
 
