@@ -28,7 +28,8 @@ namespace AgencijaNekretnine.Forme
             DialogResult result = MessageBox.Show(poruka, title, buttons);
 
             if (result == DialogResult.OK) {
-                n.IDvlasnik=Convert.ToInt32(comboVlasnik.SelectedItem.ToString());
+                n.pripadaKvartu =DTOmanager.vratiKvart(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
+                n.IDvlasnik =comboVlasnik.SelectedItem.ToString();
                 n.Ulica = textUlica.Text;
                 n.Broj = (int)numBroj.Value;
                 n.Sprat = (int)numSprat.Value;
@@ -47,12 +48,16 @@ namespace AgencijaNekretnine.Forme
         private void DodajStambenuNekretninuForm_Load(object sender, EventArgs e)
         {
             List<LiceBasic> lb = DTOmanager.vratiSvaLica();
-
+            List<KvartBasic> kb = DTOmanager.vratiKvartove();
       
 
             foreach (LiceBasic l in lb) {
                 comboVlasnik.Items.Add(l.JMBG_PIB);
-            }                      
+            }
+            foreach (KvartBasic k in kb)
+            {
+                comboKvart.Items.Add(k.Zona);
+            }
         }
     }
 }

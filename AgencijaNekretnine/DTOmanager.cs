@@ -154,21 +154,23 @@ namespace AgencijaNekretnine
         #endregion
 
         #region Oprema
-        public static List<Oprema> vratiSvuOpremu(Nekretnina n)
+        public static List<OpremaBasic> vratiSvuOpremu(NekretninaBasic n)
         {
-            List<Oprema> opreme = new List<Oprema>();
+            List<OpremaBasic> opreme = new List<OpremaBasic>();
 
             try
             {
                 ISession s = DataLayer.GetSession();
 
+               Nekretnina nek = s.Load<Nekretnina>(n.IDNekretnina);
+
                 IEnumerable<Oprema> data = from o in s.Query<Oprema>()
-                                           where o.PripadaNekretnini == n
+                                           where o.PripadaNekretnini == nek
                                            select o;
 
                 foreach (Oprema opr in data)
                 {
-                    opreme.Add(new Oprema(opr.IDoprema, opr.NazivOpreme, opr.PripadaNekretnini));
+                    opreme.Add(new OpremaBasic(opr.IDoprema, opr.NazivOpreme, opr.PripadaNekretnini));
                 }
 
                 s.Close();
@@ -200,13 +202,20 @@ namespace AgencijaNekretnine
             }
         }
 
-        public static void dodajOpremu(Oprema o)
+        public static void dodajOpremu(OpremaBasic o, NekretninaBasic n)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                s.SaveOrUpdate(o);
+                Nekretnina nek = s.Load<Nekretnina>(n.IDNekretnina);
+
+                Oprema oprema = new Oprema();
+    
+                oprema.NazivOpreme = o.NazivOpreme;
+                oprema.PripadaNekretnini = nek;
+
+                s.SaveOrUpdate(oprema);
                 s.Flush();
                 s.Close();
             }
@@ -234,15 +243,18 @@ namespace AgencijaNekretnine
             }
         }
 
-        public static Oprema vratiOpremu(int id)
+        public static OpremaBasic vratiOpremu(int id)
         {
-            Oprema opr = new Oprema();
+            OpremaBasic opr = new OpremaBasic();
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                opr = s.Load<Oprema>(id);
-
+                Oprema oprema = s.Load<Oprema>(id);
+                opr.IDOprema = oprema.IDoprema;
+                opr.NazivOpreme = oprema.NazivOpreme;
+                opr.pripadaNekretnini = DTOmanager.vratiNekretninu(oprema.PripadaNekretnini.IDNekretnina);
+                
 
                 s.Close();
             }

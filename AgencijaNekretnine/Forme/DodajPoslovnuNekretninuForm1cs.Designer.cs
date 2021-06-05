@@ -42,6 +42,8 @@ namespace AgencijaNekretnine.Forme
             this.textUlica = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.comboVlasnik = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboKvart = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numSprat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numBroj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmbCena)).BeginInit();
@@ -86,7 +88,7 @@ namespace AgencijaNekretnine.Forme
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(306, 280);
+            this.btnDodaj.Location = new System.Drawing.Point(306, 304);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(166, 39);
             this.btnDodaj.TabIndex = 23;
@@ -154,11 +156,30 @@ namespace AgencijaNekretnine.Forme
             this.comboVlasnik.Size = new System.Drawing.Size(179, 28);
             this.comboVlasnik.TabIndex = 29;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 242);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 20);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Kvart";
+            // 
+            // comboKvart
+            // 
+            this.comboKvart.FormattingEnabled = true;
+            this.comboKvart.Location = new System.Drawing.Point(293, 234);
+            this.comboKvart.Name = "comboKvart";
+            this.comboKvart.Size = new System.Drawing.Size(179, 28);
+            this.comboKvart.TabIndex = 32;
+            // 
             // DodajPoslovnuNekretninuForm1cs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 336);
+            this.ClientSize = new System.Drawing.Size(538, 430);
+            this.Controls.Add(this.comboKvart);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboVlasnik);
             this.Controls.Add(this.numSprat);
@@ -197,5 +218,7 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.TextBox textUlica;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboVlasnik;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboKvart;
     }
 }

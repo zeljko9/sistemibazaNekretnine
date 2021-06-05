@@ -12,7 +12,7 @@ namespace AgencijaNekretnine.Mapiranja
     {
         public OpremaMapiranja()
         {
-            Table("TELEFON");
+            Table("OPREMA");
 
             Id(x => x.IDoprema).Column("IDOPREMA").GeneratedBy.SequenceIdentity("S17254.SEQ_OPREMA");
 

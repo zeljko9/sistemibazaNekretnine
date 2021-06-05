@@ -13,12 +13,12 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class OpremaForm : Form
     {
-        Nekretnina n;
-        Oprema o;
-        public OpremaForm(Nekretnina nkr)
+        NekretninaBasic n;
+        OpremaBasic o;
+        public OpremaForm(NekretninaBasic nkr)
         {
             n = nkr;
-            o = new Oprema();
+            o = new OpremaBasic();
             InitializeComponent();
         }
 
@@ -30,9 +30,9 @@ namespace AgencijaNekretnine.Forme
         private void btnDodaj_Click(object sender, EventArgs e)
         {
             o.NazivOpreme = ".";
-            o.PripadaNekretnini=n;
+            o.pripadaNekretnini=n;
 
-            DodajOpremuForm forma = new DodajOpremuForm(o);
+            DodajOpremuForm forma = new DodajOpremuForm(o, n);
             forma.ShowDialog();
 
             ucitajView();
@@ -45,11 +45,11 @@ namespace AgencijaNekretnine.Forme
 
         public void ucitajView() {
             listOprema.Items.Clear();
-            List<Oprema> podaci = DTOmanager.vratiSvuOpremu(n);
+            List<OpremaBasic> podaci = DTOmanager.vratiSvuOpremu(n);
 
-            foreach (Oprema p in podaci)
+            foreach (OpremaBasic p in podaci)
             {
-                ListViewItem item = new ListViewItem(new string[] { p.IDoprema.ToString(), p.NazivOpreme, p.PripadaNekretnini.ToString() });
+                ListViewItem item = new ListViewItem(new string[] { p.IDOprema.ToString() , p.NazivOpreme });
                 listOprema.Items.Add(item);
 
             }
@@ -63,7 +63,7 @@ namespace AgencijaNekretnine.Forme
             int id = Int32.Parse(listOprema.SelectedItems[0].SubItems[0].Text);
             o = DTOmanager.vratiOpremu(id);
 
-            DodajOpremuForm forma = new DodajOpremuForm(o);
+            DodajOpremuForm forma = new DodajOpremuForm(o, n);
             forma.ShowDialog();
 
             ucitajView();

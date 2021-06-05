@@ -13,11 +13,13 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class DodajOpremuForm : Form
     {
-        Oprema o;
-        public DodajOpremuForm(Oprema opr)
+        OpremaBasic o;
+        NekretninaBasic b;
+        public DodajOpremuForm(OpremaBasic opr, NekretninaBasic nb)
         {
             InitializeComponent();
             o = opr;
+            b = nb;
         }
 
         private void DodajOpremuForm_Load(object sender, EventArgs e)
@@ -33,14 +35,15 @@ namespace AgencijaNekretnine.Forme
             if (o.NazivOpreme.Equals("."))
             {
                 o.NazivOpreme = textNazivOpreme.Text;
-                DTOmanager.dodajOpremu(o);
+                DTOmanager.dodajOpremu(o, b);
             }
             else {
                 o.NazivOpreme = textNazivOpreme.Text;
                 DTOmanager.izmeniOpremu(o);
             }
 
-            DTOmanager.izmeniOpremu(o);
+            this.Close();
+           // DTOmanager.izmeniOpremu(o);
         }
     }
 }

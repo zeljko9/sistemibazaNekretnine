@@ -33,16 +33,22 @@ namespace AgencijaNekretnine.Forme
             this.btnDodaj = new System.Windows.Forms.Button();
             this.btnIzmeni = new System.Windows.Forms.Button();
             this.btnObrisi = new System.Windows.Forms.Button();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listOprema
             // 
+            this.listOprema.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
             this.listOprema.HideSelection = false;
             this.listOprema.Location = new System.Drawing.Point(12, 9);
             this.listOprema.Name = "listOprema";
             this.listOprema.Size = new System.Drawing.Size(294, 434);
             this.listOprema.TabIndex = 0;
             this.listOprema.UseCompatibleStateImageBehavior = false;
+            this.listOprema.View = System.Windows.Forms.View.Details;
             // 
             // btnDodaj
             // 
@@ -74,6 +80,14 @@ namespace AgencijaNekretnine.Forme
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "IDoprema";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "NazivOpreme";
+            // 
             // OpremaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -96,5 +110,7 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }

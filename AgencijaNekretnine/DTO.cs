@@ -88,12 +88,12 @@ namespace AgencijaNekretnine
         public int Cena { get; set; }
         public int Starost { get; set; }
         public DateTime DatumIzgradnje { get; set; }
-        public int IDvlasnik { get; set; }
+        public string IDvlasnik { get; set; }
         public string TipNekretnine { get; set; }
         public int BrKupatila { get; set; }
 
         public IList<OpremaBasic> oprema { get; set; }
-        public Kvart pripadaKvartu { get; set; }
+        public KvartBasic pripadaKvartu { get; set; }
 
         public NekretninaBasic() { this.oprema = new List<OpremaBasic>(); }
 
@@ -158,6 +158,8 @@ namespace AgencijaNekretnine
 
     public class OpremaBasic 
     {
+        private Nekretnina pripadaNekretnini1;
+
         public int IDOprema { get; set; }
         public string NazivOpreme { get; set; }
         public NekretninaBasic pripadaNekretnini { get; set; }
@@ -166,6 +168,11 @@ namespace AgencijaNekretnine
         {
             this.IDOprema = id;
             this.NazivOpreme = naziv;
+        }
+
+        public OpremaBasic(int id, string naziv, Nekretnina pripadaNekretnini1) : this(id, naziv)
+        {
+            this.pripadaNekretnini1 = pripadaNekretnini1;
         }
     }
 

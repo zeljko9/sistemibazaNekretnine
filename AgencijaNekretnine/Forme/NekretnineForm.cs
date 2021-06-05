@@ -50,7 +50,11 @@ namespace AgencijaNekretnine.Forme
 
         private void btnOprema_Click(object sender, EventArgs e)
         {
+            int id = Int32.Parse(listNekretnine.SelectedItems[0].SubItems[0].Text);
+            NekretninaBasic n = DTOmanager.vratiNekretninu(id);
 
+            OpremaForm forma = new OpremaForm(n);
+            forma.ShowDialog();
         }
 
         private void btnIzmeni_Click(object sender, EventArgs e)
