@@ -366,10 +366,11 @@ namespace AgencijaNekretnine
                     ProdavacBasic prod = new ProdavacBasic(p.JMBG, p.Ime, p.Prezime, p.DatZaposlenja);
                     List<StrucnaSpremaBasic> spreme = DTOmanager.vratiStrucneSpremeProdavca(prod.JMBG);
                     prod.strucneSpreme = spreme;
+                    prod.radiUPoslovnici = DTOmanager.vratiPoslovnicu(idPoslovnice);
                     //vratiStrucneSpreme
 
 
-                    listaProdavaca.Add(new ProdavacBasic(p.JMBG, p.Ime, p.Prezime, p.DatZaposlenja));
+                    listaProdavaca.Add(prod);
 
                 }
             }
@@ -426,7 +427,7 @@ namespace AgencijaNekretnine
                 ISession s = DataLayer.GetSession();
                 Poslovnica pos = new Poslovnica();
                 pos.Adresa = p.Adresa;
-                pos.RadnoVreme = pos.RadnoVreme;
+                pos.RadnoVreme = p.RadnoVreme;
 
                 s.SaveOrUpdate(pos);
                 s.Flush();

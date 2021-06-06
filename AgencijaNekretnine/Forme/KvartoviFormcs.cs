@@ -42,6 +42,7 @@ namespace AgencijaNekretnine.Forme
             {
                 k.Zona = (int)this.nmudZona.Value;
                 k.pripadaPoslovnici = DTOmanager.vratiPoslovnicu((int)this.nmudIDPoslovnice.Value);
+                k.pripadaPoslovnici.nagledaKvartove.Add(k);
 
                 //zovni dodajkvart
                 DTOmanager.dodajKvart(k);

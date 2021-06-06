@@ -39,6 +39,7 @@ namespace AgencijaNekretnine.Forme
                 SefBasic sef = new SefBasic(jmbg, ime, prez, dat);
                 sef.datPostavljanja = this.dtpPostavljanje.Value;
                 sef.sefujeNad = this.poslovnica;
+                this.poslovnica.listaZaposlenih.Add(sef);
                 DTOmanager.dodajZaposlenog(sef, this.poslovnica);
             }
             else
@@ -46,10 +47,15 @@ namespace AgencijaNekretnine.Forme
                 ProdavacBasic z = new ProdavacBasic(jmbg, ime, prez, dat);
                 StrucnaSpremaBasic s = new StrucnaSpremaBasic();
                 s.Naziv = Strucna;
-
+                z.radiUPoslovnici = this.poslovnica;
+                this.poslovnica.listaZaposlenih.Add(z);
                 DTOmanager.dodajZaposlenog(z, this.poslovnica);
                 DTOmanager.dodajStrucnuSpremu(s, z);
             }
+
+            
+
+
 
             MessageBox.Show("Uspesno ste dodali novog zaposlenog");
         }

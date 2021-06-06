@@ -34,7 +34,7 @@ namespace AgencijaNekretnine.Forme
                 string ned = this.tbxNedelja.Text;
 
                 this.poslovnica.Adresa = adresa;
-                this.poslovnica.RadnoVreme = radniDan + " " +  sub + " " + ned;
+                this.poslovnica.RadnoVreme = "Radnim danima: " + radniDan + "Subotom: " +  sub + "Nedeljom: " + ned;
                 DTOmanager.dodajPoslovnicu(poslovnica);
                 MessageBox.Show("Uspesno ste dodali poslovnicu");
             }

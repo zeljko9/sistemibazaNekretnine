@@ -40,6 +40,8 @@ namespace AgencijaNekretnine.Forme
             this.btnIzmeniZaposlenog = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnAgentiProdavca = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // zaposleni
@@ -55,10 +57,9 @@ namespace AgencijaNekretnine.Forme
             this.zaposleni.FullRowSelect = true;
             this.zaposleni.GridLines = true;
             this.zaposleni.HideSelection = false;
-            this.zaposleni.Location = new System.Drawing.Point(0, 0);
-            this.zaposleni.Margin = new System.Windows.Forms.Padding(4);
+            this.zaposleni.Location = new System.Drawing.Point(3, 23);
             this.zaposleni.Name = "zaposleni";
-            this.zaposleni.Size = new System.Drawing.Size(800, 450);
+            this.zaposleni.Size = new System.Drawing.Size(498, 372);
             this.zaposleni.TabIndex = 0;
             this.zaposleni.UseCompatibleStateImageBehavior = false;
             this.zaposleni.View = System.Windows.Forms.View.Details;
@@ -127,18 +128,30 @@ namespace AgencijaNekretnine.Forme
             this.btnAgentiProdavca.UseVisualStyleBackColor = true;
             this.btnAgentiProdavca.Click += new System.EventHandler(this.btnAgentiProdavca_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.zaposleni);
+            this.groupBox1.Location = new System.Drawing.Point(12, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(504, 398);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // ZaposleniForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAgentiProdavca);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnIzmeniZaposlenog);
             this.Controls.Add(this.btnDodajZaposlenog);
-            this.Controls.Add(this.zaposleni);
             this.Name = "ZaposleniForm";
             this.Text = "ZaposleniForm";
+            this.Load += new System.EventHandler(this.ZaposleniForm_Load_1);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -156,5 +169,6 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.ColumnHeader IDProdavnice;
         private System.Windows.Forms.ColumnHeader Sef;
         private System.Windows.Forms.Button btnAgentiProdavca;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

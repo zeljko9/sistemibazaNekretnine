@@ -45,8 +45,18 @@ namespace AgencijaNekretnine.Forme
             List<ProdavacBasic> listaProdavaca = DTOmanager.vratiZaposlenePoslovnice(this.poslovnica.IDPoslovnice);
             foreach(ProdavacBasic p in listaProdavaca)
             {
-                ListViewItem prod = new ListViewItem(new string[] { p.JMBG.ToString(), p.Ime, p.Prezime, p.DatZaposlenja.ToString(), p.strucneSpreme.ToString() });
+                string ss;
+
+                if (p.strucneSpreme == null)
+                    ss = null;
+                else
+                    ss = p.strucneSpreme[0].Naziv;
+
+                ListViewItem prod = new ListViewItem(new string[] { p.JMBG.ToString(), p.Ime, p.Prezime, p.DatZaposlenja.ToString(), p.radiUPoslovnici.IDPoslovnice.ToString(), ss });
+                this.zaposleni.Items.Add(prod);
             }
+
+            this.zaposleni.Refresh();
         }
 
         private void btnDodajZaposlenog_Click(object sender, EventArgs e)
@@ -109,6 +119,11 @@ namespace AgencijaNekretnine.Forme
             ProdavacBasic p = DTOmanager.vratiProdavca(idZaposleni);
 
             AgentiForm form = new AgentiForm(p);
+        }
+
+        private void ZaposleniForm_Load_1(object sender, EventArgs e)
+        {
+            this.popuniPodacima();
         }
     }
 }
