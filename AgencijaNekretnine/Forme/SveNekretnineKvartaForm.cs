@@ -34,6 +34,7 @@ namespace AgencijaNekretnine.Forme
             this.listaNekretninaKvart.Clear();
             List<NekretninaBasic> nekretnine = DTOmanager.vratiSveNekretnineKvarta(this.kvart.IDKvart);
 
+
             foreach(NekretninaBasic n in nekretnine)
             {
                 ListViewItem li = new ListViewItem(new string[] { n.IDNekretnina.ToString(), n.Ulica, n.Broj.ToString(), n.Sprat.ToString(), n.Cena.ToString(), n.Starost.ToString(), n.DatumIzgradnje.ToString(), n.TipNekretnine, n.BrKupatila.ToString() });
@@ -56,6 +57,11 @@ namespace AgencijaNekretnine.Forme
             DTOmanager.obrisiNekretninu(idNekretnine);
             MessageBox.Show("Nekretnina uspesno obrisana");
             this.popuniPodacima();
+        }
+
+        private void SveNekretnineKvartaForm_Load_1(object sender, EventArgs e)
+        {
+            popuniPodacima();
         }
     }
 }

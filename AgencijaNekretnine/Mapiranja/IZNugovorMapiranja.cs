@@ -17,7 +17,7 @@ namespace AgencijaNekretnine.Mapiranja
             Id(x => x.IDugizn).Column("IDUGOVOR").GeneratedBy.SequenceIdentity("S17254.SEQ_IZNAJMLJIVANJE_UGOVOR");
 
             Map(x => x.Mesecna_zakupina).Column("MESECNA_ZAKUPINA");
-            Map(x => x.Datum_sklapanja).Column("DATUM_SKAPLANJA");
+            Map(x => x.Datum_sklapanja).Column("DATUM_SKLAPANJA");
             Map(x => x.Datum_isteka).Column("DATUM_ISTEKA");
             References(x => x.iznajmNekretnine).Column("IDNEKRETNINA").LazyLoad();
             References(x => x.kupac).Column("IDKUPAC").LazyLoad();

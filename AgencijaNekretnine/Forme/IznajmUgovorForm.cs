@@ -24,17 +24,36 @@ namespace AgencijaNekretnine.Forme
 
         private void prikaziView()
         {
-            this.listUgovori.Clear();
+            listUgovori.Clear();
 
             List<IznajmUgovorBasic> ugovori = DTOmanager.vratiIZNugovore();
 
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Kupac" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Ulica" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Broj" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Prodavac" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Datum sklapanja" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Datum isteka" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Mesecna zakupina" });
+
             foreach (IznajmUgovorBasic a in ugovori)
             {
-                //ListViewItem li = new ListViewItem(new string[] { a.Kupac.JMBG_PIB.ToString(), a.IznajmNekretnina.nekretnina.Ulica, a.IznajmNekretnina.nekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(), a.DatSklapanja.ToString(), a.DatIsteka.ToString() });
-                //this.listUgovori.Items.Add(li);
+                ListViewItem li = new ListViewItem(new string[] { a.Kupac.JMBG_PIB, a.IznajmNekretnina.Ulica, a.IznajmNekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(), a.DatSklapanja.ToString(), a.DatIsteka.ToString(), a.MesecnaZakupina.ToString() });
+                listUgovori.Items.Add(li);
             }
 
-            this.listUgovori.Refresh();
+            listUgovori.Refresh();
+        }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            DodajIZNugovorForm forma = new DodajIZNugovorForm();
+            forma.ShowDialog();
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

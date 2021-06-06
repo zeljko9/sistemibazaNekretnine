@@ -26,7 +26,11 @@ namespace AgencijaNekretnine.Forme
             this.listaKvartova.Clear();
             List<KvartBasic> kvartovi = DTOmanager.vratiKvartove();
 
-            foreach(KvartBasic k in kvartovi)
+            listaKvartova.Columns.Add(new ColumnHeader() { Text = "IDkvarta" });
+            listaKvartova.Columns.Add(new ColumnHeader() { Text = "Zona" });
+            listaKvartova.Columns.Add(new ColumnHeader() { Text = "Pripada poslovnici" });
+
+            foreach (KvartBasic k in kvartovi)
             {
                 ListViewItem li = new ListViewItem(new string[] { k.IDKvart.ToString(), k.Zona.ToString(), k.pripadaPoslovnici.IDPoslovnice.ToString() });
                 this.listaKvartova.Items.Add(li);
@@ -47,6 +51,8 @@ namespace AgencijaNekretnine.Forme
                 //zovni dodajkvart
                 DTOmanager.dodajKvart(k);
                 MessageBox.Show("Uspesno dodat kvart");
+
+                popuniPodacima();
 
             }
             else
@@ -78,6 +84,7 @@ namespace AgencijaNekretnine.Forme
 
             DTOmanager.izmeniKvart(k);
             MessageBox.Show("Kvart uspesno izmenjen");
+            popuniPodacima();
             
 
         }
@@ -94,6 +101,7 @@ namespace AgencijaNekretnine.Forme
 
             DTOmanager.obrisiKvart(idKvarta);
             MessageBox.Show("Kvart uspesno obrisan");
+            popuniPodacima();
 
         }
 

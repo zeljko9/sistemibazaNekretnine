@@ -31,8 +31,6 @@ namespace AgencijaNekretnine.Forme
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listaNekretninaKvart = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnObrisi = new System.Windows.Forms.Button();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -42,6 +40,8 @@ namespace AgencijaNekretnine.Forme
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,25 +77,6 @@ namespace AgencijaNekretnine.Forme
             this.listaNekretninaKvart.TabIndex = 0;
             this.listaNekretninaKvart.UseCompatibleStateImageBehavior = false;
             this.listaNekretninaKvart.View = System.Windows.Forms.View.Details;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(551, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Obrisi Nekretninu";
-            // 
-            // btnObrisi
-            // 
-            this.btnObrisi.Location = new System.Drawing.Point(551, 90);
-            this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(182, 33);
-            this.btnObrisi.TabIndex = 2;
-            this.btnObrisi.Text = "Obrisi";
-            this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // columnHeader1
             // 
@@ -133,6 +114,25 @@ namespace AgencijaNekretnine.Forme
             // 
             this.columnHeader9.Text = "BrKupatila";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(551, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Obrisi Nekretninu";
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(551, 90);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(182, 33);
+            this.btnObrisi.TabIndex = 2;
+            this.btnObrisi.Text = "Obrisi";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            // 
             // SveNekretnineKvartaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -143,6 +143,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.groupBox1);
             this.Name = "SveNekretnineKvartaForm";
             this.Text = "SveNekretnineKvartaForm";
+            this.Load += new System.EventHandler(this.SveNekretnineKvartaForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

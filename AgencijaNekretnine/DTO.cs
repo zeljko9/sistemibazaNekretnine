@@ -272,7 +272,7 @@ namespace AgencijaNekretnine
     { 
         public int IDUgovorIznajm { get; set; }
         public NekretninaBasic IznajmNekretnina { get; set; }
-        public VlasnikBasic Vlasnik { get; set; }
+        public LiceBasic Vlasnik { get; set; }
         public FizickiKupacBasic Kupac { get; set; }
         public ProdavacBasic Prodavac { get; set; }
         public DateTime DatSklapanja { get; set; }
@@ -295,8 +295,8 @@ namespace AgencijaNekretnine
     {
         public int IDUgovorKupoprodaja { get; set; }
         public NekretninaBasic KupoprodNekretnina { get; set; }
-        public VlasnikBasic Vlasnik { get; set; }
         public KupacBasic Kupac { get; set; }
+        public LiceBasic vlasnik { get; set; }
         public ProdavacBasic Prodavac { get; set; }
         public DateTime DatTransakcije { get; set; }
 

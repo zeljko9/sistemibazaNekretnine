@@ -88,5 +88,10 @@ namespace AgencijaNekretnine.Forme
             this.popuniView();
             
         }
+
+        private void listNekretnine_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace AgencijaNekretnine
             }
         }
 
-        
+
 
         public static List<NekretninaBasic> vratiSveNekretnine()
         {
@@ -267,6 +267,26 @@ namespace AgencijaNekretnine
         #endregion
 
         #region Poslovice i zaposleni
+
+        public static string postojiProdavac(string text)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Prodavac p = s.Load<Prodavac>(Convert.ToInt32(text));
+
+                if (p != null) {
+                    return "postoji";
+                }
+
+            }
+            catch (Exception e)
+            {
+                return "ne postoji";
+            }
+            return "ne postoji";
+        }
+
         public static void dodajZaposlenog(ProdavacBasic z, PoslovnicaBasic p)
         {
             try
@@ -947,11 +967,11 @@ namespace AgencijaNekretnine
             {
                 string[] niz = ulicabroj.Split(" ");
                 string broj = niz.Last();
-                string ulica = "";
-                for (int i = 0; i < niz.Length - 1; i++)
+                string ulica = niz[0];
+                for (int i = 1; i < niz.Length - 1; i++)
                 {
-                    ulica.Concat(" ");
-                    ulica.Concat(niz[i]);
+                    ulica+=" ";
+                    ulica+=niz[i];
                 }
                 ulica.Remove(0, 1);
 
@@ -1169,15 +1189,18 @@ namespace AgencijaNekretnine
                                                       select o;
 
                 
-                KupoprodajniUgovorBasic kpb = new KupoprodajniUgovorBasic();
+                
                 foreach (KupoprodajniUgovor kp in kpu)
                 {
+                    KupoprodajniUgovorBasic kpb = new KupoprodajniUgovorBasic();
                     kpb.DatTransakcije = kp.Datum_transakcije;
+                    Lice l = new Lice();
+                    l.JMBG_PIB = kp.kupoprodNekretnine.IDvlasnik;
+                    kpb.vlasnik = vratiLice(l);
                     kpb.IDUgovorKupoprodaja = kp.IDugkp;
-                    kpb.Kupac = new KupacBasic(kp.kupac.KupacID);
-                    //kpb.Vlasnik = new VlasnikBasic(kp.vlasnik.VlasnikID);
+                    kpb.Kupac = new KupacBasic(kp.kupac.KupacID);                   
                     kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG);
-                   // kpb.KupoprodNekretnina = vratiNekretninu(kp.kupoprodNekretnine);
+                    kpb.KupoprodNekretnina = vratiNekretninu(kp.kupoprodNekretnine.IDNekretnina);
                     kpbl.Add(kpb);
                 }
             }
@@ -1198,17 +1221,19 @@ namespace AgencijaNekretnine
                 IEnumerable<IznajmUgovor> kpu = from o in s.Query<IznajmUgovor>()
                                                       select o;
 
-                IznajmUgovorBasic kpb = new IznajmUgovorBasic();
+                
                 foreach (IznajmUgovor kp in kpu)
                 {
+                    IznajmUgovorBasic kpb = new IznajmUgovorBasic();
+                    Lice l = new Lice();
+                    kpb.Vlasnik = vratiLice(l);
                     kpb.DatIsteka = kp.Datum_isteka;
                     kpb.DatSklapanja = kp.Datum_sklapanja;
                     kpb.Kupac = new FizickiKupacBasic(kp.kupac.JMBG_PIB, kp.kupac.Ime, kp.kupac.Prezime, kp.kupac.Adresa);
                     kpb.Kupac.jeKupac = new KupacBasic(kp.kupac.jeKupac.KupacID);
                     kpb.IDUgovorIznajm = kp.IDugizn;
-                    //NekretninaBasic nb = vratiNekretninu(kp.iznajmNekretnine.nekretnina.IDNekretnina);
+                    kpb.IznajmNekretnina = vratiNekretninu(kp.iznajmNekretnine.IDNekretnina);
                     //kpb.IznajmNekretnina =  new IznajmNekretninaBasic(kp.iznajmNekretnine.IDizn, nb);
-                    //kpb.Vlasnik = new VlasnikBasic(kp.vlasnik.VlasnikID);
                     kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG);
                     kpb.MesecnaZakupina = kp.Mesecna_zakupina;
 
@@ -1251,23 +1276,22 @@ namespace AgencijaNekretnine
 
                 KupoprodajniUgovor kp = new KupoprodajniUgovor();
                 kp.kupac = new Kupac();
+                s.SaveOrUpdate(kp.kupac);
 
-                if (lice.TipLica == "fizicko") {
-                    FizickiKupac fk = (FizickiKupac)lice;
+                if (lice.TipLica == "Fizicko") {
+                    FizickiKupac fk = new FizickiKupac(lice);
                     fk.jeKupac = kp.kupac;
                     s.SaveOrUpdate(fk);
-                } else if (lice.TipLica == "pravno") {
-                    PravniKupac pk = (PravniKupac)lice;
+                } else if (lice.TipLica == "Pravno") {
+                    PravniKupac pk = new PravniKupac(lice);
                     pk.jeKupac = kp.kupac;
                     s.SaveOrUpdate(pk);
                 }
 
                 kp.Datum_transakcije = DateTime.Now;
-                //kp.kupoprodNekretnine = (KupoprodNekretnina)nekretnina;
+                kp.kupoprodNekretnine = nekretnina;
                 kp.prodavac = prodavac;
-                //kp.vlasnik = (Vlasnik)(from v in s.Query<Lice>()
-                           //  where v.JMBG_PIB == Convert.ToString(nekretnina.IDvlasnik)
-                            // select v);
+                
 
                 s.SaveOrUpdate(kp);
                 s.Flush();
@@ -1284,7 +1308,7 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
 
-                FizickiKupac lice = (FizickiKupac)(from l in s.Query<FizickiKupac>()
+                Lice lice = (Lice)(from l in s.Query<Lice>()
                                    where l.JMBG_PIB == jmbgK
                                    select l);
                 Prodavac prodavac = (Prodavac)(from p in s.Query<Prodavac>()
@@ -1309,15 +1333,14 @@ namespace AgencijaNekretnine
 
                 IznajmUgovor kp = new IznajmUgovor();
 
-                kp.kupac = lice;               
+                kp.kupac = new FizickiKupac(lice);
+                s.SaveOrUpdate(kp.kupac);
+
                 kp.Datum_sklapanja = DateTime.Now;
                 kp.Datum_isteka = dt;
-                //kp.iznajmNekretnine = new IznajmNekretnina();
+                kp.iznajmNekretnine = nekretnina;
                 kp.Mesecna_zakupina = nekretnina.Cena / 300;
                 kp.prodavac = prodavac;
-                //kp.vlasnik= (Vlasnik)(from v in s.Query<Lice>()
-                //                      where v.JMBG_PIB == Convert.ToString(nekretnina.IDvlasnik)
-                //                      select v);
 
                 s.SaveOrUpdate(kp);
                 s.Flush();

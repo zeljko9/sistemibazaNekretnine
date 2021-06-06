@@ -66,6 +66,7 @@ namespace AgencijaNekretnine.Forme
             this.listNekretnine.TabIndex = 4;
             this.listNekretnine.UseCompatibleStateImageBehavior = false;
             this.listNekretnine.View = System.Windows.Forms.View.Details;
+            this.listNekretnine.SelectedIndexChanged += new System.EventHandler(this.listNekretnine_SelectedIndexChanged);
             // 
             // columnHeader1
             // 

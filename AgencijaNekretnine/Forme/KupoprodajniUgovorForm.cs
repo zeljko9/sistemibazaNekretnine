@@ -21,13 +21,21 @@ namespace AgencijaNekretnine.Forme
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
-
+            DodajKPugovorForm forma = new DodajKPugovorForm();
+            forma.ShowDialog();
         }
 
         private void prikaziView() {
             this.listUgovori.Clear();
 
             List<KupoprodajniUgovorBasic> ugovori = DTOmanager.vratiKPugovore();
+
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Kupac" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Ulica" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Broj" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Prodavac" });
+            listUgovori.Columns.Add(new ColumnHeader() { Text = "Datum transakcije" });
+
 
             foreach (KupoprodajniUgovorBasic a in ugovori)
             {
@@ -41,6 +49,11 @@ namespace AgencijaNekretnine.Forme
         private void KupoprodajniUgovorForm_Load(object sender, EventArgs e)
         {
             prikaziView();
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            // Int32.Parse(listaLica.SelectedItems[0].SubItems[0].Text)
         }
     }
 }

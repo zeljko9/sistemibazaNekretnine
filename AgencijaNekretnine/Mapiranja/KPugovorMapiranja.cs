@@ -17,12 +17,9 @@ namespace AgencijaNekretnine.Mapiranja
             Id(x => x.IDugkp).Column("IDUGOVOR").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
 
             Map(x => x.Datum_transakcije).Column("DATUM_TRANSAKCIJE");
-
             References(x => x.kupoprodNekretnine).Column("IDNEKRETNINA").LazyLoad();
-   
             References(x => x.kupac).Column("IDKUPAC").LazyLoad();
             References(x => x.prodavac).Column("IDPRODAVAC").LazyLoad();
-
         }
     }
 }

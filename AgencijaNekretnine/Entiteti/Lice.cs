@@ -22,6 +22,16 @@ namespace AgencijaNekretnine.Entiteti
         {
             this.TelefoniLica = new List<Telefon>();
         }
+
+        public Lice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica, IList<Telefon> telefoniLica)
+        {
+            JMBG_PIB = jMBG_PIB;
+            Ime = ime;
+            Prezime = prezime;
+            Adresa = adresa;
+            TipLica = tipLica;
+            TelefoniLica = telefoniLica;
+        }
     }
 
    
@@ -33,9 +43,8 @@ namespace AgencijaNekretnine.Entiteti
         {
         }
 
-        public static explicit operator PravniKupac(Kupac v)
+        public PravniKupac(Lice lice) : base(lice.JMBG_PIB, lice.Ime, lice.Prezime, lice.Adresa, lice.TipLica, lice.TelefoniLica)
         {
-            throw new NotImplementedException();
         }
     }
     public class FizickiKupac : Lice
@@ -43,6 +52,10 @@ namespace AgencijaNekretnine.Entiteti
         public virtual Kupac jeKupac { get; set; }
         public FizickiKupac()
         { 
+        }
+
+        public FizickiKupac(Lice lice) : base(lice.JMBG_PIB, lice.Ime, lice.Prezime, lice.Adresa, lice.TipLica, lice.TelefoniLica)
+        {
         }
     }
 
