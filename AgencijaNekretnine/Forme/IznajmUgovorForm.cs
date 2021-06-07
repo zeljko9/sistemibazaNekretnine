@@ -49,6 +49,8 @@ namespace AgencijaNekretnine.Forme
         {
             DodajIZNugovorForm forma = new DodajIZNugovorForm();
             forma.ShowDialog();
+
+            prikaziView();
         }
 
         private void btnObrisi_Click(object sender, EventArgs e)

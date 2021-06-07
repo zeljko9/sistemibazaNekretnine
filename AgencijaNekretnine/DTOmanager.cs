@@ -273,7 +273,9 @@ namespace AgencijaNekretnine
             try
             {
                 ISession s = DataLayer.GetSession();
-                Prodavac p = s.Load<Prodavac>(Convert.ToInt32(text));
+                IEnumerable< Prodavac> p = from pr in s.Query<Prodavac>()
+                                           where pr.JMBG==Convert.ToDouble(text)
+                                           select pr;
 
                 if (p != null) {
                     return "postoji";
@@ -977,10 +979,10 @@ namespace AgencijaNekretnine
 
                 ISession s = DataLayer.GetSession();
 
-                Nekretnina nek = (Nekretnina)(from n in s.Query<Nekretnina>()
-                                 where n.Ulica == ulica &&
-                                 n.Broj == Convert.ToInt32(broj)
-                                 select n);
+                IEnumerable<Nekretnina> nek = from n in s.Query<Nekretnina>()
+                                              where n.Ulica == ulica &&
+                                              n.Broj == Convert.ToInt32(broj)
+                                              select n;
 
                 s.Close();
 
@@ -1308,38 +1310,33 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
 
-                Lice lice = (Lice)(from l in s.Query<Lice>()
-                                   where l.JMBG_PIB == jmbgK
-                                   select l);
-                Prodavac prodavac = (Prodavac)(from p in s.Query<Prodavac>()
-                                               where p.JMBG == Convert.ToDouble(jmbgP)
-                                               select p);
+                Lice lice = s.Load<Lice>(jmbgK);
+                Prodavac prodavac = s.Load<Prodavac>(Convert.ToInt64(jmbgP));
 
                 string[] niz = ulicabroj.Split(" ");
                 string broj = niz.Last();
-                string ulica = "";
-                for (int i = 0; i < niz.Length - 1; i++)
+                string ulica =niz[0];
+                for (int i = 1; i < niz.Length - 1; i++)
                 {
-                    ulica.Concat(" ");
-                    ulica.Concat(niz[i]);
+                    ulica+=" ";
+                    ulica+=niz[i];
                 }
                 ulica.Remove(0, 1);
 
-                Nekretnina nekretnina = (Nekretnina)(from n in s.Query<Nekretnina>()
-                                                     where n.Ulica == ulica &&
-                                                     n.Broj == Convert.ToInt32(broj)
-                                                     select n);
+                IEnumerable<Nekretnina> nekretnina = from n in s.Query<Nekretnina>()
+                                              where n.Ulica == ulica &&
+                                              n.Broj == Convert.ToInt32(broj)
+                                              select n;
 
 
                 IznajmUgovor kp = new IznajmUgovor();
 
                 kp.kupac = new FizickiKupac(lice);
-                s.SaveOrUpdate(kp.kupac);
 
                 kp.Datum_sklapanja = DateTime.Now;
                 kp.Datum_isteka = dt;
-                kp.iznajmNekretnine = nekretnina;
-                kp.Mesecna_zakupina = nekretnina.Cena / 300;
+                kp.iznajmNekretnine = nekretnina.First();
+                kp.Mesecna_zakupina = nekretnina.First().Cena / 300;
                 kp.prodavac = prodavac;
 
                 s.SaveOrUpdate(kp);

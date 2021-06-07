@@ -24,12 +24,12 @@ namespace AgencijaNekretnine.Forme
                 MessageBox.Show("Molimo Vas unesite postojecu nekretninu");
                 return;
             }
-            if (!DTOmanager.postojiLice(textKupac.Text).Equals("fizicko"))
+            if (!DTOmanager.postojiLice(textKupac.Text).Equals("Fizicko"))
             {
                 MessageBox.Show("Molimo Vas unesite odgovarajuceg kupca");
                 return;
             }
-            if (!DTOmanager.postojiProdavac(textProdavac.Text).Equals("ne postoji")) {
+            if (DTOmanager.postojiProdavac(textProdavac.Text).Equals("ne postoji")) {
                 MessageBox.Show("Molimo Vas unesite odgovarajuceg kupca");
                 return;
             }
