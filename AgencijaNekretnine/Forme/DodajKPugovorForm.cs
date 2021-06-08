@@ -19,8 +19,18 @@ namespace AgencijaNekretnine.Forme
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
+
             if (DTOmanager.postojiNekretnina(textUlicaBroj.Text).Equals("ne postoji")) {
                 MessageBox.Show("Moli mo Vas unesite postojecu nekretninu");
+                return;
+            }
+            if (DTOmanager.postojiNekretnina(textUlicaBroj.Text).Equals("kupljeno")) {
+                MessageBox.Show("Nekretnina je vec kupljena");
+                return;
+            }
+            if (DTOmanager.postojiNekretnina(textUlicaBroj.Text).Equals("iznajmljeno"))
+            {
+                MessageBox.Show("Nekretnina je vec iznajmljena");
                 return;
             }
             if (DTOmanager.postojiLice(textKupac.Text).Equals("")) {

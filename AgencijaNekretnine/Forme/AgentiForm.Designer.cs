@@ -30,17 +30,17 @@ namespace AgencijaNekretnine.Forme
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listaAgenata = new System.Windows.Forms.ListView();
-            this.btnDodajAgenta = new System.Windows.Forms.Button();
-            this.btnIzmeniAgenta = new System.Windows.Forms.Button();
-            this.btnObrisiAgenta = new System.Windows.Forms.Button();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnObrisiAgenta = new System.Windows.Forms.Button();
+            this.btnIzmeniAgenta = new System.Windows.Forms.Button();
+            this.btnDodajAgenta = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -54,18 +54,6 @@ namespace AgencijaNekretnine.Forme
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnObrisiAgenta);
-            this.groupBox2.Controls.Add(this.btnIzmeniAgenta);
-            this.groupBox2.Controls.Add(this.btnDodajAgenta);
-            this.groupBox2.Location = new System.Drawing.Point(496, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(289, 227);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // listaAgenata
             // 
@@ -86,36 +74,6 @@ namespace AgencijaNekretnine.Forme
             this.listaAgenata.TabIndex = 0;
             this.listaAgenata.UseCompatibleStateImageBehavior = false;
             this.listaAgenata.View = System.Windows.Forms.View.Details;
-            // 
-            // btnDodajAgenta
-            // 
-            this.btnDodajAgenta.Location = new System.Drawing.Point(24, 47);
-            this.btnDodajAgenta.Name = "btnDodajAgenta";
-            this.btnDodajAgenta.Size = new System.Drawing.Size(228, 33);
-            this.btnDodajAgenta.TabIndex = 0;
-            this.btnDodajAgenta.Text = "Dodaj agenta";
-            this.btnDodajAgenta.UseVisualStyleBackColor = true;
-            this.btnDodajAgenta.Click += new System.EventHandler(this.btnDodajAgenta_Click);
-            // 
-            // btnIzmeniAgenta
-            // 
-            this.btnIzmeniAgenta.Location = new System.Drawing.Point(24, 109);
-            this.btnIzmeniAgenta.Name = "btnIzmeniAgenta";
-            this.btnIzmeniAgenta.Size = new System.Drawing.Size(227, 35);
-            this.btnIzmeniAgenta.TabIndex = 1;
-            this.btnIzmeniAgenta.Text = "Izmeni Agenta";
-            this.btnIzmeniAgenta.UseVisualStyleBackColor = true;
-            this.btnIzmeniAgenta.Click += new System.EventHandler(this.btnIzmeniAgenta_Click);
-            // 
-            // btnObrisiAgenta
-            // 
-            this.btnObrisiAgenta.Location = new System.Drawing.Point(24, 168);
-            this.btnObrisiAgenta.Name = "btnObrisiAgenta";
-            this.btnObrisiAgenta.Size = new System.Drawing.Size(228, 36);
-            this.btnObrisiAgenta.TabIndex = 2;
-            this.btnObrisiAgenta.Text = "Obrisi Agenta";
-            this.btnObrisiAgenta.UseVisualStyleBackColor = true;
-            this.btnObrisiAgenta.Click += new System.EventHandler(this.btnObrisiAgenta_Click);
             // 
             // columnHeader1
             // 
@@ -141,6 +99,48 @@ namespace AgencijaNekretnine.Forme
             // 
             this.columnHeader6.Text = "DatRada";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnObrisiAgenta);
+            this.groupBox2.Controls.Add(this.btnIzmeniAgenta);
+            this.groupBox2.Controls.Add(this.btnDodajAgenta);
+            this.groupBox2.Location = new System.Drawing.Point(496, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(289, 227);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
+            // btnObrisiAgenta
+            // 
+            this.btnObrisiAgenta.Location = new System.Drawing.Point(24, 168);
+            this.btnObrisiAgenta.Name = "btnObrisiAgenta";
+            this.btnObrisiAgenta.Size = new System.Drawing.Size(228, 36);
+            this.btnObrisiAgenta.TabIndex = 2;
+            this.btnObrisiAgenta.Text = "Obrisi Agenta";
+            this.btnObrisiAgenta.UseVisualStyleBackColor = true;
+            this.btnObrisiAgenta.Click += new System.EventHandler(this.btnObrisiAgenta_Click);
+            // 
+            // btnIzmeniAgenta
+            // 
+            this.btnIzmeniAgenta.Location = new System.Drawing.Point(24, 109);
+            this.btnIzmeniAgenta.Name = "btnIzmeniAgenta";
+            this.btnIzmeniAgenta.Size = new System.Drawing.Size(227, 35);
+            this.btnIzmeniAgenta.TabIndex = 1;
+            this.btnIzmeniAgenta.Text = "Izmeni Agenta";
+            this.btnIzmeniAgenta.UseVisualStyleBackColor = true;
+            this.btnIzmeniAgenta.Click += new System.EventHandler(this.btnIzmeniAgenta_Click);
+            // 
+            // btnDodajAgenta
+            // 
+            this.btnDodajAgenta.Location = new System.Drawing.Point(24, 47);
+            this.btnDodajAgenta.Name = "btnDodajAgenta";
+            this.btnDodajAgenta.Size = new System.Drawing.Size(228, 33);
+            this.btnDodajAgenta.TabIndex = 0;
+            this.btnDodajAgenta.Text = "Dodaj agenta";
+            this.btnDodajAgenta.UseVisualStyleBackColor = true;
+            this.btnDodajAgenta.Click += new System.EventHandler(this.btnDodajAgenta_Click);
+            // 
             // AgentiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -150,6 +150,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.groupBox1);
             this.Name = "AgentiForm";
             this.Text = "AgentiForm";
+            this.Load += new System.EventHandler(this.AgentiForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);

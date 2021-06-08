@@ -10,8 +10,7 @@ namespace AgencijaNekretnine.Entiteti
     {
         public virtual int IDugizn { get; set; }
         public virtual Nekretnina iznajmNekretnine { get; set; }
-   
-        public virtual FizickiKupac kupac { get; set; }
+        public virtual Lice kupac { get; set; }
         public virtual Prodavac prodavac { get; set; }
         public virtual DateTime Datum_sklapanja { get; set; }
         public virtual DateTime Datum_isteka { get; set; }

@@ -25,12 +25,13 @@ namespace AgencijaNekretnine.Mapiranja
 
             //1:N VEZA SA TELEFON, IMA NIZ TELEFONA
             HasMany(x => x.TelefoniLica).KeyColumn("JMBGPIB").LazyLoad().Cascade.All().Inverse();
-
+            HasMany(x => x.IZNugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.KPugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
 
         }
     }
 
-    internal class FizickiKupacMapiranja : SubclassMap<FizickiKupac>
+    /*internal class FizickiKupacMapiranja : SubclassMap<FizickiKupac>
     {
         public FizickiKupacMapiranja()
         {
@@ -38,6 +39,8 @@ namespace AgencijaNekretnine.Mapiranja
 
             KeyColumn("JMBGPIB");
 
+           
+            //HasMany(x => x.IZNugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
             References(x => x.jeKupac).Column("IDKUPAC1").LazyLoad();
         }
     }
@@ -54,7 +57,7 @@ namespace AgencijaNekretnine.Mapiranja
 
             References(x => x.jeKupac).Column("IDKUPAC2").LazyLoad();
         }
-    }
+    }*/
 
     
 }

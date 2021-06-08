@@ -28,6 +28,10 @@ namespace AgencijaNekretnine.Forme
 
         private void btnIzmeni_Click(object sender, EventArgs e)
         {
+            lb.Ime = textIme.Text;
+            lb.Prezime = textPrezime.Text;
+            lb.Adresa = textAdresa.Text;
+
             DTOmanager.izmeniLice(lb);
             this.Close();
         }

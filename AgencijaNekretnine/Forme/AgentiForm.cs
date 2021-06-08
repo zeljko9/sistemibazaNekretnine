@@ -33,11 +33,19 @@ namespace AgencijaNekretnine.Forme
         void popuniPodacima()
         {
             this.listaAgenata.Clear();
-            List<AgentBasic> agenti = DTOmanager.vratiAgenteProdavca(this.prodavac.JMBG);
+
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "Ime" });
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "Prezime" });
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "Telefon" });
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "Procenat" });
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "Datum rada" });
+            //listUgovori.Columns.Add(new ColumnHeader() { Text = "Datum isteka" });
+
+            List<AgentBasic> agenti = DTOmanager.vratiAgenteProdavca(this.prodavac.JMBG.ToString());
 
             foreach(AgentBasic a in agenti)
             {
-                ListViewItem li = new ListViewItem(new string[] { a.angazovanOd.JMBG.ToString(), a.Ime, a.Prezime, a.brTel, a.Procenat.ToString(), a.DatRada.ToString() });
+                ListViewItem li = new ListViewItem(new string[] {  a.Ime, a.Prezime, a.brTel, a.Procenat.ToString(), a.DatRada.ToString() });
                 this.listaAgenata.Items.Add(li);
             }
 
@@ -63,7 +71,7 @@ namespace AgencijaNekretnine.Forme
                 return;
             }
 
-            int angazovanOd = Int32.Parse(listaAgenata.SelectedItems[0].SubItems[0].Text);
+            string angazovanOd = listaAgenata.SelectedItems[0].SubItems[0].Text;
             AgentBasic agent = DTOmanager.vratiAgenta(angazovanOd);
             ProdavacBasic prodavac = DTOmanager.vratiProdavca(angazovanOd);
             IzmeniAgentaForm forma = new IzmeniAgentaForm(agent, prodavac);
@@ -85,6 +93,11 @@ namespace AgencijaNekretnine.Forme
 
 
 
+        }
+
+        private void AgentiForm_Load_1(object sender, EventArgs e)
+        {
+            popuniPodacima();
         }
     }
 }

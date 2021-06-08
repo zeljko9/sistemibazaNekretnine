@@ -31,13 +31,19 @@ namespace AgencijaNekretnine.Forme
 
         void popuniPodacima()
         {
+            listaNekretninaKvart.Columns.Add(new ColumnHeader() { Text = "Ulica" });
+            listaNekretninaKvart.Columns.Add(new ColumnHeader() { Text = "Broj" });
+            listaNekretninaKvart.Columns.Add(new ColumnHeader() { Text = "Sprat" });
+            listaNekretninaKvart.Columns.Add(new ColumnHeader() { Text = "Tip" });
+            listaNekretninaKvart.Columns.Add(new ColumnHeader() { Text = "Cena" });
+
             this.listaNekretninaKvart.Clear();
             List<NekretninaBasic> nekretnine = DTOmanager.vratiSveNekretnineKvarta(this.kvart.IDKvart);
 
 
             foreach(NekretninaBasic n in nekretnine)
             {
-                ListViewItem li = new ListViewItem(new string[] { n.IDNekretnina.ToString(), n.Ulica, n.Broj.ToString(), n.Sprat.ToString(), n.Cena.ToString(), n.Starost.ToString(), n.DatumIzgradnje.ToString(), n.TipNekretnine, n.BrKupatila.ToString() });
+                ListViewItem li = new ListViewItem(new string[] {n.Ulica, n.Broj.ToString(), n.Sprat.ToString(), n.TipNekretnine, n.Cena.ToString() });
                 this.listaNekretninaKvart.Items.Add(li);
             }
 

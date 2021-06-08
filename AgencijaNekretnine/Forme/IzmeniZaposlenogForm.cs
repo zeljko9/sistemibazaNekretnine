@@ -46,7 +46,7 @@ namespace AgencijaNekretnine.Forme
             StrucnaSpremaBasic s = new StrucnaSpremaBasic();
             s.Naziv = naziv;
             s.pripadaProdavcu = this.prodavac;
-            DTOmanager.izmeniStrucnuSpremu(s, this.prodavac.JMBG);
+            DTOmanager.izmeniStrucnuSpremu(s, this.prodavac.JMBG.ToString());
             DTOmanager.izmeniProdavca(this.prodavac);
 
             MessageBox.Show("Uspesno ste azurirali prodavca");

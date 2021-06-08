@@ -14,6 +14,8 @@ namespace AgencijaNekretnine
         public string Prezime { get; set; }
         public string Adresa { get; set; }
         public string TipLica { get; set; }
+        public IList<KupoprodajniUgovor> KPugovori { get; set; }
+        public IList<IznajmUgovorBasic> IZNugovori { get; set; }
         public IList<TelefonBasic> listaTelefona { get; set; }
 
         public LiceBasic(string jmbg, string ime, string prez, string adresa)
@@ -30,53 +32,12 @@ namespace AgencijaNekretnine
                 TipLica = "Pravno";
             }
         }
+        public LiceBasic(Lice l) { 
+            
+        }
 
         public LiceBasic() { this.listaTelefona = new List<TelefonBasic>(); }
 
-    }
-
-    public class FizickiKupacBasic : LiceBasic
-    {
-        public KupacBasic jeKupac { get; set; }
-        public FizickiKupacBasic() { }
-
-        public FizickiKupacBasic(string JMBG_PIB, string ime, string prezime, string adresa) : base(JMBG_PIB, ime, prezime, adresa) { }
-    }
-
-    public class PravniKupacBasic : LiceBasic
-    {
-        public KupacBasic jeKupac { get; set; }
-        public PravniKupacBasic() { }
-
-        public PravniKupacBasic(string jmbg,string ime,string prez, string adresa) : base(jmbg, ime, prez, adresa) { }
-    }
-
-    public class FizickiVlasnikBasic : LiceBasic 
-    {
-        public VlasnikBasic jeVlasnik { get; set; }
-        public FizickiVlasnikBasic() { }
-        public FizickiVlasnikBasic(string jmbg,string ime,string prez, string adr) : base(jmbg, ime, prez, adr) { }
-    }
-
-    public class PravniVlasnikBasic : LiceBasic
-    {
-        public VlasnikBasic jeVlasnik { get; set; }
-        public PravniVlasnikBasic() { }
-        public PravniVlasnikBasic(string jmbg,string ime,string prez,string adr) : base(jmbg, ime, prez, adr) { }
-    }
-
-    public class KupacBasic 
-    {
-        public int KupacID { get; set; }
-        public KupacBasic() { }
-        public KupacBasic(int id) { KupacID = id; }
-    }
-
-    public class VlasnikBasic 
-    {
-        public int VlasnikID { get; set; }
-        public VlasnikBasic() { }
-        public VlasnikBasic(int id) { VlasnikID = id; }
     }
 
     public class NekretninaBasic
@@ -273,7 +234,7 @@ namespace AgencijaNekretnine
         public int IDUgovorIznajm { get; set; }
         public NekretninaBasic IznajmNekretnina { get; set; }
         public LiceBasic Vlasnik { get; set; }
-        public FizickiKupacBasic Kupac { get; set; }
+        public LiceBasic Kupac { get; set; }
         public ProdavacBasic Prodavac { get; set; }
         public DateTime DatSklapanja { get; set; }
         public DateTime DatIsteka { get; set; }
@@ -295,7 +256,7 @@ namespace AgencijaNekretnine
     {
         public int IDUgovorKupoprodaja { get; set; }
         public NekretninaBasic KupoprodNekretnina { get; set; }
-        public KupacBasic Kupac { get; set; }
+        public LiceBasic Kupac { get; set; }
         public LiceBasic vlasnik { get; set; }
         public ProdavacBasic Prodavac { get; set; }
         public DateTime DatTransakcije { get; set; }

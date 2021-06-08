@@ -37,12 +37,11 @@ namespace AgencijaNekretnine.Forme
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDodajZaposlenog = new System.Windows.Forms.Button();
-            this.nmupJMBG = new System.Windows.Forms.NumericUpDown();
             this.tbxStrucnaSprema = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxSef = new System.Windows.Forms.CheckBox();
             this.dtpPostavljanje = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.nmupJMBG)).BeginInit();
+            this.textjmbgz = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbxPrezime
@@ -112,18 +111,6 @@ namespace AgencijaNekretnine.Forme
             this.btnDodajZaposlenog.UseVisualStyleBackColor = true;
             this.btnDodajZaposlenog.Click += new System.EventHandler(this.btnDodajZaposlenog_Click);
             // 
-            // nmupJMBG
-            // 
-            this.nmupJMBG.Location = new System.Drawing.Point(38, 92);
-            this.nmupJMBG.Maximum = new decimal(new int[] {
-            1316134911,
-            2328,
-            0,
-            0});
-            this.nmupJMBG.Name = "nmupJMBG";
-            this.nmupJMBG.Size = new System.Drawing.Size(191, 27);
-            this.nmupJMBG.TabIndex = 9;
-            // 
             // tbxStrucnaSprema
             // 
             this.tbxStrucnaSprema.Location = new System.Drawing.Point(428, 173);
@@ -158,16 +145,23 @@ namespace AgencijaNekretnine.Forme
             this.dtpPostavljanje.Size = new System.Drawing.Size(287, 27);
             this.dtpPostavljanje.TabIndex = 13;
             // 
+            // textjmbgz
+            // 
+            this.textjmbgz.Location = new System.Drawing.Point(43, 78);
+            this.textjmbgz.Name = "textjmbgz";
+            this.textjmbgz.Size = new System.Drawing.Size(202, 27);
+            this.textjmbgz.TabIndex = 14;
+            // 
             // DodajZaposlenogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textjmbgz);
             this.Controls.Add(this.dtpPostavljanje);
             this.Controls.Add(this.cbxSef);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbxStrucnaSprema);
-            this.Controls.Add(this.nmupJMBG);
             this.Controls.Add(this.btnDodajZaposlenog);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -178,7 +172,6 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.tbxPrezime);
             this.Name = "DodajZaposlenogForm";
             this.Text = "DodajZaposlenogForm";
-            ((System.ComponentModel.ISupportInitialize)(this.nmupJMBG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,10 +187,10 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDodajZaposlenog;
-        private System.Windows.Forms.NumericUpDown nmupJMBG;
         private System.Windows.Forms.TextBox tbxStrucnaSprema;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cbxSef;
         private System.Windows.Forms.DateTimePicker dtpPostavljanje;
+        private System.Windows.Forms.TextBox textjmbgz;
     }
 }

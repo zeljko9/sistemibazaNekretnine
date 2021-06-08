@@ -28,7 +28,7 @@ namespace AgencijaNekretnine.Forme
 
         private void btnDodajZaposlenog_Click(object sender, EventArgs e)
         {
-            int jmbg = (int)this.nmupJMBG.Value;
+            int jmbg = Convert.ToInt32(textjmbgz.Text);
             string ime = this.tbxIme.Text;
             string prez = this.tbxPrezime.Text;
             DateTime dat = this.dtpDatZaposlenja.Value;

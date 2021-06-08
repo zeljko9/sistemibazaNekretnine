@@ -40,7 +40,6 @@ namespace AgencijaNekretnine.Forme
             this.btnDodajPoslovnicu = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnZaposleniPoslovnice = new System.Windows.Forms.Button();
-            this.btnSefoviPrikaz = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,22 +146,11 @@ namespace AgencijaNekretnine.Forme
             this.btnZaposleniPoslovnice.UseVisualStyleBackColor = true;
             this.btnZaposleniPoslovnice.Click += new System.EventHandler(this.btnZaposleniPoslovnice_Click);
             // 
-            // btnSefoviPrikaz
-            // 
-            this.btnSefoviPrikaz.Location = new System.Drawing.Point(548, 379);
-            this.btnSefoviPrikaz.Name = "btnSefoviPrikaz";
-            this.btnSefoviPrikaz.Size = new System.Drawing.Size(207, 34);
-            this.btnSefoviPrikaz.TabIndex = 3;
-            this.btnSefoviPrikaz.Text = "Prikaz svih sefova";
-            this.btnSefoviPrikaz.UseVisualStyleBackColor = true;
-            this.btnSefoviPrikaz.Click += new System.EventHandler(this.btnSefoviPrikaz_Click);
-            // 
             // PoslovniceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(844, 450);
-            this.Controls.Add(this.btnSefoviPrikaz);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -189,6 +177,5 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.Button btnIzmeniPoslovnicu;
         private System.Windows.Forms.Button btnDodajPoslovnicu;
         private System.Windows.Forms.Button btnZaposleniPoslovnice;
-        private System.Windows.Forms.Button btnSefoviPrikaz;
     }
 }

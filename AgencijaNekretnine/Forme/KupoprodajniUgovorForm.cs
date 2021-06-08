@@ -23,6 +23,8 @@ namespace AgencijaNekretnine.Forme
         {
             DodajKPugovorForm forma = new DodajKPugovorForm();
             forma.ShowDialog();
+
+            prikaziView();
         }
 
         private void prikaziView() {
@@ -39,7 +41,7 @@ namespace AgencijaNekretnine.Forme
 
             foreach (KupoprodajniUgovorBasic a in ugovori)
             {
-                ListViewItem li = new ListViewItem(new string[] { a.Kupac.KupacID.ToString(), a.KupoprodNekretnina.Ulica, a.KupoprodNekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(),a.DatTransakcije.ToString() });
+                ListViewItem li = new ListViewItem(new string[] { a.Kupac.JMBG_PIB.ToString(), a.KupoprodNekretnina.Ulica, a.KupoprodNekretnina.Broj.ToString(), a.Prodavac.JMBG.ToString(),a.DatTransakcije.ToString() });
                 this.listUgovori.Items.Add(li);
             }
 
@@ -53,7 +55,9 @@ namespace AgencijaNekretnine.Forme
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
-            // Int32.Parse(listaLica.SelectedItems[0].SubItems[0].Text)
+            DTOmanager.obrisiKP(listUgovori.SelectedItems[0].SubItems[1].Text, listUgovori.SelectedItems[0].SubItems[2].Text);
+
+            prikaziView();
         }
     }
 }

@@ -21,6 +21,9 @@ namespace AgencijaNekretnine.Forme
         void popuniPrikaz()
         {
             this.listaSefova.Clear();
+
+
+
             List<SefBasic> listaSefova = DTOmanager.vratiSveSefove();
             foreach(SefBasic s in listaSefova)
             {
@@ -29,6 +32,11 @@ namespace AgencijaNekretnine.Forme
             }
 
             this.listaSefova.Refresh();
+        }
+
+        private void PrikazSefovaForm_Load(object sender, EventArgs e)
+        {
+            popuniPrikaz();
         }
     }
 }

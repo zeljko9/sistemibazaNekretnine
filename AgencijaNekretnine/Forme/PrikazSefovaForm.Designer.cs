@@ -102,6 +102,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.groupBox1);
             this.Name = "PrikazSefovaForm";
             this.Text = "PrikazSefovaForm";
+            this.Load += new System.EventHandler(this.PrikazSefovaForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

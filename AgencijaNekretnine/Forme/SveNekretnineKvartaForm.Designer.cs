@@ -29,9 +29,9 @@ namespace AgencijaNekretnine.Forme
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.listaNekretninaKvart = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
@@ -40,25 +40,32 @@ namespace AgencijaNekretnine.Forme
             this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnObrisi = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // label1
             // 
-            this.groupBox1.Controls.Add(this.listaNekretninaKvart);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(498, 390);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(589, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Obrisi Nekretninu";
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(589, 82);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(182, 33);
+            this.btnObrisi.TabIndex = 2;
+            this.btnObrisi.Text = "Obrisi";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // listaNekretninaKvart
             // 
             this.listaNekretninaKvart.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -67,20 +74,15 @@ namespace AgencijaNekretnine.Forme
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader9});
-            this.listaNekretninaKvart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaNekretninaKvart.FullRowSelect = true;
             this.listaNekretninaKvart.GridLines = true;
             this.listaNekretninaKvart.HideSelection = false;
             this.listaNekretninaKvart.Location = new System.Drawing.Point(3, 23);
             this.listaNekretninaKvart.Name = "listaNekretninaKvart";
-            this.listaNekretninaKvart.Size = new System.Drawing.Size(492, 364);
+            this.listaNekretninaKvart.Size = new System.Drawing.Size(585, 383);
             this.listaNekretninaKvart.TabIndex = 0;
             this.listaNekretninaKvart.UseCompatibleStateImageBehavior = false;
             this.listaNekretninaKvart.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "IDNekretnine";
             // 
             // columnHeader2
             // 
@@ -114,24 +116,15 @@ namespace AgencijaNekretnine.Forme
             // 
             this.columnHeader9.Text = "BrKupatila";
             // 
-            // label1
+            // groupBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(551, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Obrisi Nekretninu";
-            // 
-            // btnObrisi
-            // 
-            this.btnObrisi.Location = new System.Drawing.Point(551, 90);
-            this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(182, 33);
-            this.btnObrisi.TabIndex = 2;
-            this.btnObrisi.Text = "Obrisi";
-            this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            this.groupBox1.Controls.Add(this.listaNekretninaKvart);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(532, 390);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // SveNekretnineKvartaForm
             // 
@@ -151,12 +144,9 @@ namespace AgencijaNekretnine.Forme
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListView listaNekretninaKvart;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnObrisi;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ListView listaNekretninaKvart;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -165,5 +155,6 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

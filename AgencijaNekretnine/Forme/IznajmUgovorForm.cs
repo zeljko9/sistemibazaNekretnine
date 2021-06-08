@@ -55,7 +55,8 @@ namespace AgencijaNekretnine.Forme
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
-
+            DTOmanager.obrisiIZN(listUgovori.SelectedItems[0].SubItems[1].Text, listUgovori.SelectedItems[0].SubItems[2].Text);
+            prikaziView();
         }
     }
 }
