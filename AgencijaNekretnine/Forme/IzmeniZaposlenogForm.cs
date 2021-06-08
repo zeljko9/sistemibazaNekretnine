@@ -30,7 +30,7 @@ namespace AgencijaNekretnine.Forme
         {
             this.tbxIme.Text = this.prodavac.Ime;
             this.tbxPrezime.Text = this.prodavac.Prezime;
-            this.tbxSprema.Text = this.prodavac.strucneSpreme.ToString();
+            this.tbxSprema.Text = this.prodavac.strucneSpreme.Count!=0?this.prodavac.strucneSpreme[0].ToString():"Nema strucnih sprema";
             //this.nmupJMBG.Value = this.prodavac.JMBG;
             this.dtpDatum.Value = this.prodavac.DatZaposlenja;
         }
@@ -46,7 +46,7 @@ namespace AgencijaNekretnine.Forme
             StrucnaSpremaBasic s = new StrucnaSpremaBasic();
             s.Naziv = naziv;
             s.pripadaProdavcu = this.prodavac;
-            DTOmanager.izmeniStrucnuSpremu(s, this.prodavac.JMBG.ToString());
+            DTOmanager.izmeniStrucnuSpremu(s, this.prodavac.JMBG);
             DTOmanager.izmeniProdavca(this.prodavac);
 
             MessageBox.Show("Uspesno ste azurirali prodavca");

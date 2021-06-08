@@ -28,7 +28,7 @@ namespace AgencijaNekretnine.Forme
             DialogResult result = MessageBox.Show(poruka, title, buttons);
 
             if (result == DialogResult.OK) {
-                n.pripadaKvartu =DTOmanager.vratiKvart(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
+                n.pripadaKvartu =DTOmanager.vratiKvartPoZoni(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
                 n.IDvlasnik =comboVlasnik.SelectedItem.ToString();
                 n.Ulica = textUlica.Text;
                 n.Broj = (int)numBroj.Value;

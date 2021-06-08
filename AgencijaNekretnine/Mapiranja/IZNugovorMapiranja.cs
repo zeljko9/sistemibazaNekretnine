@@ -19,7 +19,7 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.Mesecna_zakupina).Column("MESECNA_ZAKUPINA");
             Map(x => x.Datum_sklapanja).Column("DATUM_SKLAPANJA");
             Map(x => x.Datum_isteka).Column("DATUM_ISTEKA");
-            References(x => x.iznajmNekretnine).Column("IDNEKRETNINA").LazyLoad();
+            References(x => x.iznajmNekretnine).Column("IDNEKRETNINA").LazyLoad().Cascade.All();
             References(x => x.kupac).Column("IDKUPAC").LazyLoad();
             References(x => x.prodavac).Column("IDPRODAVAC").LazyLoad();
         }

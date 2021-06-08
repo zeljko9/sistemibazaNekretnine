@@ -30,7 +30,7 @@ namespace AgencijaNekretnine.Forme
             if (result == DialogResult.OK)
             {
                 n.IDvlasnik = comboVlasnik.SelectedItem.ToString();
-                n.pripadaKvartu = DTOmanager.vratiKvart(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
+                n.pripadaKvartu = DTOmanager.vratiKvartPoZoni(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
                 n.Ulica = textUlica.Text;
                 n.Broj = (int)numBroj.Value;
                 n.Sprat = (int)numSprat.Value;

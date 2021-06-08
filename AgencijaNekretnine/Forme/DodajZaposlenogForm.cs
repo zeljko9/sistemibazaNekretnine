@@ -16,19 +16,20 @@ namespace AgencijaNekretnine.Forme
         public DodajZaposlenogForm()
         {
             InitializeComponent();
-            this.dtpDatZaposlenja.Enabled = false;
+            this.dtpDatZaposlenja.Enabled = true;
         }
 
         public DodajZaposlenogForm(PoslovnicaBasic p)
         {
             InitializeComponent();
-            this.dtpDatZaposlenja.Enabled = false;
+            this.dtpDatZaposlenja.Enabled = true;
             this.poslovnica = p;
         }
 
         private void btnDodajZaposlenog_Click(object sender, EventArgs e)
         {
-            int jmbg = Convert.ToInt32(textjmbgz.Text);
+            //NE MOZE INT, JMBG IMA 13 CIFARA
+            long jmbg = Convert.ToInt64(textjmbgz.Text);
             string ime = this.tbxIme.Text;
             string prez = this.tbxPrezime.Text;
             DateTime dat = this.dtpDatZaposlenja.Value;
@@ -64,12 +65,12 @@ namespace AgencijaNekretnine.Forme
         {
             if (this.cbxSef.Checked)
             {
-                this.dtpDatZaposlenja.Enabled = true;
+                //this.dtpDatZaposlenja.Enabled = true;
                 this.tbxStrucnaSprema.Enabled = false;
             }
             else
             {
-                this.dtpDatZaposlenja.Enabled = false;
+               // this.dtpDatZaposlenja.Enabled = false;
                 this.tbxStrucnaSprema.Enabled = true;
             }
         }

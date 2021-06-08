@@ -86,7 +86,7 @@ namespace AgencijaNekretnine.Forme
                 return;
             }
 
-            string idZaposleni = zaposleni.SelectedItems[0].SubItems[0].Text;
+            string idZaposleni = zaposleni.SelectedItems[0].SubItems[2].Text;
             // RadnikBasic r = DTOManager.vratiRadnika(idZaposleni);
             //IzmeniZaposlenogForma forma = new IzmeniZaposlenogForma(r);
             //forma.ShowDialog();
