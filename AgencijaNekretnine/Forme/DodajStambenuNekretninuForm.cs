@@ -13,11 +13,11 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class DodajStambenuNekretninuForm : Form
     {
-        NekretninaBasic n;
+        StambenaNekretninaBasic n;
         public DodajStambenuNekretninuForm()
         {
             InitializeComponent();
-            n = new NekretninaBasic();
+            n = new StambenaNekretninaBasic();
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)
@@ -29,7 +29,9 @@ namespace AgencijaNekretnine.Forme
 
             if (result == DialogResult.OK) {
                 n.pripadaKvartu =DTOmanager.vratiKvartPoZoni(Convert.ToInt32(comboKvart.SelectedItem.ToString()));
-                n.IDvlasnik =comboVlasnik.SelectedItem.ToString();
+                Lice l = new Lice();
+                l.JMBG_PIB = comboVlasnik.SelectedItem.ToString();
+                n.Vlasnik = DTOmanager.vratiLice(l);
                 n.Ulica = textUlica.Text;
                 n.Broj = (int)numBroj.Value;
                 n.Sprat = (int)numSprat.Value;
@@ -39,7 +41,7 @@ namespace AgencijaNekretnine.Forme
                 n.Cena = (int)nmbCena.Value;
                 n.Starost = DateTime.Now.Year - n.DatumIzgradnje.Year;
 
-                DTOmanager.dodajNekretninu(this.n);
+                DTOmanager.dodajStambenuNekretninu(this.n);
                 MessageBox.Show("Uspesno ste dodali novu stambenu nekretninu!");
                 this.Close();
             }

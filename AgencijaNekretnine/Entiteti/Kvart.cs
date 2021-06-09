@@ -19,5 +19,11 @@ namespace AgencijaNekretnine.Entiteti
             this.NekretnineKvarta = new List<Nekretnina>();
         }
 
+        public Kvart(int id, int zona)
+        {
+            this.IDKvart = id;
+            this.Zona = zona;
+        }
+
     }
 }

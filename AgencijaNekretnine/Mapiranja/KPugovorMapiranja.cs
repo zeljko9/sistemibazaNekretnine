@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace AgencijaNekretnine.Mapiranja
 {
-    internal class KPugovorMapiranja:ClassMap<KupoprodajniUgovor>
+    public class KPugovorMapiranja:ClassMap<KupoprodajniUgovor>
     {
         public KPugovorMapiranja() {
 
-            Table("KUPOPROD_UGOVOR");
+            Table("UGOVOR_PRODAJA");
 
-            Id(x => x.IDugkp).Column("IDKP").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
+            Id(x => x.IDugkp).Column("IDUGRP").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
 
             Map(x => x.Datum_transakcije).Column("DATUM_TRANSAKCIJE");
-            References(x => x.kupoprodNekretnine).Column("IDNEKRETNINA").LazyLoad();
-            References(x => x.kupac).Column("IDKUPAC").LazyLoad();
-            References(x => x.prodavac).Column("IDPRODAVAC").LazyLoad();
+            References(x => x.Nekretnina).Column("IDNEKRENINA").LazyLoad();
+            References(x => x.Kupac).Column("IDKUPAC").LazyLoad();
+            References(x => x.Vlasnik).Column("IDVLASNIK").LazyLoad();
+            References(x => x.Prodavac).Column("JMBGZAPOSLENOG").LazyLoad();
         }
     }
 }

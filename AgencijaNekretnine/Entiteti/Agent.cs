@@ -14,8 +14,18 @@ namespace AgencijaNekretnine.Entiteti
         public virtual int Procenat { get; set; }
         public virtual string Telefon { get; set; }
 
+        //public virtual string JMBG { get; set; }
+
         public virtual DateTime DatRada { get; set; }
 
         public Agent() { }
+
+        public Agent(string ime, string prez, int proc, string tel)
+        {
+            this.Ime = ime;
+            this.Prezime = prez;
+            this.Procenat = proc;
+            this.Telefon = tel;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace AgencijaNekretnine.Forme
         private void btnDodajZaposlenog_Click(object sender, EventArgs e)
         {
             //NE MOZE INT, JMBG IMA 13 CIFARA
-            long jmbg = Convert.ToInt64(textjmbgz.Text);
+            string jmbg = textjmbgz.Text;
             string ime = this.tbxIme.Text;
             string prez = this.tbxPrezime.Text;
             DateTime dat = this.dtpDatZaposlenja.Value;
@@ -37,21 +37,20 @@ namespace AgencijaNekretnine.Forme
 
             if(this.cbxSef.Enabled)
             {
-                SefBasic sef = new SefBasic(jmbg, ime, prez, dat);
-                sef.datPostavljanja = this.dtpPostavljanje.Value;
-                sef.sefujeNad = this.poslovnica;
+                SefBasic sef = new SefBasic(jmbg,ime,prez,dat,Strucna,1, this.dtpPostavljanje.Value);
+               // sef.datPostavljanja = this.dtpPostavljanje.Value;
+                sef.radiUPoslovnici = this.poslovnica;
                 this.poslovnica.listaZaposlenih.Add(sef);
-                DTOmanager.dodajZaposlenog(sef, this.poslovnica);
+                DTOmanager.dodajSefa(sef, this.poslovnica);
             }
             else
             {
-                ProdavacBasic z = new ProdavacBasic(jmbg, ime, prez, dat);
-                StrucnaSpremaBasic s = new StrucnaSpremaBasic();
-                s.Naziv = Strucna;
+                ProdavacBasic z = new ProdavacBasic(jmbg,ime,prez,dat,Strucna,0,DateTime.MinValue);
+                //StrucnaSpremaBasic s = new StrucnaSpremaBasic
                 z.radiUPoslovnici = this.poslovnica;
                 this.poslovnica.listaZaposlenih.Add(z);
-                DTOmanager.dodajZaposlenog(z, this.poslovnica);
-                DTOmanager.dodajStrucnuSpremu(s, z);
+                DTOmanager.dodajProdavca(z, this.poslovnica);
+               
             }
 
             

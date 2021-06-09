@@ -8,16 +8,48 @@ namespace AgencijaNekretnine.Entiteti
 {
    public class Zaposleni
     {
-        public virtual long JMBG { get; set; }
-        public virtual String Ime { get; set; }
-        public virtual String Prezime { get; set; }
+        public virtual string JMBG { get; set; }
+        public virtual string Ime { get; set; }
+        public virtual string Prezime { get; set; }
         public virtual DateTime DatZaposlenja { get; set; }
 
+        public virtual string StrucnaSprema { get; set; }
+
+        public virtual int SefFlag { get; set; }
+
+        public virtual DateTime DatPostavljanja { get; set; }
         public virtual Poslovnica RadiUPoslovnici { get; set; }
+
+        public virtual IList<Agent> unajmioAgente { get; set; }
 
         public Zaposleni()
         {
+            this.unajmioAgente = new List<Agent>();
+        }
+
+        public Zaposleni(string jmbg, string ime, string prez, DateTime zapos, string sprema, int flag, DateTime postav)
+        {
+            this.JMBG = jmbg;
+            this.Ime = ime;
+            this.Prezime = prez;
+            this.DatZaposlenja = zapos;
+            this.DatPostavljanja = postav;
+            this.StrucnaSprema = sprema;
+            this.SefFlag = flag;
 
         }
+    }
+
+    public class Prodavac : Zaposleni
+    {
+        public Prodavac() : base() { }
+        public Prodavac(string jmbg, string ime, string prez, DateTime zapos, string sprema, int flag, DateTime postav):base(jmbg,  ime, prez, zapos, sprema, flag, postav) { }
+    }
+
+    public class Sef : Zaposleni
+    {
+        public Sef() : base() { }
+
+        public Sef(string jmbg, string ime, string prez, DateTime zapos, string sprema, int flag, DateTime postav) : base(jmbg, ime, prez, zapos, sprema, flag, postav) { }
     }
 }

@@ -8,18 +8,18 @@ using AgencijaNekretnine.Entiteti;
 
 namespace AgencijaNekretnine.Mapiranja
 {
-    internal class KvartMapiranja : ClassMap<Kvart>
+    public class KvartMapiranja : ClassMap<Kvart>
     {   
         public KvartMapiranja()
         {
-            Table("Kvart");
+            Table("KVART");
 
             Id(x => x.IDKvart).Column("IDKVART").GeneratedBy.SequenceIdentity("S17254.SEQ_KVART");
 
             Map(x => x.Zona).Column("ZONA");
 
             //N:1 ka POSLOVNICI
-            References(x => x.PripadaPoslovnici).Column("IDPOSLOVNICA1").LazyLoad();
+            References(x => x.PripadaPoslovnici).Column("IDPOSLOVNICA").LazyLoad();
 
             //1:N ka NEKRETNINI
             HasMany(x => x.NekretnineKvarta).KeyColumn("IDKVART").LazyLoad().Cascade.All().Inverse();

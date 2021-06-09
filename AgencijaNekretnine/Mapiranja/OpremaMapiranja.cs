@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AgencijaNekretnine.Mapiranja
 {
-    internal class OpremaMapiranja:ClassMap<Oprema>
+    public class OpremaMapiranja:ClassMap<Oprema>
     {
         public OpremaMapiranja()
         {

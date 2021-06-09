@@ -16,11 +16,33 @@ namespace AgencijaNekretnine.Mapiranja
 
             Id(x => x.JMBG).Column("JMBG").GeneratedBy.Assigned();
 
+            DiscriminateSubClassesOnColumn("SEFFLAG");
+
             Map(x => x.Ime).Column("IME");
             Map(x => x.Prezime).Column("PREZIME");
             Map(x => x.DatZaposlenja).Column("DAT_ZAPOSLENJA");
+            Map(x => x.DatPostavljanja).Column("DATUMPOSTAVLJANJA");
+           // Map(x => x.SefFlag).Column("SEFFLAG");
+            Map(x => x.StrucnaSprema).Column("STRUCNASPREMA");
 
-            References(x => x.RadiUPoslovnici).Column("IDPOSLOVNICA2").LazyLoad();
+            References(x => x.RadiUPoslovnici).Column("IDPOSLOVNICA").LazyLoad();
+            HasMany(x => x.unajmioAgente).KeyColumn("IDPRODAVAC").LazyLoad().Cascade.All().Inverse();
+        }
+    }
+
+    public class ProdavacMapiranja:SubclassMap<Prodavac>
+    {
+        public ProdavacMapiranja()
+        {
+            DiscriminatorValue(0);
+        }
+    }
+
+    public class SefMapiranja : SubclassMap<Sef>
+    {
+        public SefMapiranja()
+        {
+            DiscriminatorValue(1);
         }
     }
 }

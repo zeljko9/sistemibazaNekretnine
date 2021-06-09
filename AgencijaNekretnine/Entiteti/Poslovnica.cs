@@ -20,5 +20,12 @@ namespace AgencijaNekretnine.Entiteti
             this.NagledaKvartove = new List<Kvart>();
             this.ZaposljavaZaposlene = new List<Zaposleni>();
         }
+
+        public Poslovnica(int id, string adr, string radno)
+        {
+            this.IDPoslovnice = id;
+            this.Adresa = adr;
+            this.RadnoVreme = radno;
+        }
     }
 }

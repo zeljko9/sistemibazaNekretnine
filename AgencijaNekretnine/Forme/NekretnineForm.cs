@@ -40,7 +40,7 @@ namespace AgencijaNekretnine.Forme
 
             foreach (NekretninaBasic n in podaci)
             {
-                ListViewItem item = new ListViewItem(new string[] { n.IDNekretnina.ToString(), n.Ulica,n.Broj.ToString(),n.Sprat.ToString(),n.Starost.ToString(), n.Cena.ToString(), n.TipNekretnine });
+                ListViewItem item = new ListViewItem(new string[] { n.IDNekretnina.ToString(), n.Ulica,n.Broj.ToString(),n.Sprat.ToString(),n.Starost.ToString(), n.Cena.ToString(), n.TipNekretnine,n.pripadaKvartu.Zona.ToString()});
                 listNekretnine.Items.Add(item);
 
             }

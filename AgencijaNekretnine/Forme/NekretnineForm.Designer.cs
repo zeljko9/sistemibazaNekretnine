@@ -42,6 +42,7 @@ namespace AgencijaNekretnine.Forme
             this.btnIzmeni = new System.Windows.Forms.Button();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnOprema = new System.Windows.Forms.Button();
+            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // listNekretnine
@@ -53,7 +54,8 @@ namespace AgencijaNekretnine.Forme
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6,
-            this.columnHeader7});
+            this.columnHeader7,
+            this.columnHeader8});
             this.listNekretnine.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listNekretnine.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listNekretnine.FullRowSelect = true;
@@ -146,6 +148,10 @@ namespace AgencijaNekretnine.Forme
             this.btnOprema.UseVisualStyleBackColor = true;
             this.btnOprema.Click += new System.EventHandler(this.btnOprema_Click);
             // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "ZonaKvarta";
+            // 
             // NekretnineForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -179,5 +185,6 @@ namespace AgencijaNekretnine.Forme
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }

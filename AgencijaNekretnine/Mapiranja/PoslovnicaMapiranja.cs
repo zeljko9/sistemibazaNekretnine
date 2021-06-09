@@ -20,8 +20,8 @@ namespace AgencijaNekretnine.Mapiranja
             Map(x => x.RadnoVreme).Column("RADNO_VREME");
 
             References(x => x.SefPoslovnice).Column("IDSEF").LazyLoad();
-            HasMany(x => x.NagledaKvartove).KeyColumn("IDPOSLOVNICA1").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.ZaposljavaZaposlene).KeyColumn("IDPOSLOVNICA2").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.NagledaKvartove).KeyColumn("IDPOSLOVNICA").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.ZaposljavaZaposlene).KeyColumn("IDPOSLOVNICA").LazyLoad().Cascade.All().Inverse();
 
         }
     }

@@ -7,6 +7,8 @@ using AgencijaNekretnine.Entiteti;
 
 namespace AgencijaNekretnine
 {
+
+    #region LiceBasic
     public class LiceBasic
     {
         public string JMBG_PIB { get; set; }
@@ -14,9 +16,11 @@ namespace AgencijaNekretnine
         public string Prezime { get; set; }
         public string Adresa { get; set; }
         public string TipLica { get; set; }
-        public IList<KupoprodajniUgovor> KPugovori { get; set; }
+        public IList<KupoprodajniUgovorBasic> KPugovori { get; set; }
         public IList<IznajmUgovorBasic> IZNugovori { get; set; }
         public IList<TelefonBasic> listaTelefona { get; set; }
+
+        public IList<NekretninaBasic> listaNekretninaUPosedu { get; set; }
 
         public LiceBasic(string jmbg, string ime, string prez, string adresa)
         {
@@ -24,22 +28,62 @@ namespace AgencijaNekretnine
             this.Ime = ime;
             this.Prezime = prez;
             this.Adresa = adresa;
-            if (Convert.ToString(JMBG_PIB).Length >= 12)
+            if (Convert.ToString(JMBG_PIB).Length >= 13)
             {
                 TipLica = "Fizicko";
             }
             else {
                 TipLica = "Pravno";
             }
+
+            this.listaNekretninaUPosedu = new List<NekretninaBasic>();
+            this.KPugovori = new List<KupoprodajniUgovorBasic>();
+            this.IZNugovori = new List<IznajmUgovorBasic>();
+            this.listaTelefona = new List<TelefonBasic>();
+
         }
         public LiceBasic(Lice l) { 
             
         }
 
-        public LiceBasic() { this.listaTelefona = new List<TelefonBasic>(); }
+        public LiceBasic() {
+            this.listaNekretninaUPosedu = new List<NekretninaBasic>();
+            this.KPugovori = new List<KupoprodajniUgovorBasic>();
+            this.IZNugovori = new List<IznajmUgovorBasic>();
+            this.listaTelefona = new List<TelefonBasic>();
+        }
 
     }
 
+    public class FizickoLiceBasic : LiceBasic
+    {
+        public FizickoLiceBasic() :base()
+        {
+
+        }
+
+        public FizickoLiceBasic(string jmbg, string ime, string prez, string adresa):base( jmbg,  ime,  prez,  adresa)
+        {
+
+        }
+    }
+
+    public class PravnoLiceBasic : LiceBasic
+    {
+        public PravnoLiceBasic() : base()
+        {
+
+        }
+
+        public PravnoLiceBasic(string jmbg, string ime, string prez, string adresa) : base(jmbg, ime, prez, adresa)
+        {
+
+        }
+    }
+
+    #endregion
+
+    #region NekretninaBasic
     public class NekretninaBasic
     {
         public int IDNekretnina { get; set; }
@@ -49,7 +93,7 @@ namespace AgencijaNekretnine
         public int Cena { get; set; }
         public int Starost { get; set; }
         public DateTime DatumIzgradnje { get; set; }
-        public string IDvlasnik { get; set; }
+        public LiceBasic Vlasnik { get; set; }
         public string TipNekretnine { get; set; }
         public int BrKupatila { get; set; }
 
@@ -69,54 +113,94 @@ namespace AgencijaNekretnine
             this.DatumIzgradnje = dat;
             this.TipNekretnine = tip;
             this.BrKupatila = brkup;
+            this.oprema = new List<OpremaBasic>();
         }
     }
 
+    public class StambenaNekretninaBasic : NekretninaBasic
+    {
+       public StambenaNekretninaBasic() : base()
+        {
 
+        }
+
+        public StambenaNekretninaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup):base(id, ulica, br, sprat, cena, star, dat, tip, brkup)
+        {
+
+        }
+    }
+
+    public class PoslovnaNekretninaBasic : NekretninaBasic
+    {
+        public PoslovnaNekretninaBasic() : base()
+        {
+
+        }
+
+        public PoslovnaNekretninaBasic(int id, string ulica, int br, int sprat, int cena, int star, DateTime dat, string tip, int brkup) : base(id, ulica, br, sprat, cena, star, dat, tip, brkup)
+        {
+
+        }
+    }
+
+    #endregion
+
+    #region ZaposleniBasic
     public class ZaposleniBasic
     {
-        public long JMBG { get; set; }
+        public string JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public DateTime DatZaposlenja { get; set; }
+
+        public string StrucnaSprema { get; set; }
+
+        public int SefFlag { get; set; }
+
+        public DateTime DatPostavljanja { get; set; }
         public PoslovnicaBasic radiUPoslovnici { get; set; }
 
+        public IList<AgentBasic> unajmioAgente { get; set; }
 
-        public ZaposleniBasic() { }
-        public ZaposleniBasic(long jmbg,string ime, string prez,DateTime dat)
+
+        public ZaposleniBasic() { this.unajmioAgente = new List<AgentBasic>(); }
+        public ZaposleniBasic(string jmbg,string ime, string prez,DateTime dat,string sprema,int flag,DateTime datPostav)
         {
             this.JMBG = jmbg;
             this.Ime = ime;
             this.Prezime = prez;
             this.DatZaposlenja = dat;
+            this.StrucnaSprema = sprema;
+            this.SefFlag = flag;
+            this.DatPostavljanja = datPostav;
+            this.unajmioAgente = new List<AgentBasic>();
         }
     }
 
 
     public class ProdavacBasic : ZaposleniBasic
     { 
-        public IList<StrucnaSpremaBasic> strucneSpreme { get; set; }
-        public IList<AgentBasic> Agenti { get; set; }
-
-        public ProdavacBasic()
+        
+        public ProdavacBasic():base()
         {
-            this.strucneSpreme = new List<StrucnaSpremaBasic>();
-            this.Agenti = new List<AgentBasic>();
+            
         }
 
-        public ProdavacBasic(long jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
+        public ProdavacBasic(string jmbg, string ime, string prez, DateTime dat, string sprema, int flag, DateTime datPostav) :base(jmbg, ime, prez, dat,sprema,flag,datPostav) { }
 
     }
 
     public class SefBasic:ZaposleniBasic
     {
-        public DateTime datPostavljanja { get; set; }
-        public PoslovnicaBasic sefujeNad { get; set; }
+        
 
-        public SefBasic() { }
-        public SefBasic(long jmbg, string ime, string prez, DateTime dat):base(jmbg, ime, prez, dat) { }
+        public SefBasic():base() { }
+        public SefBasic(string jmbg, string ime, string prez, DateTime dat, string sprema, int flag, DateTime datPostav) : base(jmbg, ime, prez, dat, sprema, flag, datPostav) { }
     }
 
+    #endregion
+
+    #region OpremaBasic
     public class OpremaBasic 
     {
         private Nekretnina pripadaNekretnini1;
@@ -137,7 +221,9 @@ namespace AgencijaNekretnine
         }
     }
 
+    #endregion
 
+    #region TelefonBasic
     public class TelefonBasic
     {
         public int IDTelefon { get; set; }
@@ -151,9 +237,16 @@ namespace AgencijaNekretnine
             this.IDTelefon = id;
             this.brTel = br;
         }
+
+        public TelefonBasic(int id, string br, LiceBasic l) : this(id, br)
+        {
+            this.pripadaLicu = l;
+        }
     }
 
+    #endregion
 
+    #region AgentBasic
     public class AgentBasic
     {
         public string Ime { get; set; }
@@ -172,7 +265,18 @@ namespace AgencijaNekretnine
             this.Procenat = proc;
             this.brTel = br;
         }
+
+        public AgentBasic(string ime, string prez, int proc, string br,ProdavacBasic p):this(ime,prez,proc,br)
+        {
+            this.angazovanOd = p;
+        }
+
+
     }
+
+    #endregion
+
+    #region PoslovnicaBasic
     public class PoslovnicaBasic 
     {
         public int IDPoslovnice { get; set; }
@@ -193,22 +297,13 @@ namespace AgencijaNekretnine
             this.IDPoslovnice = id;
             this.Adresa = adr;
             this.RadnoVreme = vrem;
+            this.listaZaposlenih = new List<ZaposleniBasic>();
+            this.nagledaKvartove = new List<KvartBasic>();
         }
     }
-    public class StrucnaSpremaBasic 
-    {
-        public int IDSpreme { get; set; }
-        public ProdavacBasic pripadaProdavcu { get; set; }
-        public string Naziv { get; set; }
+    #endregion
 
-        public StrucnaSpremaBasic() { }
-        public StrucnaSpremaBasic(int id, string naz)
-        {
-            this.IDSpreme = id;
-            this.Naziv = naz;
-        }
-    }
-
+    #region KvartBasic
     public class KvartBasic 
     {
         public int IDKvart { get; set; }
@@ -225,10 +320,13 @@ namespace AgencijaNekretnine
         {
             this.IDKvart = id;
             this.Zona = zona;
+            this.listaNekretnina = new List<NekretninaBasic>();
         }
     }
 
+    #endregion
 
+    #region IznajmUgovorBasic
     public class IznajmUgovorBasic
     { 
         public int IDUgovorIznajm { get; set; }
@@ -251,13 +349,15 @@ namespace AgencijaNekretnine
         }
     }
 
+    #endregion
 
+    #region KupoprodajniUgovorBasic
     public class KupoprodajniUgovorBasic
     {
         public int IDUgovorKupoprodaja { get; set; }
         public NekretninaBasic KupoprodNekretnina { get; set; }
         public LiceBasic Kupac { get; set; }
-        public LiceBasic vlasnik { get; set; }
+        public LiceBasic Vlasnik { get; set; }
         public ProdavacBasic Prodavac { get; set; }
         public DateTime DatTransakcije { get; set; }
 
@@ -270,4 +370,5 @@ namespace AgencijaNekretnine
         }
 
     }
+    #endregion
 }

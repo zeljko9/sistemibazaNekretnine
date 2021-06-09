@@ -10,11 +10,12 @@ namespace AgencijaNekretnine.Entiteti
     {
 
         public virtual string JMBG_PIB { get; set; }
-        public virtual String Ime { get; set; }
-        public virtual String Prezime { get; set; }
-        public virtual String Adresa { get; set; }
-        public virtual String TipLica { get; set; }
+        public virtual string Ime { get; set; }
+        public virtual string Prezime { get; set; }
+        public virtual string Adresa { get; set; }
+        public virtual string TipLica { get; set; }
 
+        public virtual IList<Nekretnina> listaNekretninaUPosedu { get; set; }
         public virtual IList<IznajmUgovor> IZNugovori { get; set; }
         public virtual IList<KupoprodajniUgovor> KPugovori { get; set; }
 
@@ -25,21 +26,22 @@ namespace AgencijaNekretnine.Entiteti
         public Lice()
         {
             this.TelefoniLica = new List<Telefon>();
-            KPugovori = new List<KupoprodajniUgovor>();
-            IZNugovori = new List<IznajmUgovor>();
+            this.KPugovori = new List<KupoprodajniUgovor>();
+            this.IZNugovori = new List<IznajmUgovor>();
+            this.listaNekretninaUPosedu = new List<Nekretnina>();
         }
 
-        public Lice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica, IList<IznajmUgovor> iZNugovori, IList<KupoprodajniUgovor> kPugovori, IList<Telefon> telefoniLica)
+        public Lice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica)
         {
             JMBG_PIB = jMBG_PIB;
             Ime = ime;
             Prezime = prezime;
             Adresa = adresa;
             TipLica = tipLica;
-            IZNugovori = iZNugovori;
-            KPugovori = kPugovori;
-            TelefoniLica = telefoniLica;
-            KPugovori = kPugovori;
+            this.TelefoniLica = new List<Telefon>();
+            this.KPugovori = new List<KupoprodajniUgovor>();
+            this.IZNugovori = new List<IznajmUgovor>();
+            this.listaNekretninaUPosedu = new List<Nekretnina>();
         }
 
         public Lice(Lice kupac)
@@ -56,42 +58,20 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-   
-
-    /*public class PravniKupac:Lice
+    public class FizickoLice : Lice
     {
-        public virtual Kupac jeKupac { get; set; }
-        public PravniKupac()
-        {
-        }
+        public FizickoLice() : base() { }
 
-        public PravniKupac(Lice lice) : base(lice.JMBG_PIB, lice.Ime, lice.Prezime, lice.Adresa, lice.TipLica, lice.TelefoniLica)
-        {
-        }
-    }
-    public class FizickiKupac : Lice
-    {  //public virtual int JMBG_PIB { get; set; }
-        public virtual Kupac jeKupac { get; set; }
-        public virtual IList<IznajmUgovor> IZNugovori { get; set; }
-        public FizickiKupac()
-        {
-            IZNugovori = new List<IznajmUgovor>();
-        }
-
-        public FizickiKupac(Lice lice) : base(lice.JMBG_PIB, lice.Ime, lice.Prezime, lice.Adresa, lice.TipLica, lice.TelefoniLica)
-        {
-        }
-    }
-
-   
-    // public class PravniKupac : Lice { }
-    /*public class FizickoLice : Lice
-    {
-
+        public FizickoLice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica ):base(jMBG_PIB, ime, prezime, adresa, tipLica ) { }
     }
 
     public class PravnoLice : Lice
     {
+        public PravnoLice() : base() { }
 
-    }*/
+        public PravnoLice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica) : base(jMBG_PIB, ime, prezime, adresa, tipLica) { }
+    }
+   
+
+    
 }

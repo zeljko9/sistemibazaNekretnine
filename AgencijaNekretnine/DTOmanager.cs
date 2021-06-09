@@ -13,14 +13,16 @@ namespace AgencijaNekretnine
     class DTOmanager
     {
         #region Nekretnine
-        public static void dodajNekretninu(NekretninaBasic n)
+        public static void dodajStambenuNekretninu(StambenaNekretninaBasic n)
         {
             try
             {
                 ISession s = DataLayer.GetSession();
 
-                Nekretnina nek = new Nekretnina();
-                nek.IDvlasnik = n.IDvlasnik;
+                StambenaNekretnina nek = new StambenaNekretnina();
+                //nek.IDvlasnik = n.IDvlasnik;
+                nek.Vlasnik = s.Load<Lice>(n.Vlasnik.JMBG_PIB);
+                nek.PripadaKvartu = s.Load<Kvart>(n.pripadaKvartu.IDKvart);
                 nek.Ulica = n.Ulica;
                 nek.TipNekretnine = n.TipNekretnine;
                 nek.Starost = n.Starost;
@@ -41,7 +43,35 @@ namespace AgencijaNekretnine
             }
         }
 
+        public static void dodajPoslovnuNekretninu(PoslovnaNekretninaBasic n)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
 
+                PoslovnaNekretnina nek = new PoslovnaNekretnina();
+                //nek.IDvlasnik = n.IDvlasnik;
+                nek.Vlasnik = s.Load<Lice>(n.Vlasnik.JMBG_PIB);
+                nek.PripadaKvartu = s.Load<Kvart>(n.pripadaKvartu.IDKvart);
+                nek.Ulica = n.Ulica;
+                nek.TipNekretnine = n.TipNekretnine;
+                nek.Starost = n.Starost;
+                nek.Sprat = n.Sprat;
+                nek.BrKupatila = n.BrKupatila;
+                nek.Broj = n.Broj;
+                nek.Cena = n.Cena;
+                nek.DatumIzgradnje = n.DatumIzgradnje;
+
+                s.SaveOrUpdate(nek);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+                //greska
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+        }
 
         public static List<NekretninaBasic> vratiSveNekretnine()
         {
@@ -86,6 +116,7 @@ namespace AgencijaNekretnine
                 nekretnina.Cena = n.Cena;
                 nekretnina.Sprat = n.Sprat;
                 nekretnina.BrKupatila = n.BrKupatila;
+                nekretnina.PripadaKvartu = s.Load<Kvart>(n.pripadaKvartu.IDKvart);
                 int i = 0;
                 if (n.oprema != null)
                 {
@@ -143,20 +174,20 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
 
-                List<IznajmUgovorBasic> ugovori = DTOmanager.vratiIZNugovore();
+               /* List<IznajmUgovorBasic> ugovori = DTOmanager.vratiIZNugovore();
                 NekretninaBasic nek = DTOmanager.vratiNekretninu(id);
                 ugovori = ugovori.FindAll(x => x.IznajmNekretnina.IDNekretnina == id);
 
                 foreach(IznajmUgovorBasic iu in ugovori)
                 {
                     DTOmanager.obrisiIZN(nek.Ulica, nek.Broj.ToString());
-                }
+                }*/
                     
 
-               // Nekretnina n = s.Load<Nekretnina>(id);
+               Nekretnina n = s.Load<Nekretnina>(id);
 
-                //s.Delete(n);
-                //s.Flush();
+                s.Delete(n);
+                s.Flush();
                 s.Close();
             }
             catch (Exception ec)
@@ -229,6 +260,7 @@ namespace AgencijaNekretnine
 
                 oprema.NazivOpreme = o.NazivOpreme;
                 oprema.PripadaNekretnini = nek;
+                nek.oprema.Add(oprema);
 
                 s.SaveOrUpdate(oprema);
                 s.Flush();
@@ -288,9 +320,9 @@ namespace AgencijaNekretnine
             try
             {
                 ISession s = DataLayer.GetSession();
-                IEnumerable<Prodavac> p = from pr in s.Query<Prodavac>()
-                                          where pr.JMBG == Convert.ToInt32(text)
-                                          select pr;
+                IEnumerable<Zaposleni> p = from prod in s.Query<Zaposleni>()
+                                          where prod.JMBG == text
+                                          select prod;
 
                 if (p != null) {
                     return "postoji";
@@ -304,7 +336,7 @@ namespace AgencijaNekretnine
             return "ne postoji";
         }
 
-        public static void dodajZaposlenog(ProdavacBasic z, PoslovnicaBasic p)
+        public static void dodajProdavca(ProdavacBasic z, PoslovnicaBasic p)
         {
             try
             {
@@ -315,6 +347,9 @@ namespace AgencijaNekretnine
                 zap.Ime = z.Ime;
                 zap.Prezime = zap.Prezime;
                 zap.DatZaposlenja = z.DatZaposlenja;
+                zap.StrucnaSprema = z.StrucnaSprema;
+                zap.SefFlag = zap.SefFlag;
+                zap.DatPostavljanja = z.DatPostavljanja;
 
                 Poslovnica pos = s.Load<Poslovnica>(p.IDPoslovnice);
                 zap.RadiUPoslovnici = pos;
@@ -332,7 +367,36 @@ namespace AgencijaNekretnine
 
         }
 
+        public static void dodajSefa(SefBasic z, PoslovnicaBasic p)
+        {
+            try
+            {
+                ISession s = DataLayer.GetSession();
+                Sef zap = new Sef();
 
+                zap.JMBG = z.JMBG;
+                zap.Ime = z.Ime;
+                zap.Prezime = zap.Prezime;
+                zap.DatZaposlenja = z.DatZaposlenja;
+                zap.StrucnaSprema = z.StrucnaSprema;
+                zap.SefFlag = zap.SefFlag;
+                zap.DatPostavljanja = z.DatPostavljanja;
+
+                Poslovnica pos = s.Load<Poslovnica>(p.IDPoslovnice);
+                zap.RadiUPoslovnici = pos;
+
+                s.SaveOrUpdate(zap);
+
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+            }
+            //zap.RadiUPoslovnici = z.radiUPoslovnici;
+
+        }
 
 
         public static List<PoslovnicaBasic> vratiSvePoslovnice()
@@ -399,16 +463,9 @@ namespace AgencijaNekretnine
                                                  select p;
                 foreach (Prodavac p in prodavci)
                 {
-
-                    ProdavacBasic prod = new ProdavacBasic(p.JMBG, p.Ime, p.Prezime, p.DatZaposlenja);
-                    List<StrucnaSpremaBasic> spreme = DTOmanager.vratiStrucneSpremeProdavca(prod.JMBG.ToString());
-                    prod.strucneSpreme = spreme;
-                    prod.radiUPoslovnici = DTOmanager.vratiPoslovnicu(idPoslovnice);
-                    //vratiStrucneSpreme
-
-
+                    ProdavacBasic prod = new ProdavacBasic(p.JMBG, p.Ime, p.Prezime, p.DatZaposlenja, p.StrucnaSprema, p.SefFlag, p.DatPostavljanja);
+                    prod.radiUPoslovnici = DTOmanager.vratiPoslovnicu(p.RadiUPoslovnici.IDPoslovnice);
                     listaProdavaca.Add(prod);
-
                 }
             }
             catch (Exception e)
@@ -440,23 +497,7 @@ namespace AgencijaNekretnine
         }
 
 
-        public static List<StrucnaSpremaBasic> vratiStrucneSpremeProdavca(string idProdavca)
-        {
-            List<StrucnaSpremaBasic> str = new List<StrucnaSpremaBasic>();
-            ISession s = DataLayer.GetSession();
-            IEnumerable<StrucnaSprema> sprem = from st in s.Query<StrucnaSprema>()
-                                               where st.pripadaProdavcu.JMBG == Convert.ToDouble(idProdavca)
-                                               select st;
-            foreach (StrucnaSprema sprema in sprem)
-            {
-                StrucnaSpremaBasic struka = new StrucnaSpremaBasic(sprema.IDSpreme, sprema.NazivSpreme);
-                str.Add(struka);
-            }
-
-            return str;
-
-
-        }
+       
         public static void dodajPoslovnicu(PoslovnicaBasic p)
         {
             try
@@ -465,6 +506,7 @@ namespace AgencijaNekretnine
                 Poslovnica pos = new Poslovnica();
                 pos.Adresa = p.Adresa;
                 pos.RadnoVreme = p.RadnoVreme;
+                pos.SefPoslovnice = s.Load<Sef>(p.Sef.JMBG);
 
                 s.SaveOrUpdate(pos);
                 s.Flush();
@@ -519,28 +561,7 @@ namespace AgencijaNekretnine
             }
         }
 
-        public static void dodajStrucnuSpremu(StrucnaSpremaBasic struka, ProdavacBasic prod)
-        {
-
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                StrucnaSprema str = new StrucnaSprema();
-
-                str.NazivSpreme = struka.Naziv;
-                str.pripadaProdavcu = s.Load<Prodavac>(prod.JMBG);
-
-                s.SaveOrUpdate(str);
-                s.Flush();
-                s.Close();
-
-
-            }
-            catch (Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
-        }
+       
 
 
         public static void izmeniProdavca(ProdavacBasic prodavac)
@@ -563,33 +584,7 @@ namespace AgencijaNekretnine
             }
         }
 
-        public static void izmeniStrucnuSpremu(StrucnaSpremaBasic struka, long JMBG) //JMBG je bio string ovde
-        {
-            try
-            {
-                ISession s = DataLayer.GetSession();
-                // StrucnaSprema struc = s.Load<StrucnaSprema>(struka.IDSpreme);
-                Prodavac p = s.Load<Prodavac>(JMBG);
-                IEnumerable<StrucnaSprema> struc = from strucna_sprema in s.Query<StrucnaSprema>()
-                                                   where strucna_sprema.pripadaProdavcu.JMBG == JMBG //bilo convertInt32
-                                                   select strucna_sprema;
-
-                foreach (StrucnaSprema stru in struc)
-                {
-                    stru.NazivSpreme = struka.Naziv;
-                    stru.pripadaProdavcu = p;
-                }
-
-                s.SaveOrUpdate(struc);
-                s.Flush();
-                s.Close();
-
-            }
-            catch (Exception e)
-            {
-                System.Windows.Forms.MessageBox.Show(e.Message);
-            }
-        }
+        
 
 
         public static ProdavacBasic vratiProdavca(string JMBG)
@@ -598,11 +593,14 @@ namespace AgencijaNekretnine
             try
             {
                 ISession s = DataLayer.GetSession();
-                Prodavac p = s.Load<Prodavac>(Convert.ToInt64(JMBG));
+                Prodavac p = s.Load<Prodavac>(JMBG);
                 prod.Ime = p.Ime;
                 prod.Prezime = p.Prezime;
                 prod.DatZaposlenja = p.DatZaposlenja;
                 prod.JMBG = p.JMBG;
+                prod.StrucnaSprema = p.StrucnaSprema;
+                prod.SefFlag = p.SefFlag;
+                prod.DatPostavljanja = p.DatPostavljanja;
             }
             catch (Exception e)
             {
@@ -630,7 +628,7 @@ namespace AgencijaNekretnine
         }
 
 
-        public static void dodajZaposlenog(SefBasic sef, PoslovnicaBasic p)
+        /*public static void dodajZaposlenog(SefBasic sef, PoslovnicaBasic p)
         {
             try
             {
@@ -654,7 +652,7 @@ namespace AgencijaNekretnine
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
             }
-        }
+        }*/
 
 
         public static List<SefBasic> vratiSveSefove()
@@ -667,8 +665,10 @@ namespace AgencijaNekretnine
                                                select sef;
                 foreach (Sef sef in listaSefova)
                 {
-                    SefBasic seef = new SefBasic(sef.JMBG, sef.Ime, sef.Prezime, sef.DatZaposlenja);
-                    seef.datPostavljanja = sef.DatumPostavljanja;
+                    /* SefBasic seef = new SefBasic(sef.JMBG, sef.Ime, sef.Prezime, sef.DatZaposlenja);
+                     seef.datPostavljanja = sef.DatumPostavljanja;
+                     sefovi.Add(seef);*/
+                    SefBasic seef = new SefBasic(sef.JMBG, sef.Ime, sef.Prezime, sef.DatZaposlenja, sef.StrucnaSprema, sef.SefFlag, sef.DatPostavljanja);
                     sefovi.Add(seef);
                 }
             }
@@ -690,9 +690,12 @@ namespace AgencijaNekretnine
                 sef.Ime = sefBaza.Ime;
                 sef.Prezime = sefBaza.Prezime;
                 sef.DatZaposlenja = sefBaza.DatZaposlenja;
-                sef.datPostavljanja = sefBaza.DatumPostavljanja;
+                sef.DatPostavljanja = sefBaza.DatPostavljanja;
+                sef.StrucnaSprema = sefBaza.StrucnaSprema;
+                sef.JMBG = sefBaza.JMBG;
+                sef.SefFlag = sefBaza.SefFlag;
                 sef.radiUPoslovnici = DTOmanager.vratiPoslovnicu(sefBaza.RadiUPoslovnici.IDPoslovnice);
-                sef.sefujeNad = sef.radiUPoslovnici;
+               
 
             }
             catch (Exception e)
@@ -711,7 +714,7 @@ namespace AgencijaNekretnine
             {
                 ISession s = DataLayer.GetSession();
                 IEnumerable<Agent> agenti = from a in s.Query<Agent>()
-                                            where a.AngazovanOd.JMBG == Convert.ToInt64(idProdavca)
+                                            where a.AngazovanOd.JMBG == idProdavca
                                             select a;
 
                 foreach (Agent a in agenti)
@@ -1031,10 +1034,10 @@ namespace AgencijaNekretnine
                                               select n;
 
                 IEnumerable<KupoprodajniUgovor> kpu = from n in s.Query<KupoprodajniUgovor>()
-                                                      where n.kupoprodNekretnine == nek
+                                                      where n.Nekretnina == nek
                                                       select n;
                 IEnumerable<IznajmUgovor> izu = from n in s.Query<IznajmUgovor>()
-                                                      where n.iznajmNekretnine == nek
+                                                      where n.Nekretnina == nek
                                                       select n;
 
 
@@ -1105,10 +1108,34 @@ namespace AgencijaNekretnine
         public static LiceBasic vratiLice(Lice l)
         {
             LiceBasic lb = new LiceBasic();
-            try {
+            try
+            {
                 ISession s = DataLayer.GetSession();
 
                 Lice lice = s.Load<Lice>(l.JMBG_PIB);
+
+                lb.Ime = lice.Ime;
+                lb.Prezime = lice.Prezime;
+                lb.JMBG_PIB = lice.JMBG_PIB;
+                lb.Adresa = lice.Adresa;
+
+                s.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Greska u  komunikacije sa bazom!");
+            }
+
+            return lb;
+        }
+        public static FizickoLiceBasic vratiFizickoLice(FizickoLice l)
+        {
+            FizickoLiceBasic lb = new FizickoLiceBasic();
+            try {
+                ISession s = DataLayer.GetSession();
+
+                FizickoLice lice = s.Load<FizickoLice>(l.JMBG_PIB);
 
                 lb.Ime = lice.Ime;
                 lb.Prezime = lice.Prezime;
@@ -1124,14 +1151,39 @@ namespace AgencijaNekretnine
             return lb;
         }
 
-        public static bool dodajLice(LiceBasic lb)
+        public static PravnoLiceBasic vratiPravnoLice(PravnoLice l)
+        {
+            PravnoLiceBasic lb = new PravnoLiceBasic();
+            try
+            {
+                ISession s = DataLayer.GetSession();
+
+                PravnoLice lice = s.Load<PravnoLice>(l.JMBG_PIB);
+
+                lb.Ime = lice.Ime;
+                lb.Prezime = lice.Prezime;
+                lb.JMBG_PIB = lice.JMBG_PIB;
+                lb.Adresa = lice.Adresa;
+
+                s.Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Greska u  komunikacije sa bazom!");
+            }
+
+            return lb;
+        }
+
+        public static bool dodajFizickoLice(FizickoLiceBasic lb)
         {
             try {
 
                 ISession s = DataLayer.GetSession();
 
                 Telefon t = new Telefon();
-                Lice l = new Lice();
+                FizickoLice l = new FizickoLice();
 
                 t.brTel = lb.listaTelefona[0].brTel;
                 t.PripadaLicu = l;
@@ -1146,6 +1198,37 @@ namespace AgencijaNekretnine
                 s.Flush();
                 s.Close();
             } catch (Exception e) {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool dodajPravnoLice(PravnoLiceBasic lb)
+        {
+            try
+            {
+
+                ISession s = DataLayer.GetSession();
+
+                Telefon t = new Telefon();
+                PravnoLice l = new PravnoLice();
+
+                t.brTel = lb.listaTelefona[0].brTel;
+                t.PripadaLicu = l;
+
+                l.JMBG_PIB = lb.JMBG_PIB;
+                l.Ime = lb.Ime;
+                l.Prezime = lb.Prezime;
+                l.TelefoniLica.Add(t);
+                l.Adresa = lb.Adresa;
+
+                s.SaveOrUpdate(l);
+                s.Flush();
+                s.Close();
+            }
+            catch (Exception e)
+            {
                 return false;
             }
 
@@ -1262,12 +1345,13 @@ namespace AgencijaNekretnine
                     KupoprodajniUgovorBasic kpb = new KupoprodajniUgovorBasic();
                     kpb.DatTransakcije = kp.Datum_transakcije;
                     Lice l = new Lice();
-                    l.JMBG_PIB = kp.kupoprodNekretnine.IDvlasnik;
-                    kpb.vlasnik = vratiLice(l);
+                    l.JMBG_PIB = kp.Vlasnik.JMBG_PIB;
+                    kpb.Vlasnik = DTOmanager.vratiLice(l);
                     kpb.IDUgovorKupoprodaja = kp.IDugkp;
-                    kpb.Kupac = vratiLice(kp.kupac);                   
-                    kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG.ToString());
-                    kpb.KupoprodNekretnina = vratiNekretninu(kp.kupoprodNekretnine.IDNekretnina);
+                    l.JMBG_PIB = kp.Kupac.JMBG_PIB;
+                    kpb.Kupac = vratiLice(l);                   
+                    kpb.Prodavac = vratiProdavca(kp.Prodavac.JMBG);
+                    kpb.KupoprodNekretnina = vratiNekretninu(kp.Nekretnina.IDNekretnina);
                     kpbl.Add(kpb);
                 }
             }
@@ -1294,17 +1378,17 @@ namespace AgencijaNekretnine
                     IznajmUgovorBasic kpb = new IznajmUgovorBasic();
                     Lice l1 = new Lice();
                     Lice l2 = new Lice();
-                    l2.JMBG_PIB = kp.kupac.JMBG_PIB;
-                    l1.JMBG_PIB = kp.iznajmNekretnine.IDvlasnik;
+                    l2.JMBG_PIB = kp.Kupac.JMBG_PIB;
+                    l1.JMBG_PIB = kp.Vlasnik.JMBG_PIB;
                     kpb.Vlasnik = vratiLice(l1);
                     kpb.DatIsteka = kp.Datum_isteka;
                     kpb.DatSklapanja = kp.Datum_sklapanja;
                     kpb.Kupac = vratiLice(l2); //new LiceBasic(kp.kupac);
                     //kpb.Kupac.jeKupac = new KupacBasic(kp.kupac.jeKupac.KupacID);
                     kpb.IDUgovorIznajm = kp.IDugizn;
-                    kpb.IznajmNekretnina = vratiNekretninu(kp.iznajmNekretnine.IDNekretnina);
+                    kpb.IznajmNekretnina = vratiNekretninu(kp.Nekretnina.IDNekretnina);
                     //kpb.IznajmNekretnina =  new IznajmNekretninaBasic(kp.iznajmNekretnine.IDizn, nb);
-                    kpb.Prodavac = vratiProdavca(kp.prodavac.JMBG.ToString());
+                    kpb.Prodavac = vratiProdavca(kp.Prodavac.JMBG);
                     kpb.MesecnaZakupina = kp.Mesecna_zakupina;
 
                     kpbl.Add(kpb);
@@ -1381,7 +1465,7 @@ namespace AgencijaNekretnine
                             where l.JMBG_PIB == jmbgK
                             select l;
                 IEnumerable<Prodavac> prodavac = from p in s.Query<Prodavac>()
-                                               where p.JMBG == Convert.ToInt32(jmbgP)
+                                               where p.JMBG == jmbgP
                                                select p;
 
                 string[] niz = ulicabroj.Split(" ");
@@ -1402,7 +1486,7 @@ namespace AgencijaNekretnine
 
                 KupoprodajniUgovor kp = new KupoprodajniUgovor();
                 
-                kp.kupac = lice.First();
+                kp.Kupac = lice.First();
                 //s.SaveOrUpdate(kp.kupac);
 
                 /*if (lice.First().TipLica == "Fizicko") {
@@ -1416,8 +1500,8 @@ namespace AgencijaNekretnine
                }*/
 
                 kp.Datum_transakcije = DateTime.Now;
-                kp.kupoprodNekretnine = nekretnina.First();
-                kp.prodavac = prodavac.First();
+                kp.Nekretnina = nekretnina.First();
+                kp.Prodavac = prodavac.First();
                 
 
                 s.SaveOrUpdate(kp);
@@ -1471,14 +1555,14 @@ namespace AgencijaNekretnine
 
                 IznajmUgovor kp = new IznajmUgovor();
 
-                kp.kupac = lice;
+                kp.Kupac = lice;
                 //kp.kupac.jeKupac = new Kupac();
 
                 kp.Datum_sklapanja = DateTime.Now;
                 kp.Datum_isteka = dt;
-                kp.iznajmNekretnine = nekretnina.First();
+                kp.Nekretnina = nekretnina.First();
                 kp.Mesecna_zakupina = nekretnina.First().Cena / 300;
-                kp.prodavac = prodavac;
+                kp.Prodavac = prodavac;
 
                 s.SaveOrUpdate(kp);
                 s.Flush();
@@ -1496,8 +1580,8 @@ namespace AgencijaNekretnine
                 ISession s = DataLayer.GetSession();
 
                 IEnumerable<IznajmUgovor> izu = from i in s.Query<IznajmUgovor>()
-                                                where i.iznajmNekretnine.Ulica == ulica &&
-                                                i.iznajmNekretnine.Broj == Convert.ToInt32(broj)
+                                                where i.Nekretnina.Ulica == ulica &&
+                                                i.Nekretnina.Broj == Convert.ToInt32(broj)
                                                 select i;
 
                 s.Delete(izu.First());
@@ -1517,8 +1601,8 @@ namespace AgencijaNekretnine
                 ISession s = DataLayer.GetSession();
 
                 IEnumerable<KupoprodajniUgovor> izu = from i in s.Query<KupoprodajniUgovor>()
-                                                where i.kupoprodNekretnine.Ulica == ulica &&
-                                                i.kupoprodNekretnine.Broj == Convert.ToInt32(broj)
+                                                where i.Nekretnina.Ulica == ulica &&
+                                                i.Nekretnina.Broj == Convert.ToInt32(broj)
                                                 select i;
 
                 s.Delete(izu.First());
@@ -1532,11 +1616,7 @@ namespace AgencijaNekretnine
         }
 
         #endregion
-        /*try {
-
-        } catch (Exception e) { 
-
-        }*/
+        
 
     }
 }

@@ -8,12 +8,14 @@ using AgencijaNekretnine.Entiteti;
 
 namespace AgencijaNekretnine.Mapiranja
 {
-    internal class AgentMapiranja : SubclassMap<Agent>
+    public class AgentMapiranja : SubclassMap<Agent>
     {
         public AgentMapiranja() {
             Table("AGENT");
 
             KeyColumn("IDPRODAVAC");
+
+            //Id(x => x.JMBG).Column("IDPRODAVAC").GeneratedBy.Assigned();
 
             Map(x => x.Ime).Column("IME");
             Map(x => x.Prezime).Column("PREZIME");

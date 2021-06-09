@@ -56,14 +56,14 @@ namespace AgencijaNekretnine.Forme
             List<ProdavacBasic> listaProdavaca = DTOmanager.vratiZaposlenePoslovnice(this.poslovnica.IDPoslovnice);
             foreach(ProdavacBasic p in listaProdavaca)
             {
-                string ss;
+              
 
-                if (p.strucneSpreme == null)
+                /*if (p.strucneSpreme == null)
                     ss = null;
                 else
-                    ss = p.strucneSpreme[0].Naziv;
+                    ss = p.strucneSpreme[0].Naziv;*/
 
-                ListViewItem prod = new ListViewItem(new string[] { p.Ime, p.Prezime, p.JMBG.ToString(), p.DatZaposlenja.ToString(), ss });
+                ListViewItem prod = new ListViewItem(new string[] { p.Ime, p.Prezime, p.JMBG.ToString(), p.DatZaposlenja.ToString(), p.StrucnaSprema });
                 this.zaposleni.Items.Add(prod);
             }
 

@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("LICE");
 
-            //DiscriminateSubClassesOnColumn("TIPLICA");
+            DiscriminateSubClassesOnColumn("TIPLICA");
 
             Id(x => x.JMBG_PIB).Column("JMBGPIB").GeneratedBy.Assigned();
 
@@ -27,37 +27,27 @@ namespace AgencijaNekretnine.Mapiranja
             HasMany(x => x.TelefoniLica).KeyColumn("JMBGPIB").LazyLoad().Cascade.All().Inverse();
             HasMany(x => x.IZNugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
             HasMany(x => x.KPugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
-
+            /*HasMany(x => x.IZNugovori).KeyColumn("IDVLASNIK").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.KPugovori).KeyColumn("IDVLASNIK").LazyLoad().Cascade.All().Inverse();*/
+            HasMany(x => x.listaNekretninaUPosedu).KeyColumn("IDVLASNIKA").LazyLoad().Cascade.All().Inverse();
         }
     }
 
-    /*internal class FizickiKupacMapiranja : SubclassMap<FizickiKupac>
+    class FizickoLiceMapiranja : SubclassMap<LiceMapiranja>
     {
-        public FizickiKupacMapiranja()
+        public FizickoLiceMapiranja()
         {
-            Table("FIZ_KUPAC_NEKRETNINE");
+            DiscriminatorValue("Fizicko");
+        }
+    }
 
-            KeyColumn("JMBGPIB");
-
-           
-            //HasMany(x => x.IZNugovori).KeyColumn("IDKUPAC").LazyLoad().Cascade.All().Inverse();
-            References(x => x.jeKupac).Column("IDKUPAC1").LazyLoad();
+    class PravnoLiceMapiranja : SubclassMap<LiceMapiranja>
+    {
+        public PravnoLiceMapiranja()
+        {
+            DiscriminatorValue("Pravno");
         }
     }
 
 
-
-    internal class PravniKupacMapiranja : SubclassMap<PravniKupac>
-    {
-        public PravniKupacMapiranja()
-        {
-            Table("PRAVNI_KUPAC_NEKRETNINE");
-
-            KeyColumn("JMBGPIB");
-
-            References(x => x.jeKupac).Column("IDKUPAC2").LazyLoad();
-        }
-    }*/
-
-    
 }

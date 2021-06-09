@@ -27,7 +27,7 @@ namespace AgencijaNekretnine.Forme
             List<SefBasic> listaSefova = DTOmanager.vratiSveSefove();
             foreach(SefBasic s in listaSefova)
             {
-                ListViewItem li = new ListViewItem(new string[] { s.JMBG.ToString(), s.Ime, s.Prezime, s.DatZaposlenja.ToString(), s.datPostavljanja.ToString(),s.sefujeNad.ToString()});
+                ListViewItem li = new ListViewItem(new string[] { s.JMBG.ToString(), s.Ime, s.Prezime, s.DatZaposlenja.ToString(), s.DatPostavljanja.ToString(),s.radiUPoslovnici.IDPoslovnice.ToString()});
                 this.listaSefova.Items.Add(li);
             }
 
