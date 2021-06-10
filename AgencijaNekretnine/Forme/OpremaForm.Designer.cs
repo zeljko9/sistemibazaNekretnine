@@ -29,26 +29,13 @@ namespace AgencijaNekretnine.Forme
         /// </summary>
         private void InitializeComponent()
         {
-            this.listOprema = new System.Windows.Forms.ListView();
             this.btnDodaj = new System.Windows.Forms.Button();
             this.btnIzmeni = new System.Windows.Forms.Button();
             this.btnObrisi = new System.Windows.Forms.Button();
+            this.listOprema = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
-            // listOprema
-            // 
-            this.listOprema.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listOprema.HideSelection = false;
-            this.listOprema.Location = new System.Drawing.Point(12, 9);
-            this.listOprema.Name = "listOprema";
-            this.listOprema.Size = new System.Drawing.Size(294, 434);
-            this.listOprema.TabIndex = 0;
-            this.listOprema.UseCompatibleStateImageBehavior = false;
-            this.listOprema.View = System.Windows.Forms.View.Details;
             // 
             // btnDodaj
             // 
@@ -80,23 +67,36 @@ namespace AgencijaNekretnine.Forme
             this.btnObrisi.UseVisualStyleBackColor = true;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
+            // listOprema
+            // 
+            this.listOprema.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listOprema.HideSelection = false;
+            this.listOprema.Location = new System.Drawing.Point(10, 9);
+            this.listOprema.Name = "listOprema";
+            this.listOprema.Size = new System.Drawing.Size(274, 433);
+            this.listOprema.TabIndex = 4;
+            this.listOprema.UseCompatibleStateImageBehavior = false;
+            this.listOprema.View = System.Windows.Forms.View.Details;
+            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "IDoprema";
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "NazivOpreme";
+            this.columnHeader2.Text = "Naziv";
             // 
             // OpremaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 450);
+            this.Controls.Add(this.listOprema);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnIzmeni);
             this.Controls.Add(this.btnDodaj);
-            this.Controls.Add(this.listOprema);
             this.Name = "OpremaForm";
             this.Text = "OpremaForm";
             this.Load += new System.EventHandler(this.OpremaForm_Load);
@@ -105,11 +105,10 @@ namespace AgencijaNekretnine.Forme
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listOprema;
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.Button btnIzmeni;
         private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.ListView listOprema;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
     }

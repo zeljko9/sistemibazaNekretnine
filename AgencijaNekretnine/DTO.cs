@@ -249,24 +249,26 @@ namespace AgencijaNekretnine
     #region AgentBasic
     public class AgentBasic
     {
+        public int IDagetn { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public int Procenat { get; set; }
         public string brTel { get; set; }
 
         public DateTime DatRada { get; set; }
-        public ProdavacBasic angazovanOd { get; set; }
+        public ZaposleniBasic angazovanOd { get; set; }
 
         public AgentBasic() { }
-        public AgentBasic(string ime, string prez, int proc, string br)
+        public AgentBasic(int id, string ime, string prez, int proc, string br)
         {
+            this.IDagetn = id;
             this.Ime = ime;
             this.Prezime = prez;
             this.Procenat = proc;
             this.brTel = br;
         }
 
-        public AgentBasic(string ime, string prez, int proc, string br,ProdavacBasic p):this(ime,prez,proc,br)
+        public AgentBasic(int id, string ime, string prez, int proc, string br,ProdavacBasic p):this(id, ime,prez,proc,br)
         {
             this.angazovanOd = p;
         }
@@ -282,7 +284,7 @@ namespace AgencijaNekretnine
         public int IDPoslovnice { get; set; }
         public string Adresa { get; set; }
         public string RadnoVreme { get; set; }
-        public SefBasic Sef { get; set; }
+        public ZaposleniBasic Sef { get; set; }
         public IList<ZaposleniBasic> listaZaposlenih { get; set; }
         public IList<KvartBasic> nagledaKvartove { get; set; }
 
@@ -333,7 +335,7 @@ namespace AgencijaNekretnine
         public NekretninaBasic IznajmNekretnina { get; set; }
         public LiceBasic Vlasnik { get; set; }
         public LiceBasic Kupac { get; set; }
-        public ProdavacBasic Prodavac { get; set; }
+        public ZaposleniBasic Prodavac { get; set; }
         public DateTime DatSklapanja { get; set; }
         public DateTime DatIsteka { get; set; }
         public int MesecnaZakupina { get; set; }
@@ -358,7 +360,7 @@ namespace AgencijaNekretnine
         public NekretninaBasic KupoprodNekretnina { get; set; }
         public LiceBasic Kupac { get; set; }
         public LiceBasic Vlasnik { get; set; }
-        public ProdavacBasic Prodavac { get; set; }
+        public ZaposleniBasic Prodavac { get; set; }
         public DateTime DatTransakcije { get; set; }
 
         public KupoprodajniUgovorBasic() { }

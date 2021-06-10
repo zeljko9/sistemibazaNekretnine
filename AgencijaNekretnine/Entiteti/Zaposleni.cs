@@ -40,16 +40,16 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class Prodavac : Zaposleni
+   /* public class Prodavac : Zaposleni
     {
         public Prodavac() : base() { }
         public Prodavac(string jmbg, string ime, string prez, DateTime zapos, string sprema, int flag, DateTime postav):base(jmbg,  ime, prez, zapos, sprema, flag, postav) { }
     }
 
-    public class Sef : Zaposleni
+   public class Sef : Zaposleni
     {
         public Sef() : base() { }
 
         public Sef(string jmbg, string ime, string prez, DateTime zapos, string sprema, int flag, DateTime postav) : base(jmbg, ime, prez, zapos, sprema, flag, postav) { }
-    }
+    }*/
 }

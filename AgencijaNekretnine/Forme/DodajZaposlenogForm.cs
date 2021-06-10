@@ -35,9 +35,9 @@ namespace AgencijaNekretnine.Forme
             DateTime dat = this.dtpDatZaposlenja.Value;
             string Strucna = this.tbxStrucnaSprema.Text;
 
-            if(this.cbxSef.Enabled)
+            if(this.cbxSef.Checked)
             {
-                SefBasic sef = new SefBasic(jmbg,ime,prez,dat,Strucna,1, this.dtpPostavljanje.Value);
+                ZaposleniBasic sef = new ZaposleniBasic(jmbg,ime,prez,dat,Strucna,1, this.dtpPostavljanje.Value);
                // sef.datPostavljanja = this.dtpPostavljanje.Value;
                 sef.radiUPoslovnici = this.poslovnica;
                 this.poslovnica.listaZaposlenih.Add(sef);
@@ -45,7 +45,7 @@ namespace AgencijaNekretnine.Forme
             }
             else
             {
-                ProdavacBasic z = new ProdavacBasic(jmbg,ime,prez,dat,Strucna,0,DateTime.MinValue);
+                ZaposleniBasic z = new ZaposleniBasic(jmbg,ime,prez,dat,Strucna,0,DateTime.MinValue);
                 //StrucnaSpremaBasic s = new StrucnaSpremaBasic
                 z.radiUPoslovnici = this.poslovnica;
                 this.poslovnica.listaZaposlenih.Add(z);
@@ -58,6 +58,7 @@ namespace AgencijaNekretnine.Forme
 
 
             MessageBox.Show("Uspesno ste dodali novog zaposlenog");
+            this.Close();
         }
 
         private void cbxSef_CheckedChanged(object sender, EventArgs e)

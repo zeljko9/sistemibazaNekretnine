@@ -22,7 +22,7 @@ namespace AgencijaNekretnine.Mapiranja
             References(x => x.Nekretnina).Column("IDNEKRETNINA").LazyLoad();
             References(x => x.Kupac).Column("IDKUPAC").LazyLoad();
             References(x => x.Prodavac).Column("JMBGPRODAVCA").LazyLoad();
-            References(x => x.Vlasnik).Column("IDVLASNIK").LazyLoad();
+            //References(x => x.Vlasnik).Column("IDVLASNIK").LazyLoad();
         }
     }
 }

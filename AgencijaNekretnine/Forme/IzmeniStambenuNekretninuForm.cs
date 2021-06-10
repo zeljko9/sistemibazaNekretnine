@@ -30,6 +30,7 @@ namespace AgencijaNekretnine.Forme
             n.BrKupatila = (int) numBrKupatila.Value;
 
             DTOmanager.izmeniNekretninu(n);
+            this.Close();
         }
 
         private void IzmeniStambenuNekretninuForm_Load(object sender, EventArgs e)

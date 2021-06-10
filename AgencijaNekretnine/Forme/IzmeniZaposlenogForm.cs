@@ -13,13 +13,13 @@ namespace AgencijaNekretnine.Forme
     public partial class IzmeniZaposlenogForm : Form
     {
 
-        ProdavacBasic prodavac;
+        ZaposleniBasic prodavac;
         public IzmeniZaposlenogForm()
         {
             InitializeComponent();
         }
 
-        public IzmeniZaposlenogForm(ProdavacBasic p )
+        public IzmeniZaposlenogForm(ZaposleniBasic p )
         {
             InitializeComponent();
             this.prodavac = p;

@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("LICE");
 
-            DiscriminateSubClassesOnColumn("TIPLICA");
+            //DiscriminateSubClassesOnColumn("TIPLICA");
 
             Id(x => x.JMBG_PIB).Column("JMBGPIB").GeneratedBy.Assigned();
 
@@ -33,7 +33,7 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-    class FizickoLiceMapiranja : SubclassMap<LiceMapiranja>
+    /*class FizickoLiceMapiranja : SubclassMap<LiceMapiranja>
     {
         public FizickoLiceMapiranja()
         {
@@ -48,6 +48,6 @@ namespace AgencijaNekretnine.Mapiranja
             DiscriminatorValue("Pravno");
         }
     }
-
+    */
 
 }

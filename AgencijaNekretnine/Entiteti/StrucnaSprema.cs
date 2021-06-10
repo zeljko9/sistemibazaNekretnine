@@ -10,7 +10,7 @@ namespace AgencijaNekretnine.Entiteti
     {
         public virtual int IDSpreme { get; set; }
 
-        public virtual Prodavac pripadaProdavcu { get; set; }
+        public virtual Zaposleni pripadaProdavcu { get; set; }
 
         public virtual String NazivSpreme { get; set; }
 

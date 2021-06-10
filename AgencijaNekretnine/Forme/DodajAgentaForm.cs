@@ -12,13 +12,13 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class DodajAgentaForm : Form
     {
-        ProdavacBasic prodavac;
+        ZaposleniBasic prodavac;
         public DodajAgentaForm()
         {
             InitializeComponent();
         }
 
-        public DodajAgentaForm(ProdavacBasic p)
+        public DodajAgentaForm(ZaposleniBasic p)
         {
             this.prodavac = p;
             InitializeComponent();
@@ -36,6 +36,8 @@ namespace AgencijaNekretnine.Forme
 
             DTOmanager.dodajAgenta(agent);
             MessageBox.Show("Agent uspesno dodat");
+
+            this.Close();
         }
     }
 }

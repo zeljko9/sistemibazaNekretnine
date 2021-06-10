@@ -151,6 +151,7 @@ namespace AgencijaNekretnine.Forme
             this.Controls.Add(this.tbxIme);
             this.Name = "IzmeniAgentaForm";
             this.Text = "IzmeniAgentaForm";
+            this.Load += new System.EventHandler(this.IzmeniAgentaForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.nmudProcenat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

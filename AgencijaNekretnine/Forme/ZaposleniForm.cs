@@ -50,11 +50,12 @@ namespace AgencijaNekretnine.Forme
             zaposleni.Columns.Add(new ColumnHeader() { Text = "JMBG" });
             zaposleni.Columns.Add(new ColumnHeader() { Text = "Datum zaposlenja" });
             zaposleni.Columns.Add(new ColumnHeader() { Text = "Strucna sprema" });
-        
+            zaposleni.Columns.Add(new ColumnHeader() { Text = "Sef" });
 
 
-            List<ProdavacBasic> listaProdavaca = DTOmanager.vratiZaposlenePoslovnice(this.poslovnica.IDPoslovnice);
-            foreach(ProdavacBasic p in listaProdavaca)
+
+            List<ZaposleniBasic> listaProdavaca = DTOmanager.vratiZaposlenePoslovnice(this.poslovnica.IDPoslovnice);
+            foreach(ZaposleniBasic p in listaProdavaca)
             {
               
 
@@ -63,7 +64,7 @@ namespace AgencijaNekretnine.Forme
                 else
                     ss = p.strucneSpreme[0].Naziv;*/
 
-                ListViewItem prod = new ListViewItem(new string[] { p.Ime, p.Prezime, p.JMBG.ToString(), p.DatZaposlenja.ToString(), p.StrucnaSprema });
+                ListViewItem prod = new ListViewItem(new string[] { p.Ime, p.Prezime, p.JMBG.ToString(), p.DatZaposlenja.ToString(), p.StrucnaSprema, p.SefFlag.ToString() });
                 this.zaposleni.Items.Add(prod);
             }
 
@@ -90,7 +91,7 @@ namespace AgencijaNekretnine.Forme
             // RadnikBasic r = DTOManager.vratiRadnika(idZaposleni);
             //IzmeniZaposlenogForma forma = new IzmeniZaposlenogForma(r);
             //forma.ShowDialog();
-            ProdavacBasic p = DTOmanager.vratiProdavca(idZaposleni);
+            ZaposleniBasic p = DTOmanager.vratiProdavca(idZaposleni);
             IzmeniZaposlenogForm forma = new IzmeniZaposlenogForm(p);
             forma.ShowDialog();
             popuniPodacima();
@@ -104,7 +105,7 @@ namespace AgencijaNekretnine.Forme
                 return;
             }
 
-            int idZaposleni = Int32.Parse(zaposleni.SelectedItems[0].SubItems[0].Text);
+            string idZaposleni = zaposleni.SelectedItems[0].SubItems[2].Text;
             // RadnikBasic r = DTOManager.vratiRadnika(idZaposleni);
             //IzmeniZaposlenogForma forma = new IzmeniZaposlenogForma(r);
             //forma.ShowDialog();
@@ -128,7 +129,7 @@ namespace AgencijaNekretnine.Forme
 
             string idZaposleni = zaposleni.SelectedItems[0].SubItems[2].Text;
 
-            ProdavacBasic p = DTOmanager.vratiProdavca(idZaposleni);
+            ZaposleniBasic p = DTOmanager.vratiProdavca(idZaposleni);
 
             AgentiForm form = new AgentiForm(p);
             form.ShowDialog();

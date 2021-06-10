@@ -14,7 +14,7 @@ namespace AgencijaNekretnine.Mapiranja
         {
             Table("NEKRETNINA");
 
-            DiscriminateSubClassesOnColumn("TIPNEKRETNINE");
+            //DiscriminateSubClassesOnColumn("TIPNEKRETNINE");
 
             Id(x => x.IDNekretnina).Column("IDNEKRETNINA").GeneratedBy.SequenceIdentity("S17254.SEQ_NEKRETNINA");
 
@@ -34,7 +34,7 @@ namespace AgencijaNekretnine.Mapiranja
         }
     }
 
-   class StambenaNekretninaMapiranja : SubclassMap<NekretninaMapiranja>
+  /* class StambenaNekretninaMapiranja : SubclassMap<NekretninaMapiranja>
     {
         public StambenaNekretninaMapiranja()
         {
@@ -48,5 +48,5 @@ namespace AgencijaNekretnine.Mapiranja
         {
             DiscriminatorValue("Poslovna");
         }
-    }
+    }*/
 }

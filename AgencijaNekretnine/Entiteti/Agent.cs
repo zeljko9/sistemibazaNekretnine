@@ -8,7 +8,9 @@ namespace AgencijaNekretnine.Entiteti
 {
     public class Agent
     {
-        public virtual Prodavac AngazovanOd { get; set; }
+
+        public virtual int IDagent { get; set; }
+        public virtual Zaposleni AngazovanOd { get; set; }
         public virtual string Ime { get; set; }
         public virtual string Prezime { get; set; }
         public virtual int Procenat { get; set; }
@@ -20,8 +22,9 @@ namespace AgencijaNekretnine.Entiteti
 
         public Agent() { }
 
-        public Agent(string ime, string prez, int proc, string tel)
+        public Agent(int id, string ime, string prez, int proc, string tel)
         {
+            IDagent = id;
             this.Ime = ime;
             this.Prezime = prez;
             this.Procenat = proc;

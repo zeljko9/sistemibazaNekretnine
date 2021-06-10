@@ -12,13 +12,13 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class AgentiForm : Form
     {
-        ProdavacBasic prodavac;
+        ZaposleniBasic prodavac;
         public AgentiForm()
         {
             InitializeComponent();
         }
 
-        public AgentiForm(ProdavacBasic p)
+        public AgentiForm(ZaposleniBasic p)
         {
             this.prodavac = p;
             InitializeComponent();
@@ -34,6 +34,7 @@ namespace AgencijaNekretnine.Forme
         {
             this.listaAgenata.Clear();
 
+            listaAgenata.Columns.Add(new ColumnHeader() { Text = "IDagent" });
             listaAgenata.Columns.Add(new ColumnHeader() { Text = "Ime" });
             listaAgenata.Columns.Add(new ColumnHeader() { Text = "Prezime" });
             listaAgenata.Columns.Add(new ColumnHeader() { Text = "Telefon" });
@@ -45,7 +46,7 @@ namespace AgencijaNekretnine.Forme
 
             foreach(AgentBasic a in agenti)
             {
-                ListViewItem li = new ListViewItem(new string[] {  a.Ime, a.Prezime, a.brTel, a.Procenat.ToString(), a.DatRada.ToString() });
+                ListViewItem li = new ListViewItem(new string[] { a.IDagetn.ToString(), a.Ime, a.Prezime, a.brTel, a.Procenat.ToString(), a.DatRada.ToString() });
                 this.listaAgenata.Items.Add(li);
             }
 
@@ -60,6 +61,8 @@ namespace AgencijaNekretnine.Forme
             DodajAgentaForm form = new DodajAgentaForm(this.prodavac);
             form.ShowDialog();
             form.Close();
+
+            popuniPodacima();
         }
 
         private void btnIzmeniAgenta_Click(object sender, EventArgs e)
@@ -73,10 +76,12 @@ namespace AgencijaNekretnine.Forme
 
             string angazovanOd = listaAgenata.SelectedItems[0].SubItems[0].Text;
             AgentBasic agent = DTOmanager.vratiAgenta(angazovanOd);
-            ProdavacBasic prodavac = DTOmanager.vratiProdavca(angazovanOd);
-            IzmeniAgentaForm forma = new IzmeniAgentaForm(agent, prodavac);
+            //ZaposleniBasic prodavac = DTOmanager.vratiProdavca(angazovanOd);
+            IzmeniAgentaForm forma = new IzmeniAgentaForm(agent);
             forma.ShowDialog();
             forma.Close();
+
+            popuniPodacima();
         }
 
         private void btnObrisiAgenta_Click(object sender, EventArgs e)
@@ -92,7 +97,7 @@ namespace AgencijaNekretnine.Forme
             MessageBox.Show("Agent uspesno obrisan");
 
 
-
+            popuniPodacima();
         }
 
         private void AgentiForm_Load_1(object sender, EventArgs e)

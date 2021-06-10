@@ -24,7 +24,10 @@ namespace AgencijaNekretnine.Forme
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {
+          
+            DTOmanager.obrisiOpremu(Convert.ToInt32(listOprema.SelectedItems[0].SubItems[0].Text));
 
+            ucitajView();
         }
 
         private void btnDodaj_Click(object sender, EventArgs e)
@@ -45,7 +48,7 @@ namespace AgencijaNekretnine.Forme
 
         public void ucitajView() {
             listOprema.Items.Clear();
-            List<OpremaBasic> podaci = DTOmanager.vratiSvuOpremu(n);
+            List<OpremaBasic> podaci = DTOmanager.vratiSvuOpremu(n.IDNekretnina);
 
             foreach (OpremaBasic p in podaci)
             {

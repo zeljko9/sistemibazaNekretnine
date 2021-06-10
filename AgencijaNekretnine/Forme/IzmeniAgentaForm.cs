@@ -12,16 +12,14 @@ namespace AgencijaNekretnine.Forme
 {
     public partial class IzmeniAgentaForm : Form
     {
-        ProdavacBasic prodavac;
         AgentBasic agent;
         public IzmeniAgentaForm()
         {
             InitializeComponent();
         }
 
-        public IzmeniAgentaForm(AgentBasic a, ProdavacBasic p)
+        public IzmeniAgentaForm(AgentBasic a)
         {
-            this.prodavac = p;
             this.agent = a;
             InitializeComponent();
         }
@@ -47,11 +45,18 @@ namespace AgencijaNekretnine.Forme
             agent.Procenat = (int)this.nmudProcenat.Value;
             agent.brTel = this.tbxBrTel.Text;
             agent.DatRada = this.dtpDatPocetka.Value;
-            agent.angazovanOd = this.prodavac;
+            agent.angazovanOd = this.agent.angazovanOd;
+            agent.IDagetn = this.agent.IDagetn;
 
             DTOmanager.izmeniAgenta(agent);
             MessageBox.Show("Uspesno azuriran agent");
 
+            this.Close();
+        }
+
+        private void IzmeniAgentaForm_Load_1(object sender, EventArgs e)
+        {
+            popuniPrikaz();
         }
     }
 }

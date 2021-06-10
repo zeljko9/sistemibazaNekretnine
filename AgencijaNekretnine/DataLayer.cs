@@ -34,12 +34,12 @@ namespace AgencijaNekretnine
             try
             {
                 var cfg = OracleManagedDataClientConfiguration.Oracle10
-                    .ConnectionString(c =>
-                        c.Is("Data Source = gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S17254;Password=lukazeljko"));
-
+                    .ShowSql()
+                    .ConnectionString(c =>c.Is("Data Source = gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S17254;Password=lukazeljko"));
+                
                 return Fluently.Configure()
-                    .Database(cfg.ShowSql())
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NekretninaMapiranja>())
+                    .Database(cfg)
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<AgentMapiranja>())
                     .BuildSessionFactory();
             }
             catch(Exception e)

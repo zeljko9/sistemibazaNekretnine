@@ -58,7 +58,7 @@ namespace AgencijaNekretnine.Entiteti
         }
     }
 
-    public class FizickoLice : Lice
+   /* public class FizickoLice : Lice
     {
         public FizickoLice() : base() { }
 
@@ -72,6 +72,6 @@ namespace AgencijaNekretnine.Entiteti
         public PravnoLice(string jMBG_PIB, string ime, string prezime, string adresa, string tipLica) : base(jMBG_PIB, ime, prezime, adresa, tipLica) { }
     }
    
-
+    */
     
 }

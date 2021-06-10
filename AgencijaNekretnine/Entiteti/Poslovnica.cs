@@ -11,7 +11,7 @@ namespace AgencijaNekretnine.Entiteti
         public virtual int IDPoslovnice { get; set; }
         public virtual string Adresa { get; set; }
         public virtual string RadnoVreme { get; set; }
-        public virtual Sef SefPoslovnice { get; set; }
+        public virtual Zaposleni SefPoslovnice { get; set; }
         public virtual IList<Kvart> NagledaKvartove { get; set; }
         public virtual IList<Zaposleni> ZaposljavaZaposlene { get; set; }
 

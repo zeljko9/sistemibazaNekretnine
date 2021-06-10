@@ -14,12 +14,12 @@ namespace AgencijaNekretnine.Mapiranja
 
             Table("UGOVOR_PRODAJA");
 
-            Id(x => x.IDugkp).Column("IDUGRP").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
+            Id(x => x.IDugkp).Column("IDUGPR").GeneratedBy.SequenceIdentity("S17254.SEQ_KUPOPROD_UGOVOR");
 
             Map(x => x.Datum_transakcije).Column("DATUM_TRANSAKCIJE");
             References(x => x.Nekretnina).Column("IDNEKRENINA").LazyLoad();
             References(x => x.Kupac).Column("IDKUPAC").LazyLoad();
-            References(x => x.Vlasnik).Column("IDVLASNIK").LazyLoad();
+            //References(x => x.Vlasnik).Column("IDVLASNIK").LazyLoad();
             References(x => x.Prodavac).Column("JMBGZAPOSLENOG").LazyLoad();
         }
     }
